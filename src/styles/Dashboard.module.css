@@ -1,0 +1,357 @@
+:root {
+    --bg: white;
+    --bg-color: black;
+    --text-color: white;
+    --text-green: #2ab023;
+    --text-blue: #165473;
+}
+
+.divOF {
+    width: 100%;
+    border-radius: 50px;
+    background-color: var(--bg2-tr);
+    height: 20px;
+}
+.Container {
+    width: 100%;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+}
+.Container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+.Container > div > div {
+    scroll-snap-align: center;
+}
+
+#avanceOF {
+    color: var(--text-blue);
+}
+
+#sectionName {
+    background-color: /*#6b9080*/ var(--text-green);
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 10px 10px 0px 0px;
+    font-size: clamp(0.5rem, 2vw + 0.1rem, 1.5rem);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#sectionImage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+    margin-block: 5%;
+}
+
+#machine {
+    width: 80%;
+    height: auto;
+}
+
+#chef {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: clamp(0.25rem, 1vw + 0.3rem, 1rem);
+}
+
+.object {
+    color: var(--bg-color);
+}
+
+.value {
+    font-weight: bold;
+    color: #2ab023;
+    font-size: 11px;
+}
+
+#chef > span {
+    font-size: clamp(0.25rem, 1vw + 0.2rem, 1rem);
+    color: /*white*/ var(--bg-color);
+}
+
+#consoEnerg,
+#resProd,
+#of,
+#KPI {
+    line-height: clamp(0.5rem, 3vw + 0.3rem, 2rem);
+    background: rgba(180, 171, 171, 0.03);
+    box-shadow: 2px 3px 9px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: /*white*/ var(--bg-color);
+    padding-inline: 5%;
+    padding-block: 2.5%;
+    width: 90%;
+}
+
+#consoEnerg {
+    margin-top: 7.5%;
+    height: 85%;
+}
+
+#KPI > h4,
+#consoEnerg > h4,
+#resProd > h4,
+#of > h4 {
+    font-size: clamp(0.25rem, 1vw + 0.3rem, 1rem);
+    color: /*#a3cef1*/ var(--text-blue);
+    text-align: center;
+}
+
+#section-dashboard {
+    flex-grow: 1;
+    overflow: scroll;
+    height: 100vh;
+    margin: 1%;
+    padding-top: var(--header-height);
+    box-sizing: border-box;
+    scroll-snap-type: x mandatory;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+}
+.messNotification {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 250px;
+}
+
+#buttonManager {
+    border: none;
+    padding: 7px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    position: relative;
+}
+
+#ManagerIcon {
+    display: flex;
+    flex-direction: column;
+}
+
+#sousButton {
+    background-color: white;
+    padding: 1%;
+    font-size: 11px;
+    width: 122px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 75px;
+    margin-top: 37px;
+    position: absolute;
+    right: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #dbd5d5;
+}
+
+.spanB {
+    text-align: left;
+    text-decoration: underline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: black;
+}
+
+#fixedbutton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+#columnDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+#resUsine {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 15px;
+    padding: 40px 25px;
+    width: 100vw;
+    box-sizing: border-box;
+}
+#resUsine > div {
+    grid-column: span 5;
+}
+
+#resUsine .oneColumn {
+    grid-column: span 3;
+}
+
+#resUsine .twoColumn {
+    grid-column: span 2;
+}
+
+td {
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+}
+.buttonfiltre {
+    width: 74px;
+    height: 40px;
+    cursor: pointer;
+
+    background: #6d6d6d;
+    color: white;
+}
+.buttonfiltre:hover {
+    background: #167da4;
+}
+.buttonSecondFiltre {
+    width: 74px;
+    height: 40px;
+    color: white;
+    background: #165473;
+
+    cursor: pointer;
+}
+.buttonSecondFiltre:hover {
+    background: blue;
+}
+table {
+    border-collapse: collapse;
+    margin-left: 6px;
+}
+
+td,
+th {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+}
+.filtre {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 5px;
+}
+
+.filtre2 {
+    display: flex;
+    align-items: center;
+}
+.searchbox {
+    background: #666666;
+    border-radius: 40px;
+    padding: 2px;
+}
+.searchbox:hover > .searchtxt {
+    width: 240px;
+    padding: 0 6px;
+}
+.searchbox:hover > .searchbtn {
+    background: white;
+    color: black;
+}
+.searchbtn {
+    color: #eeeeee;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+}
+.searchbtn > i {
+    font-size: 16px;
+}
+.searchtxt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+.date {
+    color: white;
+    background: #165473;
+
+    width: 110px;
+    padding: 9px;
+}
+#inputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    right: 0;
+    background-color: #c8c8c8;
+    width: 50%;
+    height: 50%;
+    box-shadow: 1px 2px 1px gray;
+}
+.labelInput {
+    display: flex;
+    justify-content: space-between;
+    width: 71%;
+    align-items: center;
+}
+#BtnAjouter {
+    width: 18%;
+    margin-left: 42%;
+    color: white;
+    background-color: green;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+}
+#btnClose {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+@media screen and (max-width: 700px) {
+    #header {
+        width: 100vw;
+    }
+    .titre {
+        font-size: 10px;
+    }
+    #buttonAjouter {
+        display: none;
+    }
+}

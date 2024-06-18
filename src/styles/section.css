@@ -1,0 +1,5 @@
+@media only screen and (width < 1300px) {
+    .close-section > div:nth-child(2) > div {
+        width: calc(100vw - 9px);
+    }
+}
