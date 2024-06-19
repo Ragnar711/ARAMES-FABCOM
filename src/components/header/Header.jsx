@@ -1,62 +1,89 @@
-import { useContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { IoLogOutSharp } from 'react-icons/io5'
-import { AiOutlineClose } from 'react-icons/ai'
-import { TiUserAdd } from 'react-icons/ti'
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
+import { IoLogOutSharp } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
+import { TiUserAdd } from "react-icons/ti";
 
-import { context } from '../../utils/context'
+import ThemeToggle from "./ThemeToggle";
+import { context } from "../../App";
 
-import style from '../../styles/Dashboard.module.css'
+import style from "../../styles/Dashboard.module.css";
+
+import fetchData from "../../utils/fetchData";
 
 function Header() {
-    const navigate = useNavigate()
-    const [showDiv, setShowDiv] = useState(false)
-    const [showInputs, setShowInputs] = useState(false)
-    const { state } = useContext(context)
+    const navigate = useNavigate();
+    const [showDiv, setShowDiv] = useState(false);
+    const [showInputs, setShowInputs] = useState(false);
+    const { state } = useContext(context);
+    const alert = useAlert();
     const [userData, setUserData] = useState({
-        nom: '',
-        prenom: '',
-        matricule: '',
-        password: '',
-        password2: '',
-        service: 'operateur',
-    })
-    const [confirmPassword, setConfirmPassword] = useState(true)
+        nom: "",
+        prenom: "",
+        matricule: "",
+        password: "",
+        password2: "",
+        service: "operateur",
+    });
+    const [confirmPassword, setConfirmPassword] = useState(true);
     const handleClick = () => {
-        setShowDiv(!showDiv)
-    }
+        setShowDiv(!showDiv);
+    };
     const handleClick2 = () => {
-        setShowInputs(!showInputs)
-    }
+        setShowInputs(!showInputs);
+    };
     const handleInputClose = () => {
-        setShowInputs(false)
-    }
+        setShowInputs(false);
+    };
+    const saveUser = async () => {
+        let confirm = true;
+        for (const data in userData) {
+            if (!userData[data]) {
+                confirm = false;
+                break;
+            }
+        }
+        if (confirm && confirmPassword) {
+            const data = await fetchData("/admin/signup", "POST", userData);
+            if (data.status === 200 && data.data.success) {
+                alert.success("Utilisateur enregistré");
+            } else {
+                alert.error("Erreur: " + data.data.error);
+                console.error(data.data.error);
+            }
+        } else {
+            alert.error("Les informations sont insuffisantes");
+        }
+    };
     const handleClickOutsidePopup = (e) => {
         if (
             e.target.id !==
             (style.inputContainer &&
                 !e.target.closest(`#${style.inputContainer}`))
         ) {
-            handleInputClose()
+            handleInputClose();
         }
-    }
+    };
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutsidePopup)
+        document.addEventListener("mousedown", handleClickOutsidePopup);
         const handleClickOutside = (event) => {
             if (!event.target.closest(`#${style.sousButton}`)) {
-                setShowDiv(false)
+                setShowDiv(false);
             }
-        }
-        window.addEventListener('mousedown', handleClickOutside)
+        };
+        window.addEventListener("mousedown", handleClickOutside);
         return () => {
-            document.removeEventListener('mousedown', handleClickOutsidePopup)
-            window.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [])
+            document.removeEventListener("mousedown", handleClickOutsidePopup);
+            window.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
     return (
         <div id="header-parent">
             <header id="header">
                 <h1 className="titre">{state.title}</h1>
+                <ThemeToggle />
+                {/*<MdNotifications color="white" size={32} cursor="pointer" />*/}
                 <div id={style.ManagerIcon}>
                     <button id={style.buttonManager} onClick={handleClick}>
                         MA
@@ -74,10 +101,10 @@ function Header() {
                             <span
                                 className={style.spanB}
                                 onClick={() => {
-                                    delete window.sessionStorage.user
+                                    delete window.sessionStorage.user;
                                     setTimeout(() => {
-                                        navigate('/')
-                                    }, 1)
+                                        navigate("/");
+                                    }, 1);
                                 }}
                             >
                                 <IoLogOutSharp size={20} />
@@ -93,14 +120,14 @@ function Header() {
                             >
                                 <AiOutlineClose size={20} color="red" />
                             </button>
-                            <h5 style={{ textAlign: 'center' }}>
+                            <h5 style={{ textAlign: "center" }}>
                                 Ajouter utilisateur
                             </h5>
                             <div className={style.labelInput}>
                                 <label htmlFor="nom">Nom </label>
                                 <input
                                     id="nom"
-                                    style={{ width: '41%' }}
+                                    style={{ width: "41%" }}
                                     type="text"
                                     placeholder="Nom"
                                     value={userData.nom}
@@ -116,7 +143,7 @@ function Header() {
                                 <label htmlFor="prenom">Prénom </label>
                                 <input
                                     id="prenom"
-                                    style={{ width: '41%' }}
+                                    style={{ width: "41%" }}
                                     type="text"
                                     placeholder="Prénom"
                                     value={userData.prenom}
@@ -132,7 +159,7 @@ function Header() {
                                 <label htmlFor="matricule">Matricule </label>
                                 <input
                                     id="matricule"
-                                    style={{ width: '41%' }}
+                                    style={{ width: "41%" }}
                                     type="text"
                                     placeholder="Matricule"
                                     value={userData.matricule}
@@ -148,7 +175,7 @@ function Header() {
                                 <label htmlFor="mdp"> Mot de passe </label>
                                 <input
                                     id="mdp"
-                                    style={{ width: '41%' }}
+                                    style={{ width: "41%" }}
                                     type="password"
                                     placeholder="Mot de passe"
                                     value={userData.password}
@@ -156,26 +183,26 @@ function Header() {
                                         setUserData({
                                             ...userData,
                                             password: e.target.value,
-                                        })
+                                        });
                                         setConfirmPassword(
                                             userData.password2 ===
                                                 e.target.value
-                                        )
+                                        );
                                     }}
                                 />
                             </div>
                             <div className={style.labelInput}>
                                 <label htmlFor="cmdp">
-                                    {' '}
-                                    Confirmer votre Mot de passe{' '}
+                                    {" "}
+                                    Confirmer votre Mot de passe{" "}
                                 </label>
                                 <input
                                     id="cmdp"
                                     style={{
-                                        width: '41%',
+                                        width: "41%",
                                         borderColor: confirmPassword
-                                            ? 'green'
-                                            : 'red',
+                                            ? "green"
+                                            : "red",
                                     }}
                                     type="password"
                                     placeholder=" Confirmer votre mot de passe"
@@ -184,10 +211,10 @@ function Header() {
                                         setUserData({
                                             ...userData,
                                             password2: e.target.value,
-                                        })
+                                        });
                                         setConfirmPassword(
                                             userData.password === e.target.value
-                                        )
+                                        );
                                     }}
                                 />
                             </div>
@@ -195,7 +222,7 @@ function Header() {
                                 <label htmlFor="service"> Service </label>
                                 <select
                                     id="service"
-                                    style={{ width: '41%' }}
+                                    style={{ width: "41%" }}
                                     placeholder="Service"
                                     value={userData.service}
                                     onChange={(e) =>
@@ -212,13 +239,18 @@ function Header() {
                                     <option value="method">Méthode</option>
                                 </select>
                             </div>
-                            <button id={style.BtnAjouter}>Ajouter</button>
+                            <button
+                                id={style.BtnAjouter}
+                                onClick={() => saveUser()}
+                            >
+                                Ajouter
+                            </button>
                         </div>
                     )}
                 </div>
             </header>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

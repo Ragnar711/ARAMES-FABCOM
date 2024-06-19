@@ -1,0 +1,72 @@
+td {
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+}
+option {
+    text-align: center;
+}
+.buttonfiltre {
+    width: 93px;
+    height: 40px;
+    cursor: pointer;
+    border: 2px solid;
+    background: #6d6d6d;
+    color: white;
+}
+.buttonfiltre:hover {
+    background: #167da4;
+}
+.buttonSecondFiltre {
+    width: 74px;
+    height: 40px;
+    color: white;
+    background: #165473;
+    border: 2px solid;
+
+    cursor: pointer;
+}
+.buttonSecondFiltre:hover {
+    background: blue;
+}
+table {
+    border-collapse: collapse;
+    margin-left: 6px;
+    table-layout: fixed;
+}
+
+td,
+th {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+}
+thead,
+th {
+    position: sticky;
+    top: 0;
+}
+.date {
+    color: white;
+    background: #165473;
+    border: 2px solid;
+    width: 110px;
+    padding: 9px;
+}
+.plus {
+    color: #0ba60b;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+}
+.moins {
+    border: none;
+    background-color: transparent;
+    color: #df2626;
+    font-size: 30px;
+    cursor: pointer;
+}
+select,
+option {
+    cursor: pointer;
+}

@@ -1,0 +1,279 @@
+td {
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+}
+option {
+    text-align: center;
+}
+.buttonfiltre {
+    width: 7%;
+    cursor: pointer;
+    background: #d9d9d9;
+    color: black;
+    text-align: center;
+    margin-right: 1rem;
+    border-radius: 14px;
+    padding: 6px;
+}
+h3 {
+    font-size: 11px;
+    color: var(--blue);
+    text-decoration: underline;
+}
+.buttonfiltre:hover {
+    background: #167da4;
+}
+
+.buttonSecondFiltre {
+    width: 74px;
+    color: white;
+    background: #165473;
+    border: 2px solid;
+    cursor: pointer;
+    border-radius: 14px;
+    padding: 6px;
+}
+.buttonSecondFiltre:hover {
+    background: blue;
+}
+table {
+    border-collapse: collapse;
+    margin-left: 6px;
+    table-layout: fixed;
+}
+
+td,
+th {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    color: var(--bg-color);
+}
+thead,
+th {
+    position: sticky;
+    top: 0;
+    background-color: #96cce0;
+    font-size: 11px;
+}
+.filtre {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtre2 {
+    display: flex;
+    align-items: center;
+}
+.searchbox {
+    background: #666666;
+    border-radius: 40px;
+    padding: 2px;
+    position: fixed;
+    margin-top: 7px;
+}
+.searchbox:hover > .searchtxt {
+    width: 240px;
+    padding: 0 6px;
+}
+.searchbox:hover > .searchbtn {
+    background: white;
+    color: black;
+}
+.searchbtn {
+    color: #eeeeee;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.searchbtn > i {
+    font-size: 16px;
+}
+.searchtxt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+    font-weight: bold;
+    text-align: center;
+}
+.exportData {
+    border-radius: 11px;
+    width: 7%;
+    background: #0fb60f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    height: 5%;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.date {
+    color: white;
+    background: #165473;
+    border: 2px solid;
+    width: 110px;
+    padding: 9px;
+}
+#sousButton {
+    background-color: white;
+    padding: 1%;
+    font-size: 11px;
+    width: 122px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 137px;
+    position: absolute;
+    right: 214px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #dbd5d5;
+    z-index: 1;
+}
+
+.spanB {
+    text-align: left;
+    text-decoration: underline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: black;
+    width: 75px;
+}
+.divTable {
+    overflow: auto;
+    margin-top: 4%;
+    max-width: 100%;
+    position: relative;
+}
+
+.modalBody {
+    margin-left: 12%;
+}
+
+.custom_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.custom_backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+h5 {
+    font-size: 19px;
+    text-decoration: underline;
+}
+.modalHeader {
+    text-align: center;
+    color: #165473;
+    font-size: 1.5rem;
+}
+label {
+    font-size: 0.5rem;
+    padding-left: 5%;
+}
+#Btn {
+    background-color: green;
+    border: none;
+    margin-left: 43%;
+    padding: 2%;
+    color: white;
+}
+.consoFilters {
+    margin-block: 1rem;
+}
+.tableConsommation {
+    width: max-content;
+}
+.tableResponsive {
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    .searchbox {
+        display: none;
+    }
+    .tableResponsive {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-width: 100%;
+        width: auto;
+        font-size: 8px;
+    }
+    .tableResponsive table {
+        border-collapse: collapse;
+        width: max-content;
+    }
+
+    .tableResponsive th,
+    .tableResponsive tr,
+    .tableResponsive td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        min-width: max-content;
+        white-space: nowrap;
+    }
+
+    .tableResponsive th {
+        background-color: #96cce0;
+        font-weight: bold;
+    }
+
+    .buttonfiltre {
+        width: 83px;
+        height: 29px;
+        font-size: 11px;
+    }
+    .buttonSecondFiltre {
+        width: 36px;
+        height: 28px;
+        font-size: 11px;
+    }
+    .date {
+        padding: 4px;
+    }
+    #bTelecharger {
+        display: none;
+    }
+    .tableTitle {
+        position: fixed;
+        left: 50%;
+        translate: -50% 0;
+        width: 100vw;
+        z-index: -1;
+    }
+    .tableResponsive {
+        margin-top: 50px;
+        background-color: var(--bg);
+    }
+}

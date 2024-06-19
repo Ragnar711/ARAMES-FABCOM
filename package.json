@@ -1,28 +1,62 @@
 {
-  "name": "a.icons-fabcom",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "antd": "^5.18.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "vite": "^5.2.0"
-  }
+    "name": "a_icons_manager",
+    "version": "1.0.0",
+    "description": "Manager application of A.ICONS MES",
+    "main": "./src/index.jsx",
+    "private": true,
+    "scripts": {
+        "dev": "vite --host",
+        "server": "json-server --watch ./server/db.json --port 3300 --middlewares ./server/authentification.js",
+        "build": "eslint  --ext .jsx . && vite build",
+        "start": "vite preview --host",
+        "test": "jest --testPathIgnorePatterns ./e2e",
+        "test:watch": "jest --watch",
+        "test:all": "jest",
+        "test:e2e": "jest ./e2e",
+        "lint": "eslint --ext .jsx .",
+        "lint:fix": "eslint --ext .jsx --fix",
+        "opt": "vite optimize"
+    },
+    "keywords": [
+        "A.ICONS",
+        "MES",
+        "4.0"
+    ],
+    "author": "ARA COMPANY",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.0",
+        "@mui/material": "^5.11.12",
+        "antd": "^5.18.0",
+        "html2canvas": "^1.4.1",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.5.28",
+        "moment": "^2.30.1",
+        "pareto-chart": "^1.0.22",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-alert": "^7.0.3",
+        "react-apexcharts": "^1.4.1",
+        "react-bootstrap": "^2.7.2",
+        "react-circular-progressbar": "^2.1.0",
+        "react-csv": "^2.2.2",
+        "react-dom": "^18.2.0",
+        "react-gauge-component": "^1.2.21",
+        "react-icons": "^4.7.1",
+        "react-router-dom": "^6.8.1",
+        "recharts": "^2.5.0",
+        "xlsx": "^0.18.5"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.20.2",
+        "@types/react": "^18.0.27",
+        "@vitejs/plugin-react": "^3.1.0",
+        "eslint": "^8.33.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-react": "^7.32.2",
+        "jest": "^29.4.2",
+        "puppeteer": "^19.6.3",
+        "vite": "^4.1.1"
+    }
 }

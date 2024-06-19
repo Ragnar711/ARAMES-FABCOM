@@ -1,0 +1,110 @@
+.Cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.tableResponsive table {
+    width: 100%;
+}
+.ManagmentDataH2 {
+    text-align: left;
+    font-size: 20px;
+}
+.secondFiltre {
+    display: flex;
+    flex-direction: column;
+}
+.KPICont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.ManagmentKPICharts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 99%;
+    margin-bottom: 100px;
+}
+.ManagmentDataCharts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 200px;
+}
+.chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+}
+
+.chartHeader {
+    background-color: #6d6d6d;
+    color: white;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+.toggle {
+    margin-left: 75%;
+    color: white;
+}
+.tableKPI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.tableData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.tableHeader {
+    background-color: #6d6d6d;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 56rem;
+}
+.tableHeader2 {
+    background-color: #6d6d6d;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 97.5%;
+    width: 100%;
+}
+.downloadBtn {
+    background-color: red;
+}
+#modalBody {
+    text-align: center;
+    margin-left: 12%;
+}
+#bTelecharger {
+    position: relative;
+    left: 27%;
+    width: 90px;
+    background-color: green;
+    border: none;
+    color: white;
+    text-align: center;
+}
+@media screen and (max-width: 1700px) {
+    .tableHeader {
+        width: 49rem;
+    }
+}

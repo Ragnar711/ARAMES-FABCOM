@@ -1,0 +1,18 @@
+label {
+    font-size: 14px;
+}
+.LabelInput {
+    display: flex;
+    align-items: center;
+    width: 23%;
+    justify-content: space-between;
+}
+.formUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+}
+.inputAdduser {
+    border: none;
+}

@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import React, { useEffect } from "react";
 
 const NotFound = () => {
     useEffect(() => {
-        window.location.href = '/404'
-    })
-    return <></>
-}
+        window.location.href = "/404";
+    });
+    return <></>;
+};
 
-export default NotFound
+export default NotFound;

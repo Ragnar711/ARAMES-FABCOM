@@ -1,18 +1,17 @@
-import { useRef, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { AiOutlineUser } from 'react-icons/ai'
 import { MdMail } from 'react-icons/md'
 import { FaLock } from 'react-icons/fa'
 import style from '../styles/Login.module.css'
-import { context } from '../App'
 
 const Login = () => {
-    const matriculeRef = useRef(null)
-    const passwordRef = useRef(null)
+    const [matricule, setMatricule] = useState('')
+    const [password, setPassword] = useState('')
     const alert = useAlert()
-    const { dispatch } = useContext(context)
     const navigate = useNavigate()
+
     useEffect(() => {
         const session = sessionStorage.getItem('user')
         if (session) {
@@ -21,17 +20,13 @@ const Login = () => {
     }, [navigate])
 
     const connect = async () => {
-        dispatch({ type: 'LOADING_ON' })
-        if (!matriculeRef.current.value || !passwordRef.current.value) {
-            sessionStorage.setItem('user', 'test')
+        if (matricule === '9898' && password === '1234') {
+            sessionStorage.setItem('user', 'user')
             navigate('/dashboard')
         } else {
             alert.error('Matricule ou mot de passe est incorrecte')
         }
-
-        dispatch({ type: 'LOADING_OFF' })
     }
-
     return (
         <main id={style.main}>
             <section id={style.section} className="blocLogin">
@@ -50,12 +45,7 @@ const Login = () => {
                         />
                         <h1>Welcome to ARAMES</h1>
                         <div>
-                            <div
-                                className={style['input-div']}
-                                onClick={() => {
-                                    matriculeRef.current.focus()
-                                }}
-                            >
+                            <div className={style['input-div']}>
                                 <MdMail
                                     value={{
                                         backgoundColor: 'blue',
@@ -65,20 +55,21 @@ const Login = () => {
                                 <input
                                     type="text"
                                     placeholder="Matricule"
-                                    ref={matriculeRef}
+                                    value={matricule}
+                                    onChange={(e) =>
+                                        setMatricule(e.target.value)
+                                    }
                                 />
                             </div>
-                            <div
-                                className={style['input-div']}
-                                onClick={() => {
-                                    passwordRef.current.focus()
-                                }}
-                            >
+                            <div className={style['input-div']}>
                                 <FaLock />
                                 <input
                                     type="password"
                                     placeholder="Mot de passe"
-                                    ref={passwordRef}
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                             </div>
                             <button>LOGIN</button>

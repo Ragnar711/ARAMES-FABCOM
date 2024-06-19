@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import style from '../../styles/Section.module.css'
-import { getColor } from '../../utils/getColor'
-import { capitalize } from '../../utils/strings'
+import { getColor } from '../../utils/ChangeKPIColors'
+import Capitalize from '../../utils/strings'
 
 import qte from '../../assets/qtte.webp'
 import User from '../../assets/usericon.png'
@@ -14,15 +14,12 @@ import PropTypes from 'prop-types'
 
 const MesDivs = ({ data, machineData }) => {
     const navigate = useNavigate()
-    const name = sessionStorage.getItem('user')
     const [quantities, setQuantities] = useState({
         quantiteConforme: 0,
         NC: 0,
         NCD: 0,
         Dechet: 0,
     })
-    const [matricule, setMatricule] = useState('')
-    const users = []
 
     useEffect(() => {
         let newQuantities = { quantiteConforme: 0, NC: 0, NCD: 0, Dechet: 0 }
@@ -50,39 +47,6 @@ const MesDivs = ({ data, machineData }) => {
                 />
                 <div className={style.user}>
                     <img className={style.iconUser} src={User} alt="user" />
-                    {name === '9898' ? (
-                        <select
-                            style={{
-                                outline: 'none',
-                                border: 'none',
-                                padding: '8px',
-                                textAlign: 'center',
-                            }}
-                            onChange={(e) => setMatricule(e.target.value)}
-                        >
-                            {users.map((user) => {
-                                return (
-                                    <option
-                                        key={user.id}
-                                        value={user.matricule}
-                                        selected={user.name === matricule}
-                                    >
-                                        {user.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    ) : (
-                        <input type="text" value={matricule} readOnly />
-                    )}
-                    <button
-                        className={style.button}
-                        style={{
-                            display: name !== '9898' ? 'none' : 'inline',
-                        }}
-                    >
-                        Assigner
-                    </button>
                 </div>
             </div>
             <div className={style.blocKpi}>
@@ -148,7 +112,7 @@ const MesDivs = ({ data, machineData }) => {
                                             >
                                                 TRS
                                             </sub>
-                                            {}|
+                                            |
                                         </span>
                                     </div>
                                     <div style={{ marginLeft: '11px' }}>
@@ -186,7 +150,7 @@ const MesDivs = ({ data, machineData }) => {
                                             >
                                                 TP
                                             </sub>
-                                            {}|
+                                            |
                                         </span>
                                     </div>
                                     <div style={{ marginLeft: '11px' }}>
@@ -223,7 +187,7 @@ const MesDivs = ({ data, machineData }) => {
                                             >
                                                 TD
                                             </sub>
-                                            {}|
+                                            |
                                         </span>
                                     </div>
                                     <div style={{ marginLeft: '11px' }}>
@@ -260,7 +224,7 @@ const MesDivs = ({ data, machineData }) => {
                                             >
                                                 TQ
                                             </sub>
-                                            {}|
+                                            |
                                         </span>
                                     </div>
                                     <div style={{ marginLeft: '11px' }}>
@@ -296,7 +260,7 @@ const MesDivs = ({ data, machineData }) => {
                                         {' '}
                                         <span className={style.spanKpi}>
                                             {' '}
-                                            {capitalize(machine)}:
+                                            {Capitalize(machine)}:
                                         </span>
                                     </div>
                                     <div

@@ -3,17 +3,14 @@ import { useEffect } from 'react'
 
 const Main = () => {
     const navigate = useNavigate()
-
     useEffect(() => {
         const session = sessionStorage.getItem('user')
-        navigate('/dashboard')
         if (session) {
             navigate('/dashboard')
         } else {
             navigate('/login')
         }
     }, [navigate])
-
     return <main>Loading...</main>
 }
 

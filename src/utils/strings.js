@@ -1,7 +1,9 @@
-export const capitalize = (str) => {
+const Capitalize = (str) => {
     if (str.length <= 3) {
-        return str.toUpperCase()
+        return str.toUpperCase();
     } else {
-        return str.charAt(0).toUpperCase() + str.slice(1)
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
-}
+};
+
+export default Capitalize;

@@ -1,0 +1,111 @@
+:root {
+    --bg: white; /*gris */
+    --bg2: lightgray;
+    --bg-tr: #d9d9d9aa;
+    --bg2-tr: #a3a3a3aa;
+    --fg: white;
+    --fg-tr: #000a; /* transparent */
+    --r-fg: white; /* reverse */
+    --r-fg-tr: #fffa;
+    --blue: #02024c;
+    --navbar: #3a3a3a;
+    --header: #1b1b1b;
+    --gradient-blue: linear-gradient(90deg, #16166b, #575bf7);
+    font-size: 30px;
+    font-family: "Inter";
+    --header-height: 55px;
+    --navbar-width: 190px;
+    --logo-height: 40px;
+    --logout-height: 60px;
+    --navbar-bg: #1b1b1b;
+    --navbar-margin: -110px;
+    --display-sidebar: 1;
+    --red: rgb(172, 19, 19);
+    --orange: rgb(172, 111, 21);
+    --green: rgb(27, 133, 23);
+}
+
+* {
+    -webkit-user-select: none;
+    user-select: none;
+    transition: background-color 1s;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    overflow: hidden;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    z-index: 1000;
+}
+
+/*@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #494949;
+        --bg2: #1b1b1b;
+        --bg-tr: #a3a3a3aa;
+        --bg2-tr: #424242aa;
+        --fg: white;
+        --fg-tr: #fffa;
+        --r-fg: black;
+        --r-fg-tr: #000a;
+    }
+}*/
+#header-parent {
+    width: 100vw;
+    height: var(--header-height);
+    background-color: var(--bg2);
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+#header {
+    background-color: var(--header);
+    height: var(--header-height);
+    width: calc(100vw - var(--navbar-width) + 10px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    transition: width 1s;
+}
+.close-section #header {
+    width: calc(100vw - 40px);
+}
+#header > * {
+    margin: 10px;
+}
+#header > h1 {
+    flex-grow: 6;
+}
+#header > h1 + div {
+    width: 50px;
+}
+#header > svg {
+    font-size: 30px;
+}
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 24px;
+}
+@media screen and (max-width: 700px) {
+    #header,
+    .close-section #header {
+        width: 100vw;
+    }
+}

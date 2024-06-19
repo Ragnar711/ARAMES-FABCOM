@@ -1,4 +1,4 @@
-import MesDivs from '../components/dashboard/DivUsine'
+import MesDivs from '../components/dashboard/DivsUsine'
 
 import ligne from '../assets/ligne.png'
 
@@ -9,6 +9,7 @@ const machineData = {
         sec: 'extrusionPE',
     },
 }
+
 const Dashboard = () => {
     const data = []
     return (
