@@ -1,7 +1,5 @@
-import React from "react";
-
 function Recette() {
-    return <div></div>;
+    return <div></div>
 }
 
-export default Recette;
+export default Recette

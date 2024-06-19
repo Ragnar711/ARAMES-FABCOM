@@ -18,7 +18,7 @@
     scroll-snap-align: end;
     scroll-snap-stop: always;
 }
-.section > h1 {
+.section > button {
     background-color: #595959;
     color: white;
     position: absolute;
@@ -31,15 +31,16 @@
     box-sizing: border-box;
     font-size: 75%;
     cursor: pointer;
+    border: none;
 }
 h3 {
     font-size: 16px;
 }
-.etatIcon{
+.etatIcon {
     width: 50px;
     rotate: 90deg;
 }
-.titreImageOf{
+.titreImageOf {
     position: relative;
     padding: 1%;
 }
@@ -48,15 +49,15 @@ h3 {
     width: 100%;
     display: flex;
 }
-.titreBloc{
-    color:#002060;
+.titreBloc {
+    color: #002060;
     font-size: 10px;
 }
-.of{
+.of {
     width: 88%;
-margin-left: 1rem;
+    margin-left: 1rem;
 }
-.titreValue{
+.titreValue {
     color: #002060;
     font-size: 14px;
     font-weight: 400;
@@ -71,7 +72,6 @@ margin-left: 1rem;
     padding: 11px;
     font-size: 11px;
     font-weight: 400;
-    padding: 6px;
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     display: inline-block;
@@ -83,7 +83,6 @@ margin-left: 1rem;
     padding: 11px;
     font-size: 11px;
     font-weight: 400;
-    padding: 6px;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     display: inline-block;
@@ -119,7 +118,7 @@ margin-left: 1rem;
     position: absolute;
     width: 82px;
 }
-.titreValueKPI{
+.titreValueKPI {
     color: #00b0f0;
     font-weight: 700;
     font-size: 11px;
@@ -146,7 +145,7 @@ margin-left: 1rem;
 .user > * {
     margin: 0 10px;
 }
-.iconOf{
+.iconOf {
     position: absolute;
     left: -8%;
     width: 40px;
@@ -163,12 +162,12 @@ margin-left: 1rem;
     background-color: var(--bg);
 }
 h2 {
- font-size: 11px;
-  color: #002060;
-  font-weight: 700;
-  border-bottom: 4px solid #a0a0a0;
-  text-align: center;
-  padding: 5%;
+    font-size: 11px;
+    color: #002060;
+    font-weight: 700;
+    border-bottom: 4px solid #a0a0a0;
+    text-align: center;
+    padding: 5%;
 }
 .blocKpi {
     width: 17%;
@@ -204,7 +203,7 @@ h2 {
     border-radius: 9999px;
     height: 0.75rem;
     margin-left: 9px;
-    
+
     margin-top: 11px;
 }
 .subDivOf {
@@ -263,7 +262,7 @@ h2 {
     #blokKpi {
         width: 90%;
     }
-    .section > h1 {
+    .section > button {
         position: relative;
         transform: none;
         top: 0;

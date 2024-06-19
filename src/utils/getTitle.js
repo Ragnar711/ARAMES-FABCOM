@@ -1,7 +1,8 @@
 export const getTitle = (pathname) => {
-    const uapRegex = /\/uap\/(extrusionPE)/
+    const uapRegex =
+        /\/uap\/(UAP-Assemblage)\/(UAP-Plaque)\/(Charge-Finition)\//
     const machineRegex =
-        /\/machine\/(machine6|machine7|machine9|machine10|machine11)/
+        /\/machine\/(machine6|machine7|machine9|machine10|machine11)\//
 
     if (pathname.match(uapRegex)) {
         const section = pathname.match(uapRegex)[1]

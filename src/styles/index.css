@@ -12,7 +12,6 @@
     --header: #1b1b1b;
     --gradient-blue: linear-gradient(90deg, #16166b, #575bf7);
     font-size: 30px;
-    font-family: "Inter";
     --header-height: 55px;
     --navbar-width: 190px;
     --logo-height: 40px;
@@ -49,18 +48,6 @@ body {
     z-index: 1000;
 }
 
-/*@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #494949;
-        --bg2: #1b1b1b;
-        --bg-tr: #a3a3a3aa;
-        --bg2-tr: #424242aa;
-        --fg: white;
-        --fg-tr: #fffa;
-        --r-fg: black;
-        --r-fg-tr: #000a;
-    }
-}*/
 #header-parent {
     width: 100vw;
     height: var(--header-height);

@@ -6,14 +6,6 @@
     --text-blue: #165473;
 }
 
-/*.dark-theme {
-    --bg: #494949;
-    --bg-color: black;
-    --text-color: white;
-    --text-green: #2ab023;
-    --text-blue: #165473;
-}*/
-
 .divOF {
     width: 100%;
     border-radius: 50px;
@@ -120,11 +112,6 @@
     text-align: center;
 }
 
-#sectionImage {
-    height: 50%;
-    margin-top: 25%;
-}
-
 #section-dashboard {
     flex-grow: 1;
     overflow: scroll;
@@ -132,7 +119,6 @@
     margin: 1%;
     padding-top: var(--header-height);
     box-sizing: border-box;
-    overflow: scroll;
     scroll-snap-type: x mandatory;
 }
 
@@ -295,7 +281,6 @@ th {
     justify-content: center;
     align-items: center;
     transition: 0.4s;
-    color: white;
     cursor: pointer;
     text-decoration: none;
 }
