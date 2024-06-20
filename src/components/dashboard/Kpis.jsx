@@ -4,7 +4,7 @@ import Loader from '../Loader'
 
 const Kpi = lazy(() => import('./Kpi'))
 
-const Kpis = ({ style }) => {
+const Kpis = ({ style, data }) => {
     return (
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
@@ -74,16 +74,32 @@ const Kpis = ({ style }) => {
                             }}
                         >
                             <Suspense fallback={<Loader />}>
-                                <Kpi kpi="TRS" value={80} style={style} />
+                                <Kpi
+                                    kpi="TRS"
+                                    value={data?.kpi?.TRS ?? 80}
+                                    style={style}
+                                />
                             </Suspense>
                             <Suspense fallback={<Loader />}>
-                                <Kpi kpi="TP" value={70} style={style} />
+                                <Kpi
+                                    kpi="TP"
+                                    value={data?.kpi?.TP ?? 70}
+                                    style={style}
+                                />
                             </Suspense>{' '}
                             <Suspense fallback={<Loader />}>
-                                <Kpi kpi="TD" value={60} style={style} />
+                                <Kpi
+                                    kpi="TD"
+                                    value={data?.kpi?.TD ?? 60}
+                                    style={style}
+                                />
                             </Suspense>{' '}
                             <Suspense fallback={<Loader />}>
-                                <Kpi kpi="TQ" value={100} style={style} />
+                                <Kpi
+                                    kpi="TQ"
+                                    value={data?.kpi?.TQ ?? 100}
+                                    style={style}
+                                />
                             </Suspense>
                         </div>
                     </div>

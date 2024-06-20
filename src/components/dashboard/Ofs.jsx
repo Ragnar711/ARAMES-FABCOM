@@ -11,13 +11,12 @@ const Ofs = ({ style, machines }) => {
                 <img src={oficon} alt="iconkpi" className={style.iconOf} />
                 <h2>OF | Liste des OF encours</h2>
             </div>
-
             <div className={style.spans}>
                 {machines.map((machine, index) => (
                     <Suspense fallback={<Loader />} key={index}>
                         <Of
                             style={style}
-                            machine={machine}
+                            machine={machine.machine}
                             NOF={index + 1000}
                         />
                     </Suspense>
