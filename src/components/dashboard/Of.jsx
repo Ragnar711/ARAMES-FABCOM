@@ -3,7 +3,15 @@ const Of = ({ style, machine, NOF }) => {
         <div className={style.divSPan}>
             <div>
                 {' '}
-                <span className={style.spanKpi}>{machine}:</span>
+                <span
+                    className={style.spanKpi}
+                    style={{
+                        fontSize: '0.4rem',
+                        color: 'black',
+                    }}
+                >
+                    {machine}:
+                </span>
             </div>
             <div
                 style={{
@@ -17,6 +25,7 @@ const Of = ({ style, machine, NOF }) => {
                         style={{
                             color: 'black',
                             width: '100%',
+                            fontSize: '0.3rem',
                         }}
                     >
                         N°OF
@@ -25,7 +34,7 @@ const Of = ({ style, machine, NOF }) => {
                 </span>
                 <span
                     style={{
-                        fontSize: '10px',
+                        fontSize: '0.4rem',
                         color: '#4C78C7',
                         fontWeight: 'bold',
                     }}

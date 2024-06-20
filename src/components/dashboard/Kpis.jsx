@@ -25,19 +25,43 @@ const Kpis = ({ style }) => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'space-between',
-                                lineHeight: '1rem',
+                                lineHeight: '0.75rem',
                             }}
                         >
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Taux de Rendement Synthétique
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Taux de performance
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Taux de disponibilité
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Taux de qualité
                             </span>
                         </div>
@@ -46,7 +70,7 @@ const Kpis = ({ style }) => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'space-around',
-                                lineHeight: '1rem',
+                                lineHeight: '0.75rem',
                             }}
                         >
                             <Suspense fallback={<Loader />}>

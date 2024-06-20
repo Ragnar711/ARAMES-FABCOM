@@ -14,7 +14,7 @@ const Kpi = ({ kpi, value, style }) => {
                 <span className={style.titreValue}>
                     <sub
                         style={{
-                            fontSize: '10px',
+                            fontSize: '0.3rem',
                             color: 'black',
                             fontWeight: 'bold',
                         }}
@@ -27,7 +27,7 @@ const Kpi = ({ kpi, value, style }) => {
             <div style={{ marginLeft: '11px' }}>
                 <span
                     style={{
-                        fontSize: '14px',
+                        fontSize: '0.4rem',
                         color: getColor(value, kpi.toLowerCase()),
                         fontWeight: 'bold',
                     }}

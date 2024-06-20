@@ -15,7 +15,11 @@ const Ofs = ({ style, machines }) => {
             <div className={style.spans}>
                 {machines.map((machine, index) => (
                     <Suspense fallback={<Loader />} key={index}>
-                        <Of style={style} machine={machine} NOF={index + 1} />
+                        <Of
+                            style={style}
+                            machine={machine}
+                            NOF={index + 1000}
+                        />
                     </Suspense>
                 ))}
             </div>

@@ -5,7 +5,7 @@ const Eng = ({ style }) => {
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
                 <img src={iconKpi} alt="iconkpi" className={style.iconOf} />
-                <h2>KPI | Performance de la section</h2>
+                <h2>Eng | Performance énergétique</h2>
             </div>
             <div className={style.spans}>
                 <div className={style.blocQuantite}>

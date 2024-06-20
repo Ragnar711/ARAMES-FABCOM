@@ -10,7 +10,15 @@ const Quantity = ({ style, quantity, value }) => {
             }}
         >
             <div>
-                <span className={style.spanKpi}>{quantity}:</span>
+                <span
+                    className={style.spanKpi}
+                    style={{
+                        fontSize: '0.4rem',
+                        color: 'black',
+                    }}
+                >
+                    {quantity}:
+                </span>
             </div>
             <div
                 style={{
@@ -24,6 +32,7 @@ const Quantity = ({ style, quantity, value }) => {
                         <sub
                             style={{
                                 color: 'black',
+                                fontSize: '0.3rem',
                                 width: '100%',
                             }}
                         >
@@ -36,7 +45,7 @@ const Quantity = ({ style, quantity, value }) => {
                 <div>
                     <span
                         style={{
-                            fontSize: '10px',
+                            fontSize: '0.4rem',
                             color: '#4C78C7',
                             fontWeight: 'bold',
                         }}
