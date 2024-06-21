@@ -1,10 +1,10 @@
-import GaugeComponent from "react-gauge-component";
-import { getColor } from "../../utils/ChangeKPIColors";
-import styles from "../../styles/gauge.module.css";
+import GaugeComponent from 'react-gauge-component'
+import { getColor } from '../../utils/getColor'
+import styles from '../../styles/gauge.module.css'
 
 const GaugeKPI = ({ value, kpi }) => {
-    const color = getColor(value, kpi);
-    const limit = value;
+    const color = getColor(value, kpi)
+    const limit = value
 
     return (
         <>
@@ -12,10 +12,10 @@ const GaugeKPI = ({ value, kpi }) => {
                 key={value}
                 value={value}
                 type="grafana"
-                style={{ width: "25%", height: "10px" }}
+                style={{ width: '25%', height: '10px' }}
                 labels={{
                     tickLabels: {
-                        type: "inner",
+                        type: 'inner',
                         ticks: [
                             { value: 20 },
                             { value: 40 },
@@ -33,13 +33,13 @@ const GaugeKPI = ({ value, kpi }) => {
                     valueLabel: {
                         formatTextValue: (value) => `${value} / 100`,
                         style: {
-                            fontSize: "35px",
-                            fill: "#000",
+                            fontSize: '35px',
+                            fill: '#000',
                         },
                     },
                 }}
                 arc={{
-                    colorArray: [`${color}`, "#D3D3D3"],
+                    colorArray: [`${color}`, '#D3D3D3'],
                     subArcs: [{ limit }, {}],
                     padding: 0,
                     width: 0.15,
@@ -48,7 +48,7 @@ const GaugeKPI = ({ value, kpi }) => {
             />
             <h1 className={styles.kpiName}>{kpi.toUpperCase()}</h1>
         </>
-    );
-};
+    )
+}
 
-export default GaugeKPI;
+export default GaugeKPI

@@ -1,18 +1,18 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense } from 'react'
 
-import { Flex, Progress } from "antd";
-import style from "../../styles/Machine.module.css";
+import { Flex, Progress } from 'antd'
+import style from '../../styles/Machine.module.css'
 
-import Loader from "../Loader";
+import Loader from '../Loader'
 
-const Gauge = lazy(() => import("./Gauge"));
-const Barchart = lazy(() => import("./Barchart"));
-const GaugeKPI = lazy(() => import("./GaugeKpi"));
-const ParetoArret = lazy(() => import("./ParetoArret"));
+const Gauge = lazy(() => import('./Gauge'))
+const Barchart = lazy(() => import('./Barchart'))
+const GaugeKPI = lazy(() => import('./GaugeKpi'))
+const ParetoArret = lazy(() => import('./ParetoArret'))
 
-import PropTypes from "prop-types";
-import iconKpi from "../../assets/iconKpi.webp";
-import iconparam from "../../assets/iconparam.webp";
+import PropTypes from 'prop-types'
+import iconKpi from '../../assets/iconKpi.webp'
+import iconparam from '../../assets/iconparam.webp'
 
 function RésultatInstantané({ data }) {
     return (
@@ -22,17 +22,17 @@ function RésultatInstantané({ data }) {
                     <img src={iconKpi} alt="" className={style.iconof} />
                     <div
                         style={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-around",
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'space-around',
                         }}
                     >
                         <div
                             style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                             }}
                         >
                             <Gauge
@@ -41,10 +41,10 @@ function RésultatInstantané({ data }) {
                             />
                             <h1
                                 style={{
-                                    marginTop: "-1rem",
-                                    marginBottom: "0.5rem",
-                                    textAlign: "center",
-                                    fontSize: "16px",
+                                    marginTop: '-1rem',
+                                    marginBottom: '0.5rem',
+                                    textAlign: 'center',
+                                    fontSize: '16px',
                                 }}
                             >
                                 TRS
@@ -54,10 +54,10 @@ function RésultatInstantané({ data }) {
                         <hr className={style.hrgauge} />
                         <div
                             style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                             }}
                         >
                             <Suspense fallback={<Loader />}>
@@ -65,10 +65,10 @@ function RésultatInstantané({ data }) {
                             </Suspense>
                             <h1
                                 style={{
-                                    marginTop: "-1rem",
-                                    marginBottom: "0.5rem",
-                                    textAlign: "center",
-                                    fontSize: "16px",
+                                    marginTop: '-1rem',
+                                    marginBottom: '0.5rem',
+                                    textAlign: 'center',
+                                    fontSize: '16px',
                                 }}
                             >
                                 Tdéch
@@ -77,11 +77,11 @@ function RésultatInstantané({ data }) {
                     </div>
                     <div
                         style={{
-                            display: "flex",
-                            width: "100%",
-                            height: "44%",
-                            borderTop: "1px solid white",
-                            justifyContent: "space-around",
+                            display: 'flex',
+                            width: '100%',
+                            height: '44%',
+                            borderTop: '1px solid white',
+                            justifyContent: 'space-around',
                         }}
                     >
                         <Suspense fallback={<Loader />}>
@@ -103,36 +103,36 @@ function RésultatInstantané({ data }) {
                                 Ordre de fabrication:
                             </span>
                             <span className={style.spanValue}>
-                                {data.of.of ?? "N/A"}
+                                {data.of.NOF ?? 'N/A'}
                             </span>
                         </div>
                         <div
                             className={style.spanOf}
                             style={{
-                                display: "flex",
-                                justifyContent: "space-between",
+                                display: 'flex',
+                                justifyContent: 'space-between',
                             }}
                         >
                             <div>
-                                <span style={{ color: "#002060" }}>
+                                <span style={{ color: '#002060' }}>
                                     Opérateur:
                                 </span>
                                 <span className={style.spanValue}>
-                                    {data.of.user ?? "N/A"}
+                                    {data.of.user ?? 'N/A'}
                                 </span>
                             </div>
                             <div>
-                                <span style={{ color: "#002060" }}>
+                                <span style={{ color: '#002060' }}>
                                     Article:
                                 </span>
                                 <span className={style.spanValue}>N/A</span>
                             </div>
                             <div>
-                                <span style={{ color: "#002060" }}>
+                                <span style={{ color: '#002060' }}>
                                     Qté objectif:
                                 </span>
                                 <span className={style.spanValue}>
-                                    {data.of.qt_ob ?? 0}{" "}
+                                    {data.of.qt_ob ?? 0}{' '}
                                     {` ${data.of.qt_ob_unit}`}
                                 </span>
                             </div>
@@ -151,71 +151,71 @@ function RésultatInstantané({ data }) {
                             />
                         </Flex>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ display: "flex" }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ display: 'flex' }}>
                             <div className={style.divIndicator}>
                                 <span
                                     style={{
-                                        textAlign: "right",
-                                        fontSize: "24px",
-                                        color: "#00B0F0",
+                                        textAlign: 'right',
+                                        fontSize: '24px',
+                                        color: '#00B0F0',
                                     }}
                                 >
-                                    <sub style={{ color: "black" }}>kg/h</sub>
-                                    <span style={{ color: "black" }}>
+                                    <sub style={{ color: 'black' }}>kg/h</sub>
+                                    <span style={{ color: 'black' }}>
                                         |
-                                    </span>{" "}
+                                    </span>{' '}
                                     {data.production.debit ?? 0}
                                 </span>
                                 <span
                                     style={{
-                                        fontSize: "11px",
-                                        textAlign: "left",
+                                        fontSize: '11px',
+                                        textAlign: 'left',
                                     }}
                                 >
-                                    Débit réel{" "}
+                                    Débit réel{' '}
                                 </span>
                             </div>
                             <div className={style.divIndicator}>
                                 <span
                                     style={{
-                                        textAlign: "right",
-                                        fontSize: "24px",
+                                        textAlign: 'right',
+                                        fontSize: '24px',
 
-                                        color: "#00B0F0",
+                                        color: '#00B0F0',
                                     }}
                                 >
-                                    <sub style={{ color: "black" }}>kg/h</sub>
-                                    <span style={{ color: "black" }}>
+                                    <sub style={{ color: 'black' }}>kg/h</sub>
+                                    <span style={{ color: 'black' }}>
                                         |
-                                    </span>{" "}
+                                    </span>{' '}
                                     {data.of.debit ?? 0}
                                 </span>
                                 <span
                                     style={{
-                                        fontSize: "11px",
-                                        textAlign: "left",
+                                        fontSize: '11px',
+                                        textAlign: 'left',
                                     }}
                                 >
-                                    Débit théorique{" "}
+                                    Débit théorique{' '}
                                 </span>
                             </div>
                         </div>
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: 'flex' }}>
                             <div className={style.divIndicatorblur}>
                                 <span
                                     style={{
-                                        textAlign: "right",
-                                        fontSize: "24px",
-                                        color: "red",
+                                        textAlign: 'right',
+                                        fontSize: '24px',
+                                        color: 'red',
                                     }}
                                 >
                                     N/A
                                 </span>
                                 <span
                                     style={{
-                                        fontSize: "11px",
-                                        textAlign: "left",
+                                        fontSize: '11px',
+                                        textAlign: 'left',
                                     }}
                                 >
                                     Add a parameter
@@ -224,9 +224,9 @@ function RésultatInstantané({ data }) {
                             <div className={style.divIndicatorblur}>
                                 <span
                                     style={{
-                                        textAlign: "right",
-                                        fontSize: "24px",
-                                        color: "red",
+                                        textAlign: 'right',
+                                        fontSize: '24px',
+                                        color: 'red',
                                     }}
                                 >
                                     N/A
@@ -238,14 +238,14 @@ function RésultatInstantané({ data }) {
                 </div>
             </div>
             <div className={style.containerMachine}>
-                <div className={style.indicator} style={{ height: "40vh" }}>
+                <div className={style.indicator} style={{ height: '40vh' }}>
                     <img src={iconKpi} alt="" className={style.iconof} />
                     <h4>Pareto des arrêts</h4>
                     <Suspense fallback={<Loader />}>
                         <ParetoArret data={data.arret.chart} />
                     </Suspense>
                 </div>
-                <div className={style.indicator} style={{ height: "40vh" }}>
+                <div className={style.indicator} style={{ height: '40vh' }}>
                     <img src={iconparam} className={style.iconof} alt="icon" />
                     <h4>Evolution des déchets et non-conformes</h4>
                     <Suspense fallback={<Loader />}>
@@ -254,11 +254,11 @@ function RésultatInstantané({ data }) {
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 RésultatInstantané.propTypes = {
     data: PropTypes.object.isRequired,
-};
+}
 
-export default RésultatInstantané;
+export default RésultatInstantané
