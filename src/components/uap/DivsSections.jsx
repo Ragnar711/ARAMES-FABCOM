@@ -22,7 +22,9 @@ const DivsSections = ({ data, machineData }) => {
     return (
         <div
             className={style.section}
-            style={{ filter: data.network ? 'none' : 'blur(16px)' }}
+            style={{
+                filter: data.network ? 'none' : 'blur(16px)',
+            }}
         >
             <div className={style.titresection}>
                 <div className={style.titleImage}>
@@ -38,6 +40,7 @@ const DivsSections = ({ data, machineData }) => {
                         }
                         style={{
                             backgroundColor: `#595959`,
+                            color: 'white',
                             fontSize: '20px',
                             border: 'none',
                         }}
@@ -61,8 +64,9 @@ const DivsSections = ({ data, machineData }) => {
                 />
                 <div className={style.user}>
                     <img className={style.iconUser} src={User} alt="user" />
-                    <span>{data.operator}</span>
-                    <span>{getPoste()}</span>
+                    <span className={style.userText}>
+                        {data.operator} | poste: {getPoste()}
+                    </span>
                 </div>
                 <div className={style.of}>
                     <span className={style.TM}> | {data.kpi.TO}</span>

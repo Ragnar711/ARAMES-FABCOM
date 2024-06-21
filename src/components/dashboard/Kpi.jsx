@@ -6,7 +6,6 @@ const Kpi = ({ kpi, value, style }) => {
             style={{
                 display: 'flex',
                 flexDirection: 'row',
-                alignItems: 'center',
                 justifyContent: 'space-around',
             }}
         >
@@ -20,8 +19,8 @@ const Kpi = ({ kpi, value, style }) => {
                         }}
                     >
                         {kpi}
-                    </sub>
-                    {}|
+                    </sub>{' '}
+                    |
                 </span>
             </div>
             <div style={{ marginLeft: '11px' }}>

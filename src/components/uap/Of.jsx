@@ -24,10 +24,10 @@ const Of = ({ style, data }) => {
 
     return (
         <div className={style.blocKpi}>
-            <FlexContainer>
+            <div className={style.titreImageOf}>
                 <img src={ofIcon} alt="icon" className={style.iconOf} />
                 <h2>OF | Suivi de l'OF encours</h2>
-            </FlexContainer>
+            </div>
             <div className={style.spans}>
                 <div className={style.blocQuantite}>
                     <FlexContainer>
@@ -37,10 +37,16 @@ const Of = ({ style, data }) => {
                                 lineHeight: '1rem',
                             }}
                         >
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{ fontSize: '0.4rem', color: 'black' }}
+                            >
                                 Quantié réalisée
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{ fontSize: '0.4rem', color: 'black' }}
+                            >
                                 Quantié objectif
                             </span>
                         </FlexContainer>
@@ -54,21 +60,25 @@ const Of = ({ style, data }) => {
                                 <span className={style.titreValue}>
                                     <sub
                                         style={{
-                                            fontSize: '10px',
+                                            fontSize: '0.3rem',
                                             color: 'black',
-                                            fontWeight: '400',
+                                            fontWeight: 'bold',
                                         }}
                                     >
-                                        Kg
+                                        Kg{' '}
                                     </sub>
                                     | {data.kpi.QP.toFixed(2)}
                                 </span>
                             </div>
                             <span className={style.titreValue}>
                                 <sub
-                                    style={{ fontSize: '10px', color: 'black' }}
+                                    style={{
+                                        fontSize: '0.3rem',
+                                        color: 'black',
+                                        fontWeight: 'bold',
+                                    }}
                                 >
-                                    Kg
+                                    Kg{' '}
                                 </sub>
                                 | {data.of.QuantiteObjectif}
                             </span>
@@ -79,7 +89,7 @@ const Of = ({ style, data }) => {
                     <div style={{ marginTop: '9px' }}>
                         <span
                             className={style.titreBloc}
-                            style={{ fontSize: '12px' }}
+                            style={{ fontSize: '0.4rem' }}
                         >
                             Réference OF
                         </span>
@@ -87,15 +97,15 @@ const Of = ({ style, data }) => {
                     <FlexContainer>
                         <span className={style.titreValue}>
                             <sub style={{ fontSize: '10px', color: 'black' }}>
-                                N°OF
+                                N°OF{' '}
                             </sub>
                             | {data.of.NOF}
                         </span>
                         <span className={style.titreValue}>
                             <sub style={{ fontSize: '10px', color: 'black' }}>
                                 Article
-                            </sub>
-                            {}| N/A
+                            </sub>{' '}
+                            | N/A
                         </span>
                     </FlexContainer>
                     <div className={style.divOF}>

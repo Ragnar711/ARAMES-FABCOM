@@ -24,17 +24,49 @@ const Params = ({ style, data }) => {
                                 lineHeight: '1rem',
                             }}
                         >
-                            <span className={style.titreBloc}>Débit Réel</span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
+                                Débit Réel
+                            </span>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Vitesse de tirage
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Vitesse d'extrusion
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Poids au métre
                             </span>
-                            <span className={style.titreBloc}>
+                            <span
+                                className={style.titreBloc}
+                                style={{
+                                    fontSize: '0.4rem',
+                                    color: 'black',
+                                }}
+                            >
                                 Débit théorique
                             </span>
                         </div>
@@ -49,66 +81,66 @@ const Params = ({ style, data }) => {
                             <span className={style.titreValueKPI}>
                                 <sub
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '0.3rem',
                                         color: 'black',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
                                     }}
                                 >
                                     Kg/h
                                 </sub>
-                                <span style={{ fontWeight: '400' }}>|</span>{' '}
+                                <span style={{ fontWeight: '400' }}> |</span>{' '}
                                 {(data.realTimeData.debit ?? 0).toFixed(0)}
                             </span>
                             <span className={style.titreValueKPI}>
                                 <sub
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '0.3rem',
                                         color: 'black',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
                                     }}
                                 >
                                     m/min
                                 </sub>
-                                <span style={{ fontWeight: '400' }}>|</span>{' '}
+                                <span style={{ fontWeight: '400' }}> |</span>{' '}
                                 {data.realTimeData.vitesseT.toFixed(0)}
                             </span>
                             <span className={style.titreValueKPI}>
                                 <sub
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '0.3rem',
                                         color: 'black',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
                                     }}
                                 >
                                     RPM
                                 </sub>
-                                <span style={{ fontWeight: '400' }}>|</span>{' '}
+                                <span style={{ fontWeight: '400' }}> |</span>{' '}
                                 {data.realTimeData.vitesseE.toFixed(0)}
                             </span>
                             <span className={style.titreValueKPI}>
                                 <sub
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '0.3rem',
                                         color: 'black',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
                                     }}
                                 >
                                     Kg/m
                                 </sub>
-                                <span style={{ fontWeight: '400' }}>|</span>{' '}
+                                <span style={{ fontWeight: '400' }}> |</span>{' '}
                                 {data.realTimeData.poids.toFixed(0)}
                             </span>
                             <span className={style.titreValueKPI}>
                                 <sub
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '0.3rem',
                                         color: 'black',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
                                     }}
                                 >
                                     Kg/h
                                 </sub>
-                                <span style={{ fontWeight: '400' }}>|</span>{' '}
+                                <span style={{ fontWeight: '400' }}> |</span>{' '}
                                 {data.of.DebitTheorique}
                             </span>
                         </div>

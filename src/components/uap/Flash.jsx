@@ -9,7 +9,15 @@ const Flash = ({ style, data }) => {
                 <h2>News | Flash évènements </h2>
             </div>
             <div className={style.spans}>
-                <span className={style.titreBloc}>Dernier Déchet</span>
+                <span
+                    className={style.titreBloc}
+                    style={{
+                        fontSize: '0.4rem',
+                        color: 'black',
+                    }}
+                >
+                    Dernier Déchet
+                </span>
                 <div
                     style={{
                         display: 'flex',
@@ -20,21 +28,21 @@ const Flash = ({ style, data }) => {
                     <span className={style.titreValueKPI}>
                         <sub
                             style={{
-                                fontSize: '10px',
+                                fontSize: '0.3rem',
                                 color: 'black',
-                                fontWeight: '400',
+                                fontWeight: 'bold',
                             }}
                         >
                             Kg/h
                         </sub>
-                        <span style={{ fontWeight: '400' }}>|</span> NAN
+                        <span style={{ fontWeight: '400' }}> |</span> N/A
                     </span>
                     <span className={style.titreValueKPI}>
                         <sub
                             style={{
-                                fontSize: '10px',
+                                fontSize: '0.3rem',
                                 color: 'black',
-                                fontWeight: '400',
+                                fontWeight: 'bold',
                             }}
                         >
                             Cause
@@ -42,7 +50,15 @@ const Flash = ({ style, data }) => {
                         | Nett
                     </span>
                 </div>
-                <span className={style.titreBloc}>Dernier NC</span>
+                <span
+                    className={style.titreBloc}
+                    style={{
+                        fontSize: '0.4rem',
+                        color: 'black',
+                    }}
+                >
+                    Dernier NC
+                </span>
                 <div
                     style={{
                         display: 'flex',
@@ -53,21 +69,21 @@ const Flash = ({ style, data }) => {
                     <span className={style.titreValueKPI}>
                         <sub
                             style={{
-                                fontSize: '10px',
+                                fontSize: '0.3rem',
                                 color: 'black',
-                                fontWeight: '400',
+                                fontWeight: 'bold',
                             }}
                         >
                             Kg/h
                         </sub>
-                        <span style={{ fontWeight: '400' }}>|</span> NAN
+                        <span style={{ fontWeight: '400' }}> |</span> N/A
                     </span>
                     <span className={style.titreValueKPI}>
                         <sub
                             style={{
-                                fontSize: '10px',
+                                fontSize: '0.3rem',
                                 color: 'black',
-                                fontWeight: '400',
+                                fontWeight: 'bold',
                             }}
                         >
                             Cause
@@ -75,7 +91,15 @@ const Flash = ({ style, data }) => {
                         | Nett
                     </span>
                 </div>
-                <span className={style.titreBloc}>Dernier Arret</span>
+                <span
+                    className={style.titreBloc}
+                    style={{
+                        fontSize: '0.4rem',
+                        color: 'black',
+                    }}
+                >
+                    Dernier Arret
+                </span>
                 <div
                     style={{
                         display: 'flex',
@@ -84,15 +108,23 @@ const Flash = ({ style, data }) => {
                     }}
                 >
                     <span className={style.titreValueKPI}>
-                        <span style={{ fontWeight: '400' }}>|</span>{' '}
-                        {formatDuration(data.lastArret.Duree)}
+                        <sub
+                            style={{
+                                fontSize: '0.3rem',
+                                color: 'black',
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            Durée
+                        </sub>{' '}
+                        | {formatDuration(data.lastArret.Duree)}
                     </span>
                     <span className={style.titreValueKPI}>
                         <sub
                             style={{
-                                fontSize: '10px',
+                                fontSize: '0.3rem',
                                 color: 'black',
-                                fontWeight: '400',
+                                fontWeight: 'bold',
                             }}
                         >
                             Cause

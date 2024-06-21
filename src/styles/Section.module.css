@@ -75,7 +75,7 @@ h3 {
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     display: inline-block;
-    width: 95px;
+    width: 2rem;
     text-align: center;
 }
 .TA {
@@ -86,7 +86,7 @@ h3 {
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     display: inline-block;
-    width: 95px;
+    width: 2rem;
     text-align: center;
 }
 .titresection {

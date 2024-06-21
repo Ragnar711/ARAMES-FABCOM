@@ -91,7 +91,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
@@ -125,7 +124,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
@@ -159,7 +157,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
@@ -193,7 +190,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
@@ -225,7 +221,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
@@ -257,7 +252,6 @@ const Eng = ({ style }) => {
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    alignItems: 'center',
                                     justifyContent: 'space-around',
                                 }}
                             >
