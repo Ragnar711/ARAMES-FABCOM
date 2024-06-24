@@ -74,6 +74,28 @@ function RésultatInstantané({ data }) {
                                 Tdéch
                             </h1>
                         </div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Suspense fallback={<Loader />}>
+                                <Gauge value={data.kpi.tdech.toFixed(0)} />
+                            </Suspense>
+                            <h1
+                                style={{
+                                    marginTop: '-1rem',
+                                    marginBottom: '0.5rem',
+                                    textAlign: 'center',
+                                    fontSize: '16px',
+                                }}
+                            >
+                                Taux de retouche
+                            </h1>
+                        </div>
                     </div>
                     <div
                         style={{

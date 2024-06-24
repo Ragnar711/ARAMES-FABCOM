@@ -1,6 +1,10 @@
 import DivsSections from '../components/uap/DivsSections'
 import { useParams } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import { machineData } from '../config/config'
+import Loader from '../components/Loader'
+
+const Tbd = lazy(() => import('../components/Tbd'))
 
 const Uap = () => {
     const data = {
@@ -34,18 +38,25 @@ const Uap = () => {
     }
 
     const section = useParams()
+    const machines = machineData[section.section].machines
 
     return (
         <>
-            {machineData[section.section].machines.map((machine) => {
-                return (
-                    <DivsSections
-                        key={machine}
-                        data={data}
-                        machineData={machine}
-                    />
-                )
-            })}
+            {machines.length === 0 ? (
+                <Suspense fallback={<Loader />}>
+                    <Tbd />
+                </Suspense>
+            ) : (
+                machines.map((machine) => {
+                    return (
+                        <DivsSections
+                            key={machine}
+                            data={data}
+                            machineData={machine}
+                        />
+                    )
+                })
+            )}
         </>
     )
 }
