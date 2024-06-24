@@ -1,78 +1,67 @@
-import React, { useState, useEffect } from "react";
-import { RiDownloadFill } from "react-icons/ri";
+import React, { useState, useEffect } from 'react'
+import { RiDownloadFill } from 'react-icons/ri'
 
-import style from "../styles/Historique.module.css";
+import style from '../styles/Historique.module.css'
 
-import { exportToCSV } from "../utils/exportFunctions";
-import { mapMachineToLine } from "../utils/helpers";
-import fetchData from "../utils/fetchData";
-import Capitalize from "../utils/strings";
-
-const processOptions = [{ label: "ExtrusionPE", value: "extrusionPE" }];
-const machineOptions = {
-    extrusionPE: [
-        { label: "Ligne 6", value: "machine6" },
-        { label: "Ligne 7", value: "machine7" },
-        { label: "Ligne 9", value: "machine9" },
-        { label: "Ligne 10", value: "machine10" },
-        { label: "Ligne 11", value: "machine11" },
-    ],
-};
+import { exportToCSV } from '../utils/exportFunctions'
+import { mapMachineToLine } from '../utils/helpers'
+import fetchData from '../utils/fetchData'
+import Capitalize from '../utils/strings'
 
 const Historique = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([])
 
-    const [process, setProcess] = useState("");
-    const [machines, setMachines] = useState([]);
-    const [machine, setMachine] = useState("");
+    const [process, setProcess] = useState('')
+    const [machines, setMachines] = useState([])
+    const [machine, setMachine] = useState('')
 
     const handleProcessChange = (event) => {
-        const selectedProcess = event.target.value;
-        setProcess(selectedProcess);
-        setMachines(machineOptions[selectedProcess]);
-    };
+        const selectedProcess = event.target.value
+        setProcess(selectedProcess)
+        setMachines(machineOptions[selectedProcess])
+    }
     const handleMachineChange = (event) => {
-        const selectedMachine = event.target.value;
-        setMachine(selectedMachine);
-        changeFilter("machine", selectedMachine);
-    };
+        const selectedMachine = event.target.value
+        setMachine(selectedMachine)
+        changeFilter('machine', selectedMachine)
+    }
 
     const [filters, setFilters] = useState({
-        machine: "",
-        filter: "",
-        from: new Date().toISOString().split("T")[0],
-        to: new Date().toISOString().split("T")[0],
-    });
-    const [showTable, setShowTable] = useState(false);
+        machine: '',
+        filter: '',
+        from: new Date().toISOString().split('T')[0],
+        to: new Date().toISOString().split('T')[0],
+    })
+    const [showTable, setShowTable] = useState(false)
 
     const changeFilter = (filterName, value) => {
         if (filterName !== null && value !== null) {
-            setFilters({ ...filters, [filterName]: value });
+            setFilters({ ...filters, [filterName]: value })
         }
-    };
+    }
 
     const getData = async () => {
-        setShowTable(false);
+        setShowTable(false)
         const { error, status, data } = await fetchData(
             `/admin/new_historykpi/${filters.machine}/${filters.filter}/${filters.from}/${filters.to}`,
-            "GET"
-        );
+            'GET'
+        )
         if (status === 200 && data.success) {
-            setData(data.data);
+            setData(data.data)
         } else {
-            console.error(error);
+            console.error(error)
         }
-        setShowTable(true);
-    };
+        setShowTable(true)
+    }
     useEffect(() => {
-        getData();
-    }, [filters]);
+        getData()
+    }, [filters])
 
     return (
         <>
             <div
                 className={style.filtreHistory}
-                style={{ position: "relative" }}
+                style={{ position: 'relative' }}
             >
                 <div className={style.firstFiltre}>
                     <div>
@@ -106,13 +95,13 @@ const Historique = () => {
                         </select>
                         <button
                             className={style.buttonfiltre}
-                            onClick={() => changeFilter("filter", "of")}
+                            onClick={() => changeFilter('filter', 'of')}
                         >
                             OF
                         </button>
                         <button
                             className={style.buttonfiltre}
-                            onClick={() => changeFilter("filter", "poste")}
+                            onClick={() => changeFilter('filter', 'poste')}
                         >
                             Poste
                         </button>
@@ -122,11 +111,11 @@ const Historique = () => {
                         <button
                             className={style.buttonSecondFiltre}
                             onClick={() => {
-                                let date = new Date();
-                                const to = date.toISOString().split("T")[0];
-                                date.setDate(date.getDate());
-                                const from = date.toISOString().split("T")[0];
-                                setFilters({ ...filters, from, to });
+                                let date = new Date()
+                                const to = date.toISOString().split('T')[0]
+                                date.setDate(date.getDate())
+                                const from = date.toISOString().split('T')[0]
+                                setFilters({ ...filters, from, to })
                             }}
                         >
                             J-1
@@ -134,11 +123,11 @@ const Historique = () => {
                         <button
                             className={style.buttonSecondFiltre}
                             onClick={() => {
-                                let date = new Date();
-                                const to = date.toISOString().split("T")[0];
-                                date.setDate(date.getDate() - 6);
-                                const from = date.toISOString().split("T")[0];
-                                setFilters({ ...filters, from, to });
+                                let date = new Date()
+                                const to = date.toISOString().split('T')[0]
+                                date.setDate(date.getDate() - 6)
+                                const from = date.toISOString().split('T')[0]
+                                setFilters({ ...filters, from, to })
                             }}
                         >
                             W-1
@@ -146,11 +135,11 @@ const Historique = () => {
                         <button
                             className={style.buttonSecondFiltre}
                             onClick={() => {
-                                let date = new Date();
-                                const to = date.toISOString().split("T")[0];
-                                date.setMonth(date.getMonth() - 1);
-                                const from = date.toISOString().split("T")[0];
-                                setFilters({ ...filters, from, to });
+                                let date = new Date()
+                                const to = date.toISOString().split('T')[0]
+                                date.setMonth(date.getMonth() - 1)
+                                const from = date.toISOString().split('T')[0]
+                                setFilters({ ...filters, from, to })
                             }}
                         >
                             M-1
@@ -161,10 +150,10 @@ const Historique = () => {
                             type="date"
                             value={filters.from}
                             onChange={(event) =>
-                                changeFilter("from", event.target.value)
+                                changeFilter('from', event.target.value)
                             }
                         />
-                        <span style={{ fontSize: "14px", color: "black" }}>
+                        <span style={{ fontSize: '14px', color: 'black' }}>
                             à
                         </span>
                         <input
@@ -172,14 +161,14 @@ const Historique = () => {
                             type="date"
                             value={filters.to}
                             onChange={(event) =>
-                                changeFilter("to", event.target.value)
+                                changeFilter('to', event.target.value)
                             }
                         />
                         <h3>Exporter les données</h3>
-                        <div style={{ display: "flex", alignItems: "center" }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
                             <button
                                 className={style.exportData}
-                                onClick={() => exportToCSV(data, "Historique")}
+                                onClick={() => exportToCSV(data, 'Historique')}
                             >
                                 <RiDownloadFill fontSize={20} />
                                 Excel
@@ -201,25 +190,25 @@ const Historique = () => {
                                 {data.length > 0 && (
                                     <tr>
                                         {Object.keys(data[0]).map((column) => {
-                                            if (column === "history") {
+                                            if (column === 'history') {
                                                 return (
                                                     <React.Fragment
                                                         key={column}
                                                     >
                                                         <th key={`${column}-1`}>
-                                                            {"Date début"}
+                                                            {'Date début'}
                                                         </th>
                                                         <th key={`${column}-2`}>
-                                                            {"Date fin"}
+                                                            {'Date fin'}
                                                         </th>
                                                     </React.Fragment>
-                                                );
+                                                )
                                             } else {
                                                 return (
                                                     <th key={column}>
                                                         {Capitalize(column)}
                                                     </th>
-                                                );
+                                                )
                                             }
                                         })}
                                     </tr>
@@ -227,19 +216,19 @@ const Historique = () => {
                             </thead>
                             <tbody>
                                 {data.map((item, index) => {
-                                    let history;
+                                    let history
                                     return (
                                         <tr key={index}>
                                             {Object.keys(item).map(
                                                 (column, columnIndex) => {
-                                                    if (column === "history") {
+                                                    if (column === 'history') {
                                                         try {
                                                             history =
                                                                 JSON.parse(
                                                                     item[column]
-                                                                );
+                                                                )
                                                         } catch (err) {
-                                                            history = [];
+                                                            history = []
                                                         }
                                                         return (
                                                             <React.Fragment
@@ -250,8 +239,8 @@ const Historique = () => {
                                                                 >
                                                                     {typeof history[0]
                                                                         .debut ===
-                                                                    "undefined"
-                                                                        ? "NaN"
+                                                                    'undefined'
+                                                                        ? 'NaN'
                                                                         : history[0]
                                                                               .debut}
                                                                 </td>
@@ -262,15 +251,15 @@ const Historique = () => {
                                                                         history.length -
                                                                             1
                                                                     ].fin ===
-                                                                    "undefined"
-                                                                        ? "NaN"
+                                                                    'undefined'
+                                                                        ? 'NaN'
                                                                         : history[
                                                                               history.length -
                                                                                   1
                                                                           ].fin}
                                                                 </td>
                                                             </React.Fragment>
-                                                        );
+                                                        )
                                                     } else {
                                                         return (
                                                             <td
@@ -278,7 +267,7 @@ const Historique = () => {
                                                             >
                                                                 {typeof item[
                                                                     column
-                                                                ] === "number"
+                                                                ] === 'number'
                                                                     ? item[
                                                                           column
                                                                       ].toFixed(
@@ -288,12 +277,12 @@ const Historique = () => {
                                                                           column
                                                                       ]}
                                                             </td>
-                                                        );
+                                                        )
                                                     }
                                                 }
                                             )}
                                         </tr>
-                                    );
+                                    )
                                 })}
                             </tbody>
                         </table>
@@ -301,7 +290,7 @@ const Historique = () => {
                 )}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Historique;
+export default Historique

@@ -21,7 +21,7 @@ const MesDivs = ({ machineData }) => {
         <div className={style.section}>
             <button
                 className={style.titreSection}
-                onClick={() => navigate(`/uap/${machineData.sec}`)}
+                onClick={() => navigate(`/uap/${machineData.section}`)}
             >
                 {machineData.section}
             </button>

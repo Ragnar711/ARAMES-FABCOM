@@ -107,7 +107,7 @@ function SideBar() {
                 <Nav.Item>
                     <Link
                         className="nav-link"
-                        to="/machine/machine6"
+                        to="/machine/Ligne-d'assemblage-TBS"
                         onClick={() => {
                             dispatch({
                                 type: 'CHANGE_TITLE',

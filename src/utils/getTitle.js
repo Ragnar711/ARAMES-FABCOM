@@ -1,25 +1,24 @@
 export const getTitle = (pathname) => {
-    const uapRegex =
-        /\/uap\/(UAP-Assemblage)\/(UAP-Plaque)\/(Charge-Finition)\//
-    const machineRegex = /\/machine\/(linassemblagetbs|ligneassemblage1)\//
+    const uapRegex = /\/uap\/(UAP-Assemblage|UAP-Plaque|Charge-Finition)\/?/
+    const machineRegex =
+        /\/machine\/(Ligne-d'assemblage-TBS|Ligne-d'assemblage-1-SOVEMA|Ligne-d'assemblage-2-SOVEMA)\/?/
 
-    if (pathname.match(uapRegex)) {
+    console.log(pathname)
+    if (uapRegex.test(pathname)) {
         const section = pathname.match(uapRegex)[1]
-        return `Section - ${
-            section.charAt(0).toUpperCase() + section.slice(1, 9) + ' ' + 'PE'
-        }`
-    } else if (pathname.match(machineRegex)) {
+        return `Overview UAP - ${section.replaceAll('-', ' ')}`
+    } else if (machineRegex.test(pathname)) {
         const machine = pathname.match(machineRegex)[1]
-        return `Résultat Ligne - ${machine.slice(7)}`
+        return `Dashboard - ${machine.replaceAll('-', ' ')}`
     }
 
     switch (pathname) {
         case '/dashboard':
-            return 'Résultat usine'
+            return 'RESULTAT USINE - FABCOM'
         case '/historique':
             return 'Historique'
         case '/management':
-            return 'Management 4.0 '
+            return 'Management 4.0'
         case '/Planification':
             return 'Planification'
         case '/Recette':

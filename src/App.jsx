@@ -37,7 +37,7 @@ const reducer = (state, action) => {
 const App = () => {
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
-        title: 'Résultat usine',
+        title: 'RESULTAT USINE - FABCOM',
         user: { Id: NaN, Interface: null },
     })
     const [width, setWidth] = useState(window.innerWidth)

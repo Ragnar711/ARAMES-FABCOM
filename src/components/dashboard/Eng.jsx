@@ -116,7 +116,7 @@ const Eng = ({ style }) => {
                                             color: '#4C78C7',
                                         }}
                                     >
-                                        1480
+                                        N/A
                                     </span>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@ const Eng = ({ style }) => {
                                             color: '#4C78C7',
                                         }}
                                     >
-                                        1480
+                                        N/A
                                     </span>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ const Eng = ({ style }) => {
                                             color: '#4C78C7',
                                         }}
                                     >
-                                        1480
+                                        N/A
                                     </span>
                                 </div>
                             </div>
@@ -193,18 +193,6 @@ const Eng = ({ style }) => {
                                     justifyContent: 'space-around',
                                 }}
                             >
-                                <div>
-                                    <span className={style.titreValue}>
-                                        <sub
-                                            style={{
-                                                fontSize: '0.4rem',
-                                                color: 'black',
-                                                fontWeight: 'bold',
-                                            }}
-                                        ></sub>
-                                        {}|
-                                    </span>
-                                </div>
                                 <div style={{ marginLeft: '11px' }}>
                                     <span
                                         style={{
@@ -224,18 +212,6 @@ const Eng = ({ style }) => {
                                     justifyContent: 'space-around',
                                 }}
                             >
-                                <div>
-                                    <span className={style.titreValue}>
-                                        <sub
-                                            style={{
-                                                fontSize: '0.4rem',
-                                                color: 'black',
-                                                fontWeight: 'bold',
-                                            }}
-                                        ></sub>
-                                        {}|
-                                    </span>
-                                </div>
                                 <div style={{ marginLeft: '11px' }}>
                                     <span
                                         style={{
@@ -277,7 +253,7 @@ const Eng = ({ style }) => {
                                             color: 'green',
                                         }}
                                     >
-                                        760
+                                        N/A
                                     </span>
                                 </div>
                             </div>

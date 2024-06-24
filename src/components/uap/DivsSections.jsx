@@ -45,7 +45,7 @@ const DivsSections = ({ data, machineData }) => {
                             border: 'none',
                         }}
                     >
-                        Extrusion- {machineData.machine}
+                        {machineData.machine.replaceAll('-', ' ')}
                     </button>
                     <img src={marche} alt="marche" className={style.etatIcon} />
                 </div>

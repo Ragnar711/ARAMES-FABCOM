@@ -143,10 +143,9 @@ function RésultatInstantané({ data }) {
                                 percent={
                                     data.of.qt_ob === 0
                                         ? 0
-                                        : (
-                                              data.production.quantite.QP /
-                                              data.of.qt_ob
-                                          ).toFixed(0)
+                                        : (data.production.quantite.QP /
+                                              data.of.qt_ob) *
+                                          100
                                 }
                             />
                         </Flex>

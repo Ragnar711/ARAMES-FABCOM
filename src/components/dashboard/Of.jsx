@@ -10,7 +10,7 @@ const Of = ({ style, machine, NOF }) => {
                         color: 'black',
                     }}
                 >
-                    {machine}:
+                    {machine.replaceAll('-', ' ')}:
                 </span>
             </div>
             <div

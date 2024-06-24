@@ -50,9 +50,25 @@ function Machine() {
                 'TD (%)': 80,
                 'Tdech (%)': 5,
             },
+        ], // Taux de retouche
+        dechetBarChart: [
+            { day: '2024-06-23T23:00:00.000Z', quantite: 50 },
+            { day: '2024-06-22T23:00:00.000Z', quantite: 60 },
+            { day: '2024-06-21T23:00:00.000Z', quantite: 70 },
+            { day: '2024-06-20T23:00:00.000Z', quantite: 20 },
+            { day: '2024-06-19T23:00:00.000Z', quantite: 30 },
+            { day: '2024-06-18T23:00:00.000Z', quantite: 40 },
+            { day: '2024-06-17T23:00:00.000Z', quantite: 80 },
         ],
-        dechetBarChart: [],
-        NCBarChart: [],
+        NCBarChart: [
+            { day: '2024-06-23T23:00:00.000Z', quantite: 20 },
+            { day: '2024-06-22T23:00:00.000Z', quantite: 30 },
+            { day: '2024-06-21T23:00:00.000Z', quantite: 40 },
+            { day: '2024-06-20T23:00:00.000Z', quantite: 90 },
+            { day: '2024-06-19T23:00:00.000Z', quantite: 80 },
+            { day: '2024-06-18T23:00:00.000Z', quantite: 70 },
+            { day: '2024-06-17T23:00:00.000Z', quantite: 50 },
+        ],
     }
 
     return (

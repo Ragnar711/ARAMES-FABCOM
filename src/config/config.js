@@ -7,28 +7,20 @@ export const machineData = {
     'UAP-Assemblage': {
         image: assemblage,
         section: 'UAP-Assemblage',
-        sec: 'UAP-Assemblage',
         machines: [
-            { machine: 'Lin assemblage TBS', image: mach },
-            { machine: 'Ligne assemblage 1', image: mach },
+            { machine: "Ligne-d'assemblage-TBS", image: mach },
+            { machine: "Ligne-d'assemblage-1-SOVEMA", image: mach },
+            { machine: "Ligne-d'assemblage-2-SOVEMA", image: mach },
         ],
     },
     'UAP-Plaque': {
         image: plaque,
         section: 'UAP-Plaque',
-        sec: 'UAP-Plaque',
-        machines: [
-            { machine: 'Lin assemblage TBS', image: mach },
-            { machine: 'Ligne assemblage 1', image: mach },
-        ],
+        machines: [],
     },
-    'Charge Finition': {
+    'Charge-Finition': {
         image: charge,
-        section: 'Charge Finition',
-        sec: 'Charge-Finition',
-        machines: [
-            { machine: 'Lin assemblage TBS', image: mach },
-            { machine: 'Ligne assemblage 1', image: mach },
-        ],
+        section: 'Charge-Finition',
+        machines: [],
     },
 }
