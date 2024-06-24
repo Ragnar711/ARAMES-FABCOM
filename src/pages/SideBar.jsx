@@ -9,9 +9,7 @@ import roues from '../assets/roues.png'
 import Planification from '../assets/iconPl.png'
 import rapport from '../assets/rapport.png'
 import closeIcon from '../assets/iconClose.png'
-import matiere from '../assets/recette.png'
 import quitter from '../assets/logout.png'
-import file from '../assets/file.png'
 import menu from '../assets/humberguer.png'
 import logo from '../assets/logo2.png'
 import { context } from '../utils/context'
@@ -25,6 +23,20 @@ function SideBar() {
     const { dispatch } = useContext(context)
 
     const navigate = useNavigate()
+
+    const open = () => {
+        sideBarRef.current.classList.remove('close-nav')
+        document
+            .querySelector('#subroot > section')
+            .classList.remove('close-section')
+    }
+
+    const close = () => {
+        sideBarRef.current.classList.add('close-nav')
+        document
+            .querySelector('#subroot > section')
+            .classList.add('close-section')
+    }
 
     useEffect(() => {
         const session = sessionStorage.getItem('user')
@@ -44,26 +56,16 @@ function SideBar() {
             <img
                 className="closeIcon"
                 src={closeIcon}
-                onClick={() => {
-                    sideBarRef.current.classList.add('close-nav')
-                    document
-                        .querySelector('#subroot > section')
-                        .classList.add('close-section')
-                }}
                 alt="close"
+                onClick={() => close()}
             />
             <img
                 src={menu}
-                onClick={() => {
-                    sideBarRef.current.classList.remove('close-nav')
-                    document
-                        .querySelector('#subroot > section')
-                        .classList.remove('close-section')
-                }}
                 className="openIcon"
                 alt="icon"
+                onClick={() => open()}
             />
-            <div id="logo" onClick={() => navigate('/')}></div>
+            <div id="logo"></div>
             <div className="column-Link">
                 <img src={logo} className="logo" alt="logo" />
                 <Nav.Item>
@@ -184,52 +186,6 @@ function SideBar() {
                     >
                         <img src={Planification} alt="plannification" />
                         <span className="spanItem">Planification</span>
-                    </Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link
-                        className={`nav-link ${
-                            isHistoriqueDeactivated ? 'deactivated-link' : ''
-                        }`}
-                        to="/Recette"
-                        onClick={() => {
-                            if (!isHistoriqueDeactivated) {
-                                dispatch({
-                                    type: 'CHANGE_TITLE',
-                                    payload: 'Recette / Article ',
-                                })
-                            }
-                            sideBarRef.current.classList.add('close-nav')
-                            document
-                                .querySelector('#subroot > section')
-                                .classList.add('close-section')
-                        }}
-                    >
-                        <img src={file} alt="file" />
-                        <span className="spanItem">Recette</span>
-                    </Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link
-                        className={`nav-link ${
-                            isHistoriqueDeactivated ? 'deactivated-link' : ''
-                        }`}
-                        to="/Fmts"
-                        onClick={() => {
-                            if (!isHistoriqueDeactivated) {
-                                dispatch({
-                                    type: 'CHANGE_TITLE',
-                                    payload: 'Flow material tracking system',
-                                })
-                            }
-                            sideBarRef.current.classList.add('close-nav')
-                            document
-                                .querySelector('#subroot > section')
-                                .classList.add('close-section')
-                        }}
-                    >
-                        <img src={matiere} alt="fmts" />
-                        <span className="spanItem">FMTS</span>
                     </Link>
                 </Nav.Item>
             </div>

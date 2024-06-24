@@ -11,6 +11,7 @@ const Eng = lazy(() => import('./Eng'))
 import style from '../../styles/Section.module.css'
 
 import User from '../../assets/usericon.png'
+import alert from '../../assets/alert.png'
 
 import PropTypes from 'prop-types'
 
@@ -26,11 +27,27 @@ const MesDivs = ({ machineData }) => {
                 {machineData.section}
             </button>
             <div>
-                <img
-                    className={style.imageMachine}
-                    src={machineData.image}
-                    alt="machine"
-                />
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <img
+                        src={alert}
+                        alt="alert"
+                        style={{
+                            width: '2.5rem',
+                            height: '2rem',
+                        }}
+                    />
+                    <img
+                        className={style.imageMachine}
+                        src={machineData.image}
+                        alt="machine"
+                    />
+                </div>
                 <div className={style.user}>
                     <img className={style.iconUser} src={User} alt="user" />
                     <span className={style.userText}>

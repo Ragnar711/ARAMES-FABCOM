@@ -3,14 +3,8 @@ const Of = ({ style, machine, NOF }) => {
         <div className={style.divSPan}>
             <div>
                 {' '}
-                <span
-                    className={style.spanKpi}
-                    style={{
-                        fontSize: '0.4rem',
-                        color: 'black',
-                    }}
-                >
-                    {machine.replaceAll('-', ' ')}:
+                <span className={style.titreBloc}>
+                    {machine.replaceAll('-', ' ')}
                 </span>
             </div>
             <div
@@ -20,27 +14,31 @@ const Of = ({ style, machine, NOF }) => {
                     width: '29%',
                 }}
             >
-                <span className={style.value}>
-                    <sub
+                <div>
+                    <span className={style.titreValue}>
+                        <sub
+                            style={{
+                                fontSize: '0.4rem',
+                                color: 'black',
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            N°OF
+                        </sub>{' '}
+                        |
+                    </span>
+                </div>
+                <div style={{ marginLeft: '11px' }}>
+                    <span
                         style={{
-                            color: 'black',
-                            width: '100%',
-                            fontSize: '0.3rem',
+                            fontSize: '0.4rem',
+                            color: '#4C78C7',
+                            fontWeight: 'bold',
                         }}
                     >
-                        N°OF
-                    </sub>{' '}
-                    <span style={{ color: 'black' }}>|</span>
-                </span>
-                <span
-                    style={{
-                        fontSize: '0.4rem',
-                        color: '#4C78C7',
-                        fontWeight: 'bold',
-                    }}
-                >
-                    {NOF}
-                </span>
+                        {NOF}
+                    </span>
+                </div>
             </div>
         </div>
     )

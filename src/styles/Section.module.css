@@ -50,8 +50,8 @@ h3 {
     display: flex;
 }
 .titreBloc {
-    color: #002060;
-    font-size: 10px;
+    font-size: 0.4rem;
+    color: 'black';
 }
 .of {
     width: 88%;
@@ -147,7 +147,7 @@ h3 {
 }
 .iconOf {
     position: absolute;
-    left: -8%;
+    right: -8%;
     width: 40px;
 }
 .iconUser {
@@ -162,11 +162,11 @@ h3 {
     background-color: var(--bg);
 }
 h2 {
-    font-size: 11px;
+    font-size: 0.4rem;
     color: #002060;
     font-weight: 700;
     border-bottom: 4px solid #a0a0a0;
-    text-align: center;
+    text-align: left;
     padding: 5%;
 }
 .blocKpi {
@@ -185,9 +185,8 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 175px;
     line-height: 1rem;
-    padding: 12px;
+    padding: 0.5rem;
 }
 #avOF {
     color: var(--text-blue);

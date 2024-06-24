@@ -3,7 +3,6 @@ export const getTitle = (pathname) => {
     const machineRegex =
         /\/machine\/(Ligne-d'assemblage-TBS|Ligne-d'assemblage-1-SOVEMA|Ligne-d'assemblage-2-SOVEMA)\/?/
 
-    console.log(pathname)
     if (uapRegex.test(pathname)) {
         const section = pathname.match(uapRegex)[1]
         return `Overview UAP - ${section.replaceAll('-', ' ')}`
@@ -14,7 +13,7 @@ export const getTitle = (pathname) => {
 
     switch (pathname) {
         case '/dashboard':
-            return 'RESULTAT USINE - FABCOM'
+            return 'Résultat usine - FABCOM'
         case '/historique':
             return 'Historique'
         case '/management':

@@ -16,7 +16,7 @@ const Quantity = ({ style, quantity, value }) => {
                         color: 'black',
                     }}
                 >
-                    {quantity}:
+                    {quantity}
                 </span>
             </div>
             <div

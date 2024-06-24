@@ -13,7 +13,7 @@ const Kpi = ({ kpi, value, style }) => {
                 <span className={style.titreValue}>
                     <sub
                         style={{
-                            fontSize: '0.3rem',
+                            fontSize: '0.4rem',
                             color: 'black',
                             fontWeight: 'bold',
                         }}
