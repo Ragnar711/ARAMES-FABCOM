@@ -9,7 +9,8 @@ const Kpis = ({ style, data }) => {
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
                 <img src={iconKpi} alt="iconkpi" className={style.iconOf} />
-                <h2>KPI | Performance de l'UAP</h2>
+                <h2 className={style.blocTitle}>KPI | Performance de l'UAP</h2>
+                <hr />
             </div>
             <div className={style.spans}>
                 <div

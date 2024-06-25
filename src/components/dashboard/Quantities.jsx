@@ -9,7 +9,8 @@ const Quantities = ({ style }) => {
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
                 <img src={qte} alt="iconkpi" className={style.iconOf} />
-                <h2>Qté | Globales Réalisées</h2>
+                <h2 className={style.blocTitle}>Qté | Globales Réalisées</h2>
+                <hr />
             </div>
             <div className={style.spans}>
                 <Suspense fallback={<Loader />}>

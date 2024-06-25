@@ -9,7 +9,8 @@ const Ofs = ({ style, machines }) => {
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
                 <img src={oficon} alt="iconkpi" className={style.iconOf} />
-                <h2>OF | Liste des OF encours</h2>
+                <h2 className={style.blocTitle}>OF | Liste des OF encours</h2>
+                <hr />
             </div>
             <div className={style.spans}>
                 {machines.map((machine, index) => (
