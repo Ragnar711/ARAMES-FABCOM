@@ -30,6 +30,8 @@ const Param = ({ param, name, value, style }) => {
                             value,
                             param.toLowerCase()
                         )}`,
+                        width: '1.75rem',
+                        fontSize: '0.45rem',
                     }}
                     className={style.kpiValue}
                 >
