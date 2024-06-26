@@ -16,11 +16,19 @@
     background-color: red;
 }
 .titre {
-    text-align: center;
-    margin: 0;
-    font-size: 18px;
-    width: 391px;
-    color: var(--fg);
+    font-size: 0.75rem;
+    color: white;
+    text-align: left;
+}
+.arrow {
+    font-size: 0.75rem;
+    color: white;
+    text-align: left;
+    padding-left: 75px;
+    cursor: pointer;
+}
+.arrow:hover {
+    color: darkgray;
 }
 .nav-pills {
     background-color: var(--navbar-bg);

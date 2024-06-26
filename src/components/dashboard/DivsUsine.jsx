@@ -49,7 +49,6 @@ const MesDivs = ({ machineData }) => {
     }
 
     const uap = machineData.section
-    console.log(uap)
 
     return (
         <div className={style.section}>

@@ -34,7 +34,7 @@ const reducer = (state, action) => {
 const App = () => {
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
-        title: 'Résultat usine - FABCOM',
+        title: 'Real Time Usine - FABCOM',
         user: { Id: NaN, Interface: null },
     })
 

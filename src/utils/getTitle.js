@@ -13,7 +13,7 @@ export const getTitle = (pathname) => {
 
     switch (pathname) {
         case '/dashboard':
-            return 'Résultat usine - FABCOM'
+            return 'Real Time Usine - FABCOM'
         case '/historique':
             return 'Historique'
         case '/management':

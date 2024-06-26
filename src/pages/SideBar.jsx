@@ -75,7 +75,7 @@ function SideBar() {
                         onClick={() => {
                             dispatch({
                                 type: 'CHANGE_TITLE',
-                                payload: 'Résultat usine',
+                                payload: 'Real Time Usine - FABCOM',
                             })
                             sideBarRef.current.classList.add('close-nav')
                             document
