@@ -5,6 +5,7 @@ import mach from '../assets/mach.png'
 
 export const machineData = {
     'UAP-Assemblage': {
+        status: true,
         image: assemblage,
         section: 'UAP-Assemblage',
         machines: [
@@ -14,11 +15,13 @@ export const machineData = {
         ],
     },
     'UAP-Plaque': {
+        status: false,
         image: plaque,
         section: 'UAP-Plaque',
         machines: [],
     },
     'Charge-Finition': {
+        status: false,
         image: charge,
         section: 'Charge-Finition',
         machines: [],

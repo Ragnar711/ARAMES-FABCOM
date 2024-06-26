@@ -2,16 +2,28 @@
     --section-height: 328px;
 }
 
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Calibri', sans-serif;
+}
+
 .section {
     border: 1px solid #ccc;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    margin-bottom: 1rem;
+    height: var(--section-height);
+    padding: 0.5rem;
 }
 
 .bloc1 {
-    width: 40%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
 }
 
 .bloc2 {
@@ -20,24 +32,28 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: var(--section-height);
+    height: 100%;
 }
 
 .title {
     font-size: 0.75rem;
     font-weight: 900;
     color: #696969;
-    padding: 5px;
-    text-decoration: 5px underline;
-    text-shadow: #696969 0.25px 0.25px;
+    padding: 2px 5px;
 }
 
 .machineImage {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.imageMachine {
+    height: calc(var(--section-height) - 100px);
     width: 80%;
+    object-fit: contain;
 }
 
 .user {
@@ -45,18 +61,25 @@
     width: 100%;
     color: var(--bg-color);
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 0.2rem;
 }
 .user > * {
     margin: 0 10px;
 }
 
 .blocKpi {
+    position: relative;
     width: 22%;
+    height: 100%;
     border-radius: 5px;
-    box-shadow: 3px 4px 10px 7px rgba(0, 0, 0, 0.25);
-    height: 240px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    line-height: 0.5rem;
+}
+
+.hr {
+    color: #969696;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
 }
 
 .blocTitle {
@@ -66,18 +89,64 @@
     padding: 0.5rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    font-size: 0.4rem;
+    font-size: 0.3rem;
     color: #002060;
+}
+
+.kpiContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5rem;
+    height: 100%;
+}
+
+.kpiContent {
+    height: 50%;
+}
+
+.kpi {
+    font-size: 0.35rem;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.subKpi {
+    font-size: 0.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+.kpiValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.4rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    height: 50%;
+    width: 3rem;
+    border-radius: 5px;
+}
+
+.titreImageOf {
+    height: 20%;
+}
+
+.iconOf {
+    position: absolute;
+    right: 1%;
+    width: 1rem;
+    height: 1rem;
+    margin-top: calc(10% - 0.75rem);
 }
 
 .etatIcon {
     width: 50px;
     rotate: 90deg;
 }
-.titreImageOf {
-    position: relative;
-    padding: 1%;
-}
+
 .divSPan {
     justify-content: space-between;
     width: 100%;
@@ -139,17 +208,7 @@
     width: 39px;
     position: absolute;
 }
-.imageMachine {
-    height: calc(var(--section-height) - 100px);
-    width: 226px;
-    object-fit: contain;
-}
 
-.iconOf {
-    position: absolute;
-    right: -8%;
-    width: 40px;
-}
 .iconUser {
     height: 20px;
     width: auto;
