@@ -9,6 +9,7 @@ const Container = ({ title, data, values, style, icon }) => {
             <div className={style.titreImageOf}>
                 <img src={icon} alt="iconkpi" className={style.iconOf} />
                 <h2 className={style.blocTitle}>{title}</h2>
+                <hr className={style.hr} />
             </div>
             <div className={style.kpis}>
                 {Object.keys(data).map((kpi) => (

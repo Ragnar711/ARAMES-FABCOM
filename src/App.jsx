@@ -64,9 +64,9 @@ const App = () => {
                 <div
                     style={{
                         display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-start',
-                        width: '100vw',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
                         height: '100vh',
                     }}
                     id="subroot"

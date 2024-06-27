@@ -1,6 +1,8 @@
-import MesDivs from '../components/dashboard/DivsUsine'
 import { machineData } from '../config/config'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
+import Loader from '../components/Loader'
+
+const DivsUsine = lazy(() => import('../components/dashboard/DivsUsine'))
 
 const Dashboard = () => {
     const [time, setTime] = useState(new Date().toLocaleString())
@@ -26,7 +28,9 @@ const Dashboard = () => {
                 {time}
             </p>
             {Object.keys(machineData).map((key) => (
-                <MesDivs key={key} machineData={machineData[key]} />
+                <Suspense fallback={<Loader />} key={key}>
+                    <DivsUsine machineData={machineData[key]} />
+                </Suspense>
             ))}
         </>
     )

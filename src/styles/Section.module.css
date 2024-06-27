@@ -1,11 +1,12 @@
 :root {
-    --section-height: 328px;
+    --section-height: 12rem;
 }
 
 * {
     padding: 0;
     margin: 0;
     font-family: 'Calibri', sans-serif;
+    word-wrap: break-word;
 }
 
 .section {
@@ -16,14 +17,16 @@
     margin-bottom: 1rem;
     height: var(--section-height);
     padding: 0.5rem;
+    overflow: scroll;
+    scroll-behavior: smooth;
 }
 
 .bloc1 {
-    width: 30%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90%;
+    height: 100%;
 }
 
 .bloc2 {
@@ -31,7 +34,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 80%;
     height: 100%;
 }
 
@@ -70,15 +73,12 @@
 
 .blocKpi {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 22%;
     height: 100%;
     border-radius: 5px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-    line-height: 0.5rem;
-}
-
-.hr {
-    color: #969696;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -91,6 +91,7 @@
     border-top-right-radius: 5px;
     font-size: 0.3rem;
     color: #002060;
+    border-bottom: 1px solid #c9c9c9;
 }
 
 .kpiContainer {
@@ -98,7 +99,6 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 0.5rem;
-    height: 100%;
 }
 
 .kpiContent {
@@ -132,6 +132,13 @@
 
 .titreImageOf {
     height: 20%;
+}
+
+.kpis {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .iconOf {

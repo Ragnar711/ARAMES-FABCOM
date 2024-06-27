@@ -1,62 +1,39 @@
-import DivsSections from '../components/uap/DivsSections'
-import { useParams } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
 import { machineData } from '../config/config'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import Loader from '../components/Loader'
 
-const Tbd = lazy(() => import('../components/Tbd'))
+const DivsSection = lazy(() => import('../components/uap/DivsSection'))
 
 const Uap = () => {
-    const data = {
-        kpi: {
-            QP: 500,
-            TO: '05:00:00',
-            TA: '03:00:00',
-            TRS: 80,
-            TP: 70,
-            TQ: 100,
-            TD: 60,
-            Tdech: 5,
-        },
-        of: {
-            QuantiteObjectif: 1000,
-            NOF: '1001',
-            DebitTheorique: 300,
-        },
-        network: true,
-        operator: 'test',
-        realTimeData: {
-            debit: 250,
-            vitesseT: 100,
-            vitesseE: 120,
-            poids: 100,
-        },
-        lastArret: {
-            Duree: '01:30:00',
-            Motif: 'test',
-        },
-    }
+    const [time, setTime] = useState(new Date().toLocaleString())
 
-    const section = useParams()
-    const machines = machineData[section.section].machines
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date().toLocaleString())
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
+
+    const section = window.location.pathname.split('/')[2]
 
     return (
         <>
-            {machines.length === 0 ? (
-                <Suspense fallback={<Loader />}>
-                    <Tbd />
+            <p
+                style={{
+                    fontSize: '0.4rem',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    padding: '0.2rem',
+                }}
+            >
+                {time}
+            </p>
+            {machineData[section].machines.map((machine) => (
+                <Suspense fallback={<Loader />} key={machine}>
+                    <DivsSection machineData={machine} />
                 </Suspense>
-            ) : (
-                machines.map((machine) => {
-                    return (
-                        <DivsSections
-                            key={machine}
-                            data={data}
-                            machineData={machine}
-                        />
-                    )
-                })
-            )}
+            ))}
         </>
     )
 }
