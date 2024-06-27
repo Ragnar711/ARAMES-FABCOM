@@ -26,4 +26,12 @@ export const Parameters = {
         'cos ϕ [ ]': 'Facteur de puissance',
         'CO2 [Kg]': 'Total Empreinte carbone',
     },
+    machine: {
+        OF: {
+            'N°OF': 'Numéro de l’ordre de fabrication',
+            'Réf Art': 'Référence de l’article à réaliser',
+            'Qté Obj': 'Quantité objectif à réaliser',
+            Production: 'Quantité réalisée jusqu’à l’instant',
+        },
+    },
 }

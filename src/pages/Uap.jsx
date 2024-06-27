@@ -29,9 +29,12 @@ const Uap = () => {
             >
                 {time}
             </p>
-            {machineData[section].machines.map((machine) => (
+            {machineData[section].machines.map((machine, index) => (
                 <Suspense fallback={<Loader />} key={machine}>
-                    <DivsSection machineData={machine} />
+                    <DivsSection
+                        machineData={machine}
+                        sequenceNumber={index + 1}
+                    />
                 </Suspense>
             ))}
         </>

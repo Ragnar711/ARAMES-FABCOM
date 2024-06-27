@@ -17,8 +17,32 @@
     margin-bottom: 1rem;
     height: var(--section-height);
     padding: 0.5rem;
-    overflow: scroll;
+    overflow-x: scroll;
     scroll-behavior: smooth;
+}
+
+.machine {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    height: var(--section-height);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+.state_btn {
+    background-color: #92d050;
+    border: none;
+    color: #000;
+}
+
+.state_btn > span {
+    display: block;
+    transform: rotate(-90deg);
+    font-size: 0.64rem;
 }
 
 .bloc1 {
@@ -27,6 +51,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    overflow: hidden;
 }
 
 .bloc2 {
@@ -45,12 +70,23 @@
     padding: 2px 5px;
 }
 
+.title_machine {
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    height: 10%;
+}
+
 .machineImage {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 50%;
 }
 
 .imageMachine {
@@ -66,6 +102,7 @@
     display: flex;
     align-items: center;
     padding: 0.2rem;
+    height: 10%;
 }
 .user > * {
     margin: 0 10px;
@@ -89,7 +126,7 @@
     padding: 0.5rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    font-size: 0.3rem;
+    font-size: 0.32rem;
     color: #002060;
     border-bottom: 1px solid #c9c9c9;
 }
@@ -98,7 +135,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0.5rem;
 }
 
 .kpiContent {
@@ -106,7 +142,7 @@
 }
 
 .kpi {
-    font-size: 0.35rem;
+    font-size: 0.32rem;
     padding: 0;
     margin: 0;
     font-weight: bold;
@@ -122,7 +158,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.4rem;
+    font-size: 0.35rem;
     font-weight: bold;
     padding: 0.15rem 0.5rem;
     height: 50%;
@@ -139,6 +175,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: 0.5rem;
 }
 
 .iconOf {
@@ -149,184 +186,70 @@
     margin-top: calc(10% - 0.75rem);
 }
 
-.etatIcon {
-    width: 50px;
-    rotate: 90deg;
+.of {
+    width: 100%;
+    height: 30%;
+    margin: 1rem 0 0 1rem;
 }
 
-.divSPan {
-    justify-content: space-between;
-    width: 100%;
-    display: flex;
-}
-.titreBloc {
-    font-size: 0.4rem;
-    color: 'black';
-}
-.of {
-    width: 88%;
-    margin-left: 1rem;
-}
-.titreValue {
-    color: #002060;
-    font-size: 14px;
-    font-weight: 400;
-}
-.value {
-    font-weight: bold;
-    color: #2ab023;
-    font-size: 11px;
-}
 .TM {
     background: #a8df63;
     padding: 11px;
     font-size: 11px;
-    font-weight: 400;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    display: inline-block;
-    width: 2rem;
-    text-align: center;
-}
-.TA {
-    background: red;
-    padding: 11px;
-    font-size: 11px;
-    font-weight: 400;
+    font-weight: bold;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     display: inline-block;
-    width: 2rem;
+    width: 3.5rem;
     text-align: center;
 }
-.titleImage {
+
+.TA {
+    background: red;
+    color: white;
+    padding: 11px;
+    font-size: 11px;
+    font-weight: bold;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    display: inline-block;
+    width: 3.5rem;
+    text-align: center;
+}
+
+.T_text {
+    padding: 11px;
+    font-size: 8px;
+    display: inline-block;
+    width: 3.5rem;
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 3px solid rgb(236, 236, 236);
+    box-sizing: border-box;
+}
+
+.progress-bar {
+    height: 15px;
+    position: relative;
+    background-color: #5faa1c;
+    border-radius: 5px 0 0 5px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-.titreValueKPI {
-    color: #00b0f0;
-    font-weight: 700;
-    font-size: 11px;
-}
-#divTitre {
-    background-color: green;
-    height: 275px;
-    width: 39px;
-    position: absolute;
+    justify-content: center;
+    transition: width 0.3s ease-in-out;
 }
 
-.iconUser {
-    height: 20px;
-    width: auto;
-}
-.bloc {
-    margin-left: 1px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: var(--bg);
-}
-
-.spanKpi {
-    font-size: 11px;
-    margin-bottom: 15px;
-    color: var(--bg-color);
-}
-.spans {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    line-height: 1rem;
-    padding: 0.5rem;
-}
-#avOF {
-    color: var(--text-blue);
-    font-size: 12px;
-    height: 30px;
-    margin-top: 10px;
-}
-.divOF {
-    position: relative;
-    width: 90%;
-    overflow: hidden;
-    background-color: #e5e7eb;
-    border-radius: 9999px;
-    height: 0.75rem;
-    margin-left: 9px;
-
-    margin-top: 11px;
-}
-.subDivOf {
-    background-color: #347abc;
-    height: 0.75rem;
-    transition-property: all;
-    transition-duration: 500ms;
-    transition-timing-function: ease-out;
-}
-.arret {
-    background-color: var(--bg);
-    box-shadow: 0px 1px 1px 3px rgb(238, 238, 238);
-    padding: 5%;
-    display: flex;
-    flex-direction: row;
-    border-radius: 5px;
-    width: 199px;
-    margin-left: 0px;
-    text-align: left;
-    height: 50px;
-    margin-top: 17px;
-}
-.arretIcon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    top: 32%;
-}
-.spanDer {
-    font-size: 11px;
-    font-weight: bold;
-    text-align: left;
-    color: var(--bg-color);
-}
-.arretSpan {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 8px;
-}
-.percentageLine {
-    position: absolute;
-    height: 150%; /* adjust this value according to your desired height */
-    border-left: 3px solid #000;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.percentageText {
+.progress-label {
     color: white;
-    font-size: 0.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
+    font-size: 0.42rem;
     font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.button:hover {
-    background-color: #0056b3;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
