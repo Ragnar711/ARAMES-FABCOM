@@ -33,5 +33,12 @@ export const Parameters = {
             'Qté Obj': 'Quantité objectif à réaliser',
             Production: 'Quantité réalisée jusqu’à l’instant',
         },
+        Process: {
+            'TC Env [sec]': 'Cadence  réelle de la phase enveloppeuse',
+            'TC COS [sec]': 'Temps de cycle réel de la phase COS',
+            'TC SC [sec]': 'Temps de cycle réel soudure des connexions',
+            'TC BC [sec]': 'Temps de cycle réel soudure Bac/Couvercle',
+            'TC th [sec]': 'Temps de cycle théorique de la ligne',
+        },
     },
 }

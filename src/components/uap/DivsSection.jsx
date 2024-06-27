@@ -2,12 +2,15 @@ import { lazy, Suspense } from 'react'
 import { getPoste } from '../../utils/getPoste'
 
 const Of = lazy(() => import('./Of'))
+const Container = lazy(() => import('./Container'))
 
 import style from '../../styles/Section.module.css'
 
 import User from '../../assets/usericon.png'
 import alert from '../../assets/alert.png'
 import of from '../../assets/of.png'
+import kpi from '../../assets/iconKpi.webp'
+import process from '../../assets/process.png'
 
 import PropTypes from 'prop-types'
 
@@ -27,12 +30,14 @@ const MesDivs = ({ machineData, sequenceNumber }) => {
             'N°OF': 658702,
             'Réf Art': 'AM0254',
             'Qté Obj': 1260,
+            Production: 1200,
         },
-        Quantities: {
-            'Qté Conf  [batterie]': 680,
-            'Qté NC [batterie]': 10,
-            'Qté Ret [batterie]': 36,
-            'Qté déchet [Kg]': 318,
+        Process: {
+            'TC Env [sec]': 2.1,
+            'TC COS [sec]': 15,
+            'TC SC [sec]': 20,
+            'TC BC [sec]': 22,
+            'TC th [sec]': 8,
         },
         Eng: {
             'Energie  [KWh]': 14536,
@@ -41,11 +46,6 @@ const MesDivs = ({ machineData, sequenceNumber }) => {
             'cos ϕ [ ]': 0.862,
             'CO2 [Kg]': 7268,
         },
-    }
-
-    let dup = {
-        ...data,
-        OF: { ...data.OF, Production: data.Quantities['Qté Conf  [batterie]'] },
     }
 
     const machine =
@@ -109,9 +109,27 @@ const MesDivs = ({ machineData, sequenceNumber }) => {
                     <Of
                         title="OF| Progression d’OF"
                         data={Parameters.machine.OF}
-                        values={dup?.OF ?? {}}
+                        values={data?.OF ?? {}}
                         style={style}
                         icon={of}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Container
+                        title="KPI | Performance de la ligne"
+                        data={Parameters.KPIs}
+                        values={data?.KPIs ?? {}}
+                        style={style}
+                        icon={kpi}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Container
+                        title="Process | Paramètres process"
+                        data={Parameters.machine.Process}
+                        values={data?.Process ?? {}}
+                        style={style}
+                        icon={process}
                     />
                 </Suspense>
             </div>

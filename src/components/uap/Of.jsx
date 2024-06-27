@@ -4,7 +4,8 @@ import Loader from '../Loader'
 const Param = lazy(() => import('./Param'))
 
 const Of = ({ title, data, values, style, icon }) => {
-    const progress = 70
+    const progress = ((values.Production / values['Qté Obj']) * 100).toFixed(2)
+
     return (
         <div className={style.blocKpi}>
             <div className={style.titreImageOf}>
