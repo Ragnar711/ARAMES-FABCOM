@@ -3,6 +3,7 @@ import { getPoste } from '../../utils/getPoste'
 
 const Of = lazy(() => import('./Of'))
 const Container = lazy(() => import('./Container'))
+const Alerts = lazy(() => import('./Alerts'))
 
 import style from '../../styles/Section.module.css'
 
@@ -39,12 +40,19 @@ const MesDivs = ({ machineData, sequenceNumber }) => {
             'TC BC [sec]': 22,
             'TC th [sec]': 8,
         },
-        Eng: {
-            'Energie  [KWh]': 14536,
-            'P [KW]': 15.32,
-            'Q [KVAR]': 8.99,
-            'cos ϕ [ ]': 0.862,
-            'CO2 [Kg]': 7268,
+        Alert: {
+            'Déchet  [Kg]': {
+                val: 20,
+                desc: 'Nettoyage',
+            },
+            'Arrêt [sec]': {
+                val: '00:00:46',
+                desc: 'Panne',
+            },
+            'Qté NC [Kg]': {
+                val: 12,
+                desc: 'Soudure  bac NC',
+            },
         },
     }
 
@@ -130,6 +138,14 @@ const MesDivs = ({ machineData, sequenceNumber }) => {
                         values={data?.Process ?? {}}
                         style={style}
                         icon={process}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Alerts
+                        data={Parameters.machine.Alerte}
+                        values={data?.Alert ?? {}}
+                        style={style}
+                        icon={alert}
                     />
                 </Suspense>
             </div>
