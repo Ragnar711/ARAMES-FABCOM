@@ -6,7 +6,6 @@ const Alerts = lazy(() => import('./Alerts'))
 
 import Loader from '../Loader'
 
-import alert from '../../assets/alert.png'
 import of from '../../assets/of.png'
 import kpi from '../../assets/iconKpi.webp'
 import process from '../../assets/process.png'
@@ -54,7 +53,6 @@ const Bloc2 = ({ data, style }) => {
                     data={Parameters.machine.Alerte}
                     values={data?.Alert ?? {}}
                     style={style}
-                    icon={alert}
                 />
             </Suspense>
         </div>

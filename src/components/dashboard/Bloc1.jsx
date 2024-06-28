@@ -23,8 +23,8 @@ const Bloc1 = ({ style, machineData }) => {
                         src={alert}
                         alt="alert"
                         style={{
-                            width: '30%',
-                            height: '25%',
+                            width: '20%',
+                            aspectRatio: '1.5/1',
                         }}
                     />
                 )}
