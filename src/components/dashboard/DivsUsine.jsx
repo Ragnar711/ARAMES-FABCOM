@@ -1,21 +1,12 @@
 import { lazy, Suspense } from 'react'
-import { getPoste } from '../../utils/getPoste'
 
 import Loader from '../Loader'
-const Container = lazy(() => import('./Container'))
+const Bloc1 = lazy(() => import('./Bloc1'))
+const Bloc2 = lazy(() => import('./Bloc2'))
 
 import style from '../../styles/Section.module.css'
 
-import User from '../../assets/usericon.png'
-import alert from '../../assets/alert.png'
-import of from '../../assets/of.png'
-import kpi from '../../assets/iconKpi.webp'
-import quantity from '../../assets/quantity.png'
-import eng from '../../assets/eng.png'
-
 import PropTypes from 'prop-types'
-
-import { Parameters } from '../../config/params'
 
 const MesDivs = ({ machineData }) => {
     const data = {
@@ -52,68 +43,12 @@ const MesDivs = ({ machineData }) => {
 
     return (
         <div className={style.section}>
-            <div className={style.bloc1}>
-                <h2 className={style.title}>{`UAP - ${uap.split('-')[1]}`}</h2>
-                <div className={style.machineImage}>
-                    <img
-                        className={style.imageMachine}
-                        src={machineData.image}
-                        alt="machine"
-                    />
-                    <img
-                        src={alert}
-                        alt="alert"
-                        style={{
-                            width: '4rem',
-                            height: '2.5rem',
-                        }}
-                    />
-                </div>
-                <div className={style.user}>
-                    <img className={style.iconUser} src={User} alt="user" />
-                    <span className={style.userText}>
-                        Chef d'équipe - poste: {getPoste()}
-                    </span>
-                </div>
-            </div>
-            <div className={style.bloc2}>
-                <Suspense fallback={<Loader />}>
-                    <Container
-                        title="KPI | Performance de l'UAP"
-                        data={Parameters.KPIs}
-                        values={data[uap]?.KPIs ?? {}}
-                        style={style}
-                        icon={kpi}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Container
-                        title="OF | Running OFs"
-                        data={Parameters.OFs}
-                        values={data[uap]?.OFs ?? {}}
-                        style={style}
-                        icon={of}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Container
-                        title="Qté | Détail des quantités produites"
-                        data={Parameters.Quantities}
-                        values={data[uap]?.Quantities ?? {}}
-                        style={style}
-                        icon={quantity}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Container
-                        title="Eng| Performance énergétique"
-                        data={Parameters.Eng}
-                        values={data[uap]?.Eng ?? {}}
-                        style={style}
-                        icon={eng}
-                    />
-                </Suspense>
-            </div>
+            <Suspense fallback={<Loader />}>
+                <Bloc1 style={style} machineData={machineData} />
+            </Suspense>
+            <Suspense fallback={<Loader />}>
+                <Bloc2 style={style} data={data} uap={uap} />
+            </Suspense>
         </div>
     )
 }
