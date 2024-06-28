@@ -6,23 +6,28 @@ import { getPoste } from '../../utils/getPoste'
 const Bloc1 = ({ style, machineData }) => {
     const uap = machineData.section
 
+    const state = false
+
     return (
         <div className={style.bloc1}>
             <h2 className={style.title}>{`UAP - ${uap.split('-')[1]}`}</h2>
             <div className={style.machineImage}>
                 <img
                     className={style.imageMachine}
+                    style={{ width: state ? '90%' : '70%' }}
                     src={machineData.image}
                     alt="machine"
                 />
-                <img
-                    src={alert}
-                    alt="alert"
-                    style={{
-                        width: '4rem',
-                        height: '2.5rem',
-                    }}
-                />
+                {state ? null : (
+                    <img
+                        src={alert}
+                        alt="alert"
+                        style={{
+                            width: '30%',
+                            height: '25%',
+                        }}
+                    />
+                )}
             </div>
             <div className={style.user}>
                 <img className={style.iconUser} src={User} alt="user" />

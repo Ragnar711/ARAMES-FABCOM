@@ -8,6 +8,8 @@ const Bloc1 = ({ style, sequenceNumber, machineData }) => {
             machineData.machine.split('-').length - 1
         ]
 
+    const state = false
+
     return (
         <div className={style.bloc1}>
             <h2
@@ -34,17 +36,20 @@ const Bloc1 = ({ style, sequenceNumber, machineData }) => {
             <div className={style.machineImage}>
                 <img
                     className={style.imageMachine}
+                    style={{ width: state ? '90%' : '70%' }}
                     src={machineData.image}
                     alt="machine"
                 />
-                <img
-                    src={alert}
-                    alt="alert"
-                    style={{
-                        width: '4rem',
-                        height: '2.5rem',
-                    }}
-                />
+                {state ? null : (
+                    <img
+                        src={alert}
+                        alt="alert"
+                        style={{
+                            width: '30%',
+                            height: '25%',
+                        }}
+                    />
+                )}
             </div>
         </div>
     )
