@@ -3,11 +3,9 @@ import { lazy, Suspense } from 'react'
 const Bloc1 = lazy(() => import('./Bloc1'))
 const Bloc2 = lazy(() => import('./Bloc2'))
 
-import style from '../../styles/Section.module.css'
-
 import Loader from '../Loader'
 
-const MesDivs = ({ machineData, sequenceNumber }) => {
+const MesDivs = ({ machineData, sequenceNumber, style }) => {
     const data = {
         KPIs: {
             TRS: 95,

@@ -9,7 +9,6 @@ const Alerts = ({ data, values, style, icon }) => {
             <div className={style.titreImageOf}>
                 <img src={icon} alt="iconkpi" className={style.iconAlert} />
                 <h2 className={style.blocTitle}>Alerte| flash incidents</h2>
-                <hr className={style.hr} />
             </div>
             <div className={style.kpis}>
                 {Object.keys(data).map((alert) => (
