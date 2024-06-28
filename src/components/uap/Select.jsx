@@ -3,7 +3,7 @@ const Select = ({ data, style }) => {
 
     return (
         <select className={style.select}>
-            <option value="" disabled>
+            <option value="" disabled selected>
                 Select UAP
             </option>
             {uaps.map((uap) => (
