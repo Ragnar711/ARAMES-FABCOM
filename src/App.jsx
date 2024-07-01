@@ -59,114 +59,111 @@ const App = () => {
     }, [location])
 
     return (
-        <>
-            <context.Provider value={contextValue}>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        width: '100%',
-                        height: '100vh',
-                    }}
-                    id="subroot"
+        <context.Provider value={contextValue}>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100vh',
+                }}
+                id="subroot"
+            >
+                {location.pathname !== '/login' ? <SideBar /> : <></>}
+                <section
+                    id={style['section-dashboard']}
+                    className="close-section"
                 >
-                    {location.pathname !== '/login' ? <SideBar /> : <></>}
-                    <section
-                        id={style['section-dashboard']}
-                        className="close-section"
-                    >
-                        {location.pathname !== '/login' ? <Header /> : <></>}
-                        <div id={style['content']}>
-                            <Routes>
-                                <Route
-                                    path="/"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Main />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/login"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Login />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/dashboard"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Dashboard />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/uap/:section"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Uap />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/machine/:machine"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Machine />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/historique"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Historique />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/management"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Management />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                                <Route
-                                    path="/planification"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <Planification />{' '}
-                                        </Suspense>
-                                    }
-                                />{' '}
-                                <Route
-                                    path="*"
-                                    element={
-                                        <Suspense fallback={<Loader />}>
-                                            {' '}
-                                            <NotFound />{' '}
-                                        </Suspense>
-                                    }
-                                />
-                            </Routes>
-                        </div>
-                    </section>
-                </div>
-            </context.Provider>
-            {state.loading ? <Loader /> : <></>}
-        </>
+                    {location.pathname !== '/login' ? <Header /> : <></>}
+                    <div id={style['content']}>
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Main />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/login"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Login />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/dashboard"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Dashboard />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/uap/:section"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Uap />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/machine/:machine"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Machine />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/historique"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Historique />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/management"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Management />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/planification"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Planification />{' '}
+                                    </Suspense>
+                                }
+                            />{' '}
+                            <Route
+                                path="*"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <NotFound />{' '}
+                                    </Suspense>
+                                }
+                            />
+                        </Routes>
+                    </div>
+                </section>
+            </div>
+        </context.Provider>
     )
 }
 
