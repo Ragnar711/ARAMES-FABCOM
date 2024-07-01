@@ -1,8 +1,8 @@
 import pareto from '../../assets/pareto.png'
 
-const Pareto = ({ style, title, className }) => {
+const Pareto = ({ style, title }) => {
     return (
-        <div className={style.className}>
+        <div className={style.pareto}>
             <p className={style.title}>
                 <img alt="icon" src={pareto} /> {title}
             </p>

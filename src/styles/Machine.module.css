@@ -1,42 +1,23 @@
-.bloc1 {
-    grid-area: item1;
-}
-
-.bloc2 {
-    grid-area: item2;
-}
-
-.yamazumi {
-    grid-area: item3;
-}
-
-.paretoDefaut {
-    grid-area: item4;
-}
-
-.paretoArret {
-    grid-area: item5;
-}
-
-.kpi {
-    grid-area: item6;
-}
-
-.table {
-    grid-area: item7;
-}
-
 .container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     width: 100%;
-    box-sizing: border-box;
-    grid-template-areas:
-        'item1 item2'
-        'item3 item4'
-        'item5 item6'
-        'item7 item7';
-    grid-gap: 10px;
-    padding: 10px;
+}
+
+.bloc {
+    display: flex;
+    flex-direction: row;
+    gap: 7.5%;
+    width: 100%;
+}
+
+.bloc1,
+.bloc2,
+.kpi,
+.yamazumi,
+.pareto {
+    width: 45%;
 }
 
 .title {
@@ -50,6 +31,173 @@
 
 .content {
     width: 100%;
-    height: 100px;
     border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.of {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bigGauges {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.smallGauges {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 3px solid #ccc;
+}
+
+.of > div {
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.TM {
+    background: #a8df63;
+    padding: 11px;
+    font-size: 11px;
+    font-weight: bold;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    width: 50%;
+    height: 0.1rem;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TA {
+    background: red;
+    color: white;
+    padding: 11px;
+    font-size: 11px;
+    font-weight: bold;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    width: 50%;
+    height: 0.1rem;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.T_text {
+    padding-inline: 11px;
+    font-size: 0.3rem;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+.verticalLine {
+    border-left: 3px solid #ccc;
+    height: 250px;
+}
+
+.params1,
+.params2 {
+    width: 40%;
+    margin-right: 3%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    width: 20%;
+    font-size: 0.35rem;
+    color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.2rem;
+}
+
+.user > span {
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.iconUser {
+    width: 20%;
+    height: auto;
+}
+
+.row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.kpiContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kpiContent {
+    height: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.kpi {
+    font-size: 0.4rem;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.subKpi {
+    font-size: 0.3rem;
+    padding: 0.2rem 0.2rem 0 0;
+    margin: 0;
+}
+
+.kpiValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.35rem;
+    font-weight: bold;
+    padding: 0.15rem 0.2rem;
+    height: 50%;
+    width: 2rem;
+    border-radius: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+    margin: 0.5rem;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.card1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
 }

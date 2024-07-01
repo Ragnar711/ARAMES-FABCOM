@@ -13,24 +13,30 @@ const Table = lazy(() => import('../components/machine/Table'))
 function Machine() {
     return (
         <div className={style.container}>
-            <Suspense fallback={<Loader />}>
-                <Bloc1 style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Bloc2 style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Yamazumi style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />} className="paretoDefaut">
-                <Pareto style={style} title="Pareto des Défauts qualité" />
-            </Suspense>
-            <Suspense fallback={<Loader />} className="paretoArret">
-                <Pareto style={style} title="Pareto des Arrêts" />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <LineChart style={style} />
-            </Suspense>
+            <div className={style.bloc}>
+                <Suspense fallback={<Loader />}>
+                    <Bloc1 style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Bloc2 style={style} />
+                </Suspense>
+            </div>
+            <div className={style.bloc}>
+                <Suspense fallback={<Loader />}>
+                    <Yamazumi style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Pareto style={style} title="Pareto des Défauts qualité" />
+                </Suspense>
+            </div>
+            <div className={style.bloc}>
+                <Suspense fallback={<Loader />}>
+                    <Pareto style={style} title="Pareto des Arrêts" />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <LineChart style={style} />
+                </Suspense>
+            </div>
             <Suspense fallback={<Loader />}>
                 <Table style={style} />
             </Suspense>
