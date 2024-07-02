@@ -19,7 +19,7 @@
 }
 
 .table {
-    width: 190%;
+    width: 195%;
 }
 
 .title {
@@ -219,4 +219,8 @@
     justify-content: space-between;
     align-items: flex-start;
     height: 100%;
+}
+
+.row {
+    background-color: blue;
 }
