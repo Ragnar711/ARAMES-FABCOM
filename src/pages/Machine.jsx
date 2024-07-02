@@ -45,6 +45,29 @@ const data1 = [
     },
 ]
 
+const data2 = [
+    {
+        name: 'Arrêt 4',
+        uv: 180,
+    },
+    {
+        name: 'Arrêt 3',
+        uv: 120,
+    },
+    {
+        name: 'Arrêt 2',
+        uv: 85,
+    },
+    {
+        name: 'Arrêt 5',
+        uv: 45,
+    },
+    {
+        name: 'Arrêt 1',
+        uv: 15,
+    },
+]
+
 function Machine() {
     return (
         <div className={style.container}>
@@ -64,6 +87,7 @@ function Machine() {
                     subtitle="Evolution des défauts qualité de la ligne"
                     data={data1}
                     color="#ffd34c"
+                    tickFormatter={false}
                 />
             </Suspense>
             <Suspense fallback={<Loader />}>
@@ -71,8 +95,9 @@ function Machine() {
                     style={style}
                     title="Pareto des Arrêts"
                     subtitle="Evolution des arrêts de la ligne depuis 24h"
-                    data={data1}
+                    data={data2}
                     color="#ff0000"
+                    tickFormatter={true}
                 />
             </Suspense>
             <Suspense fallback={<Loader />}>

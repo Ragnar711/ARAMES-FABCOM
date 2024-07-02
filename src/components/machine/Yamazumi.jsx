@@ -39,7 +39,7 @@ const Yamazumi = ({ style }) => {
                 <p
                     style={{
                         fontSize: '15px',
-                        color: '#000',
+                        color: '#696969',
                         marginBottom: '10px',
                         display: 'flex',
                         justifyContent: 'center',
