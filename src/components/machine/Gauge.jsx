@@ -1,19 +1,8 @@
 import GaugeComponent from 'react-gauge-component'
+import { getColor } from '../../utils/getColor'
 
 const Gauge = ({ value, kpi }) => {
-    let color
-
-    switch (true) {
-        case value < 30:
-            color = '#FF0000'
-            break
-        case value < 70:
-            color = '#FFA500'
-            break
-        default:
-            color = '#00FF00'
-            break
-    }
+    const color = getColor(value, kpi)
 
     return (
         <GaugeComponent

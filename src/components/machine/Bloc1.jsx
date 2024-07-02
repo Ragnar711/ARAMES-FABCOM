@@ -37,16 +37,10 @@ const Bloc1 = ({ style }) => {
                 </div>
                 <div className={style.smallGauges}>
                     <Suspense fallback={<Loader />}>
-                        <GaugeKpi value={100} kpi="tq" />
-                    </Suspense>
-                    <Suspense fallback={<Loader />}>
-                        <GaugeKpi value={60} kpi="td" />
-                    </Suspense>
-                    <Suspense fallback={<Loader />}>
-                        <GaugeKpi value={90} kpi="tp" />
-                    </Suspense>
-                    <Suspense fallback={<Loader />}>
-                        <GaugeKpi value={10} kpi="tde" />
+                        <GaugeKpi value={100} kpi="tq" style={style} />
+                        <GaugeKpi value={60} kpi="td" style={style} />
+                        <GaugeKpi value={90} kpi="tp" style={style} />
+                        <GaugeKpi value={10} kpi="tde" style={style} />
                     </Suspense>
                 </div>
             </div>
