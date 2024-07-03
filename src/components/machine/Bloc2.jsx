@@ -115,38 +115,38 @@ const Bloc2 = ({ style }) => {
                         <Card
                             style={style}
                             index={1}
-                            name="Machine 1"
-                            param1="Vitesse"
-                            value1="1200"
-                            param2="T°"
-                            value2="50"
+                            name="Enveloppeuse"
+                            param1="Qté piles"
+                            value1={35}
+                            param2="Plaque NC"
+                            value2={5}
                         />
                         <Card
                             style={style}
                             index={2}
-                            name="Machine 2"
-                            param1="Vitesse"
-                            value1="1200"
-                            param2="T°"
-                            value2="50"
+                            name="COS"
+                            param1="Qté"
+                            value1={35}
+                            param2="Qté NC"
+                            value2={5}
                         />
                         <Card
                             style={style}
-                            index={1}
-                            name="Machine 1"
-                            param1="Vitesse"
-                            value1="1200"
-                            param2="T°"
-                            value2="50"
+                            index={3}
+                            name="Soudure des connexions"
+                            param1="Qté"
+                            value1={35}
+                            param2="Qté NC"
+                            value2={5}
                         />
                         <Card
                             style={style}
-                            index={2}
-                            name="Machine 2"
-                            param1="Vitesse"
-                            value1="1200"
-                            param2="T°"
-                            value2="50"
+                            index={4}
+                            name="Soudure bac / couvercle"
+                            param1="Qté"
+                            value1={35}
+                            param2="Qté NC"
+                            value2={5}
                         />
                     </Suspense>
                 </div>
