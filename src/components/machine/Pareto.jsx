@@ -10,9 +10,10 @@ import {
 
 const Pareto = ({ style, title, subtitle, data, color, tickFormatter }) => {
     const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60)
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.floor((seconds % 3600) / 60)
         const remainingSeconds = seconds % 60
-        return `${minutes}:${
+        return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${
             remainingSeconds < 10 ? '0' : ''
         }${remainingSeconds}`
     }
@@ -26,7 +27,7 @@ const Pareto = ({ style, title, subtitle, data, color, tickFormatter }) => {
                 <p
                     style={{
                         fontSize: '15px',
-                        color: '#696969',
+                        color: '#000',
                         marginBottom: '10px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -38,10 +39,17 @@ const Pareto = ({ style, title, subtitle, data, color, tickFormatter }) => {
                 <ResponsiveContainer width="100%" height="80%">
                     <BarChart width={500} height={300} data={data}>
                         <CartesianGrid strokeDasharray="4 4" />
-                        <XAxis dataKey="name" fontSize={10} />
+                        <XAxis
+                            dataKey="name"
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
+                        />
                         <YAxis
-                            fontSize={10}
-                            tickFormatter={(val) => formatTime(val)}
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
+                            tickFormatter={(val) =>
+                                tickFormatter ? formatTime(val) : val
+                            }
                         />
                         <Bar dataKey="uv" fill={color} barSize={70} />
                     </BarChart>

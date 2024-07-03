@@ -96,7 +96,7 @@ const LineChart = ({ style }) => {
                 <p
                     style={{
                         fontSize: '15px',
-                        color: '#696969',
+                        color: '#000',
                         marginBottom: '10px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -108,21 +108,27 @@ const LineChart = ({ style }) => {
                 <ResponsiveContainer width="100%" height="80%">
                     <ComposedChart width={500} height={300} data={data}>
                         <CartesianGrid strokeDasharray="4 4" />
-                        <XAxis dataKey="name" fontSize={10} />
+                        <XAxis
+                            dataKey="name"
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
+                        />
                         <YAxis
-                            fontSize={10}
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
                             tickFormatter={(val) => `${val}%`}
                             yAxisId="left"
                         />
                         <YAxis
-                            fontSize={10}
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
                             tickFormatter={(val) => `${val}%`}
                             yAxisId="right"
                             orientation="right"
                         />
                         <Legend
                             wrapperStyle={{
-                                fontSize: '15px',
+                                fontSize: '11px',
                             }}
                         />
                         <Bar
@@ -139,6 +145,7 @@ const LineChart = ({ style }) => {
                             strokeWidth={3}
                             yAxisId="right"
                             name="TRS"
+                            dot={false}
                         />
                         <Line
                             type="monotone"
@@ -147,6 +154,7 @@ const LineChart = ({ style }) => {
                             strokeWidth={3}
                             yAxisId="right"
                             name="TD"
+                            dot={false}
                         />
                         <Line
                             type="monotone"
@@ -155,6 +163,7 @@ const LineChart = ({ style }) => {
                             strokeWidth={3}
                             yAxisId="left"
                             name="TP"
+                            dot={false}
                         />
                         <Line
                             type="monotone"
@@ -163,6 +172,7 @@ const LineChart = ({ style }) => {
                             strokeWidth={3}
                             yAxisId="left"
                             name="TQ"
+                            dot={false}
                         />
                     </ComposedChart>
                 </ResponsiveContainer>

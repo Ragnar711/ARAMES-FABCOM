@@ -1,6 +1,5 @@
 import yamazumi from '../../assets/yamazumi.png'
 import {
-    BarChart,
     Bar,
     XAxis,
     YAxis,
@@ -8,6 +7,7 @@ import {
     Legend,
     ResponsiveContainer,
     ReferenceLine,
+    BarChart,
 } from 'recharts'
 
 const data = [
@@ -29,6 +29,59 @@ const data = [
     },
 ]
 
+const CustomLegend = (props) => {
+    const { payload } = props
+
+    const customPayload = [
+        ...payload,
+        { value: 'Cadence théorique', type: 'line', color: '#ed7d31' },
+    ]
+
+    return (
+        <ul
+            style={{
+                listStyle: 'none',
+                margin: '10px 25% 0 25%',
+                padding: 0,
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+            }}
+        >
+            {customPayload.map((entry, index) => (
+                <li
+                    key={`item-${index}`}
+                    style={{ color: entry.color, fontSize: 12 }}
+                >
+                    <svg
+                        width="14"
+                        height="14"
+                        style={{ marginRight: 4, verticalAlign: 'middle' }}
+                    >
+                        {entry.type === 'line' ? (
+                            <line
+                                x1="0"
+                                y1="5"
+                                x2="12"
+                                y2="5"
+                                style={{ stroke: entry.color, strokeWidth: 4 }}
+                            />
+                        ) : (
+                            <rect
+                                width="11"
+                                height="11"
+                                style={{ fill: entry.color }}
+                            />
+                        )}
+                    </svg>
+                    <span style={{ color: '#000' }}>{entry.value}</span>
+                </li>
+            ))}
+        </ul>
+    )
+}
+
 const Yamazumi = ({ style }) => {
     return (
         <div className={style.yamazumi}>
@@ -39,7 +92,7 @@ const Yamazumi = ({ style }) => {
                 <p
                     style={{
                         fontSize: '15px',
-                        color: '#696969',
+                        color: '#000',
                         marginBottom: '10px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -51,14 +104,13 @@ const Yamazumi = ({ style }) => {
                 <ResponsiveContainer width="100%" height="80%">
                     <BarChart width={500} height={300} data={data}>
                         <CartesianGrid strokeDasharray="4 4" />
-                        <XAxis dataKey="name" fontSize={10} />
-                        <YAxis fontSize={10} />
-                        <Legend
-                            wrapperStyle={{
-                                fontSize: '15px',
-                                color: '#000',
-                            }}
+                        <XAxis
+                            dataKey="name"
+                            fontSize={11}
+                            tick={{ fill: '#000' }}
                         />
+                        <YAxis fontSize={11} tick={{ fill: '#000' }} />
+                        <Legend content={<CustomLegend />} />
                         <Bar
                             dataKey="uv"
                             fill="#9bacd9"
@@ -70,7 +122,7 @@ const Yamazumi = ({ style }) => {
                             y={17.5}
                             stroke="#ed7d31"
                             strokeWidth={4}
-                            name="Cadence cible"
+                            name="Cadence théorique"
                         />
                     </BarChart>
                 </ResponsiveContainer>
