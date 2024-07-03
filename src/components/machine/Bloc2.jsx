@@ -96,19 +96,40 @@ const Bloc2 = ({ style }) => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <Progress
-                        percent={60}
-                        percentPosition={{
-                            align: 'end',
-                            type: 'outer',
-                        }}
-                        size={['100%', 15]}
-                        strokeColor="#92d050"
-                    />
-                </div>
-                <div>
+                <Progress
+                    percent={60}
+                    percentPosition={{
+                        align: 'end',
+                        type: 'outer',
+                    }}
+                    size={['95%', 15]}
+                    strokeColor="#92d050"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                />
+                <div className={style.row3}>
                     <Suspense fallback={<Loader />}>
+                        <Card
+                            style={style}
+                            index={1}
+                            name="Machine 1"
+                            param1="Vitesse"
+                            value1="1200"
+                            param2="T°"
+                            value2="50"
+                        />
+                        <Card
+                            style={style}
+                            index={2}
+                            name="Machine 2"
+                            param1="Vitesse"
+                            value1="1200"
+                            param2="T°"
+                            value2="50"
+                        />
                         <Card
                             style={style}
                             index={1}

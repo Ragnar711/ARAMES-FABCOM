@@ -6,7 +6,7 @@ const Card = ({ style, index, name, param1, value1, param2, value2 }) => {
                 <div>{name}</div>
             </div>
             <div></div>
-            <div>
+            <div className={style.card2}>
                 <div>
                     <span>{param1}</span>|<span>{value1}</span>
                 </div>
