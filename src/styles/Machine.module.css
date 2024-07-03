@@ -4,9 +4,10 @@
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     grid-template-rows: 1fr 0.75fr 0.75fr 1fr;
-    row-gap: 1rem;
+    row-gap: 2%;
+    column-gap: 2%;
 }
 
 .bloc1,
@@ -54,10 +55,9 @@
 }
 
 .smallGauges {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 1fr;
     border-top: 5px solid #e9e9e9;
 }
 
