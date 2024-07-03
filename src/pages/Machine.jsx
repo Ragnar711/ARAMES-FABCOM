@@ -1,6 +1,7 @@
 import style from '../styles/Machine.module.css'
+import { machineData } from '../config/config'
 
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import Loader from '../components/Loader'
 
 const Bloc1 = lazy(() => import('../components/machine/Bloc1'))
@@ -9,6 +10,7 @@ const Yamazumi = lazy(() => import('../components/machine/Yamazumi'))
 const Pareto = lazy(() => import('../components/machine/Pareto'))
 const LineChart = lazy(() => import('../components/machine/LineChart'))
 const Table = lazy(() => import('../components/machine/Table'))
+const Select = lazy(() => import('../components/machine/Select'))
 
 const data1 = [
     {
@@ -69,44 +71,61 @@ const data2 = [
 ]
 
 function Machine() {
+    const [time, setTime] = useState(new Date().toLocaleString())
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date().toLocaleString())
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
     return (
-        <div className={style.container}>
-            <Suspense fallback={<Loader />}>
-                <Bloc1 style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Bloc2 style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Yamazumi style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Pareto
-                    style={style}
-                    title="Pareto des Défauts qualité"
-                    subtitle="Evolution des défauts qualité de la ligne"
-                    data={data1}
-                    color="#ffd34c"
-                    tickFormatter={false}
-                />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Pareto
-                    style={style}
-                    title="Pareto des Arrêts"
-                    subtitle="Evolution des arrêts de la ligne depuis 24h"
-                    data={data2}
-                    color="#ff0000"
-                    tickFormatter={true}
-                />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <LineChart style={style} />
-            </Suspense>
-            <Suspense fallback={<Loader />}>
-                <Table style={style} />
-            </Suspense>
-        </div>
+        <>
+            <div className={style.top}>
+                <Suspense fallback={<Loader />}>
+                    <Select data={machineData} style={style} />
+                </Suspense>
+                <p className={style.time}>{time}</p>
+            </div>
+            <div className={style.container}>
+                <Suspense fallback={<Loader />}>
+                    <Bloc1 style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Bloc2 style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Yamazumi style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Pareto
+                        style={style}
+                        title="Pareto des Défauts qualité"
+                        subtitle="Evolution des défauts qualité de la ligne"
+                        data={data1}
+                        color="#ffd34c"
+                        tickFormatter={false}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Pareto
+                        style={style}
+                        title="Pareto des Arrêts"
+                        subtitle="Evolution des arrêts de la ligne depuis 24h"
+                        data={data2}
+                        color="#ff0000"
+                        tickFormatter={true}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <LineChart style={style} />
+                </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <Table style={style} />
+                </Suspense>
+            </div>
+        </>
     )
 }
 
