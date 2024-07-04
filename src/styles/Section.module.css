@@ -165,9 +165,8 @@
     align-items: center;
     font-size: 0.35rem;
     font-weight: bold;
-    padding: 0.15rem 0.2rem;
-    height: 50%;
-    width: 2rem;
+    height: 100%;
+    width: 25%;
     border-radius: 5px;
 }
 

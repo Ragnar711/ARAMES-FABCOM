@@ -20,7 +20,7 @@ const Bloc2 = ({ style }) => {
                         <img className={style.iconUser} src={User} alt="user" />
                         <span className={style.userText}>Chef d'équipe</span>
                         <span className={style.userText}>
-                            poste: {getPoste()}
+                            Poste: {getPoste()}
                         </span>
                     </div>
                     <div>
