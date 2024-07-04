@@ -1,295 +1,202 @@
-import React, { useState, useEffect } from 'react'
-import { RiDownloadFill } from 'react-icons/ri'
-
 import style from '../styles/Historique.module.css'
+import filtre from '../assets/filtre.png'
+import recherche from '../assets/recherche.png'
+import table from '../assets/table.png'
+import Loader from '../components/Loader'
+import { lazy, Suspense } from 'react'
+import { machineData } from '../config/config'
+import { DatePicker, Space, ConfigProvider, Table } from 'antd'
 
-import { exportToCSV } from '../utils/exportFunctions'
-import { mapMachineToLine } from '../utils/helpers'
-import fetchData from '../utils/fetchData'
-import Capitalize from '../utils/strings'
+const Select = lazy(() => import('../components/historique/Select'))
+const GenericSelect = lazy(() =>
+    import('../components/historique/GenericSelect')
+)
+const Button = lazy(() => import('../components/historique/Button'))
+
+const users = ['user1', 'user2', 'user3', 'user4']
+
+const columns = [
+    {
+        title: 'Post/heure',
+        dataIndex: 'Post/heure',
+    },
+    {
+        title: 'N°OF',
+        dataIndex: 'N°OF',
+    },
+    {
+        title: 'Qté Prod OK',
+        dataIndex: 'Qté Prod OK',
+    },
+    {
+        title: 'Qté NC',
+        dataIndex: 'Qté NC',
+    },
+    {
+        title: 'Arrêts',
+        dataIndex: 'Arrêts',
+    },
+    {
+        title: 'TRS',
+        dataIndex: 'TRS',
+    },
+    {
+        title: 'Cons. Plaque',
+        dataIndex: 'Cons. Plaque',
+    },
+    {
+        title: 'Cons. Enveloppe',
+        dataIndex: 'Cons. Enveloppe',
+    },
+    {
+        title: 'Cons. Bac',
+        dataIndex: 'Cons. Bac',
+    },
+    {
+        title: 'Cons. Couvercle',
+        dataIndex: 'Cons. Couvercle',
+    },
+]
+
+const data = [
+    {
+        key: '1',
+        'Post/heure': 'Matin I 10h',
+        'N°OF': 605847,
+        'Qté Prod OK': 367,
+        'Qté NC': 30,
+        Arrêts: '00:03:25',
+        TRS: '55%',
+        'Cons. Plaque': 10,
+        'Cons. Enveloppe': 20,
+        'Cons. Bac': 10,
+        'Cons. Couvercle': 30,
+    },
+    {
+        key: '2',
+        'Post/heure': 'Matin I 11h',
+        'N°OF': 605847,
+        'Qté Prod OK': 357,
+        'Qté NC': 20,
+        Arrêts: '00:01:25',
+        TRS: '65%',
+        'Cons. Plaque': 5,
+        'Cons. Enveloppe': 5,
+        'Cons. Bac': 0,
+        'Cons. Couvercle': 0,
+    },
+    {
+        key: '3',
+        'Post/heure': 'Matin I 12h',
+        'N°OF': 605847,
+        'Qté Prod OK': 307,
+        'Qté NC': 0,
+        Arrêts: '00:00:25',
+        TRS: '85%',
+        'Cons. Plaque': 0,
+        'Cons. Enveloppe': 0,
+        'Cons. Bac': 0,
+        'Cons. Couvercle': 0,
+    },
+]
 
 const Historique = () => {
-    const [data, setData] = useState([])
-
-    const [process, setProcess] = useState('')
-    const [machines, setMachines] = useState([])
-    const [machine, setMachine] = useState('')
-
-    const handleProcessChange = (event) => {
-        const selectedProcess = event.target.value
-        setProcess(selectedProcess)
-        setMachines(machineOptions[selectedProcess])
-    }
-    const handleMachineChange = (event) => {
-        const selectedMachine = event.target.value
-        setMachine(selectedMachine)
-        changeFilter('machine', selectedMachine)
-    }
-
-    const [filters, setFilters] = useState({
-        machine: '',
-        filter: '',
-        from: new Date().toISOString().split('T')[0],
-        to: new Date().toISOString().split('T')[0],
-    })
-    const [showTable, setShowTable] = useState(false)
-
-    const changeFilter = (filterName, value) => {
-        if (filterName !== null && value !== null) {
-            setFilters({ ...filters, [filterName]: value })
-        }
-    }
-
-    const getData = async () => {
-        setShowTable(false)
-        const { error, status, data } = await fetchData(
-            `/admin/new_historykpi/${filters.machine}/${filters.filter}/${filters.from}/${filters.to}`,
-            'GET'
-        )
-        if (status === 200 && data.success) {
-            setData(data.data)
-        } else {
-            console.error(error)
-        }
-        setShowTable(true)
-    }
-    useEffect(() => {
-        getData()
-    }, [filters])
-
     return (
-        <>
-            <div
-                className={style.filtreHistory}
-                style={{ position: 'relative' }}
-            >
-                <div className={style.firstFiltre}>
-                    <div>
-                        <select
-                            className={style.buttonfiltre}
-                            value={process}
-                            onChange={handleProcessChange}
-                        >
-                            <option value="" disabled>
-                                Section
-                            </option>
-                            {processOptions.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                        <select
-                            className={style.buttonfiltre}
-                            value={machine}
-                            onChange={handleMachineChange}
-                        >
-                            <option value="" disabled>
-                                Machine
-                            </option>
-                            {machines.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                        <button
-                            className={style.buttonfiltre}
-                            onClick={() => changeFilter('filter', 'of')}
-                        >
-                            OF
-                        </button>
-                        <button
-                            className={style.buttonfiltre}
-                            onClick={() => changeFilter('filter', 'poste')}
-                        >
-                            Poste
-                        </button>
-                    </div>
-                    <h3>Filtrage de Dates</h3>
-                    <div>
-                        <button
-                            className={style.buttonSecondFiltre}
-                            onClick={() => {
-                                let date = new Date()
-                                const to = date.toISOString().split('T')[0]
-                                date.setDate(date.getDate())
-                                const from = date.toISOString().split('T')[0]
-                                setFilters({ ...filters, from, to })
-                            }}
-                        >
-                            J-1
-                        </button>
-                        <button
-                            className={style.buttonSecondFiltre}
-                            onClick={() => {
-                                let date = new Date()
-                                const to = date.toISOString().split('T')[0]
-                                date.setDate(date.getDate() - 6)
-                                const from = date.toISOString().split('T')[0]
-                                setFilters({ ...filters, from, to })
-                            }}
-                        >
-                            W-1
-                        </button>
-                        <button
-                            className={style.buttonSecondFiltre}
-                            onClick={() => {
-                                let date = new Date()
-                                const to = date.toISOString().split('T')[0]
-                                date.setMonth(date.getMonth() - 1)
-                                const from = date.toISOString().split('T')[0]
-                                setFilters({ ...filters, from, to })
-                            }}
-                        >
-                            M-1
-                        </button>
-
-                        <input
-                            className={style.date}
-                            type="date"
-                            value={filters.from}
-                            onChange={(event) =>
-                                changeFilter('from', event.target.value)
-                            }
-                        />
-                        <span style={{ fontSize: '14px', color: 'black' }}>
-                            à
-                        </span>
-                        <input
-                            className={style.date}
-                            type="date"
-                            value={filters.to}
-                            onChange={(event) =>
-                                changeFilter('to', event.target.value)
-                            }
-                        />
-                        <h3>Exporter les données</h3>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <button
-                                className={style.exportData}
-                                onClick={() => exportToCSV(data, 'Historique')}
-                            >
-                                <RiDownloadFill fontSize={20} />
-                                Excel
-                            </button>
+        <ConfigProvider
+            theme={{
+                components: {
+                    DatePicker: {
+                        colorBorder: 'black',
+                        colorTextPlaceholder: 'black',
+                    },
+                },
+            }}
+        >
+            <div className={style.container}>
+                <div className={style.filters}>
+                    <p className={style.title}>
+                        <img alt="icon" src={filtre} /> Filtre de recherche
+                    </p>
+                    <div className={style.content}>
+                        <div className={style.select}>
+                            <div className={style.div1}>
+                                <Suspense fallback={<Loader />}>
+                                    <Select style={style} data={machineData} />
+                                </Suspense>
+                            </div>
+                            <div className={style.div2}>
+                                <GenericSelect
+                                    title="Sélectionner Opérateur"
+                                    data={users}
+                                    style={style}
+                                />
+                            </div>
+                            <div className={style.div3}>
+                                <GenericSelect
+                                    title="Entre N°OF"
+                                    data={users}
+                                    style={style}
+                                />
+                            </div>
+                        </div>
+                        <div className={style.date}>
+                            <Suspense fallback={<Loader />}>
+                                <Button text="Afficher J-1" style={style} />
+                                <Button text="Afficher W-1" style={style} />
+                                <Button text="Afficher M-1" style={style} />
+                            </Suspense>
+                        </div>
+                        <div className={style.calendar}>
+                            <Suspense fallback={<Loader />}>
+                                <Button
+                                    text="Afficher calendrier"
+                                    style={style}
+                                />
+                            </Suspense>
+                            <div>
+                                <Space direction="horizontal">
+                                    <DatePicker placeholder="De: xx/xx/xxxx" />
+                                    <DatePicker placeholder="À : xx/xx/xxxx" />
+                                </Space>
+                            </div>
+                        </div>
+                        <div className={style.recherche}>
+                            <img src={recherche} alt="recherche" />
+                            <button>Recherche</button>
                         </div>
                     </div>
                 </div>
+                <div className={style.table}>
+                    <ConfigProvider
+                        theme={{
+                            components: {
+                                Table: {
+                                    headerBg: '#b3c6e7',
+                                    headerFilterHoverBg: '#b3c6e7',
+                                    headerSortActiveBg: '#b3c6e7',
+                                    headerSortHoverBg: '#b3c6e7',
+                                    headerSortUpBg: '#b3c6e7',
+                                    headerSortDownBg: '#b3c6e7',
+                                },
+                            },
+                        }}
+                    >
+                        <div className={style.table}>
+                            <p className={style.title}>
+                                <img alt="icon" src={table} /> Historique des
+                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
+                                xx/xx/xxxx]
+                            </p>
+                            <Table
+                                columns={columns}
+                                dataSource={data}
+                                pagination={false}
+                            />
+                        </div>
+                    </ConfigProvider>
+                </div>
             </div>
-            <div className={style.divTable}>
-                {showTable && (
-                    <>
-                        <h3 className={style.tableTitle}>
-                            {mapMachineToLine(Capitalize(filters.machine))} | {}
-                            {Capitalize(filters.filter)} | {filters.from} | {}
-                            {filters.to}
-                        </h3>
-                        <table className={style.tableResponsive}>
-                            <thead>
-                                {data.length > 0 && (
-                                    <tr>
-                                        {Object.keys(data[0]).map((column) => {
-                                            if (column === 'history') {
-                                                return (
-                                                    <React.Fragment
-                                                        key={column}
-                                                    >
-                                                        <th key={`${column}-1`}>
-                                                            {'Date début'}
-                                                        </th>
-                                                        <th key={`${column}-2`}>
-                                                            {'Date fin'}
-                                                        </th>
-                                                    </React.Fragment>
-                                                )
-                                            } else {
-                                                return (
-                                                    <th key={column}>
-                                                        {Capitalize(column)}
-                                                    </th>
-                                                )
-                                            }
-                                        })}
-                                    </tr>
-                                )}
-                            </thead>
-                            <tbody>
-                                {data.map((item, index) => {
-                                    let history
-                                    return (
-                                        <tr key={index}>
-                                            {Object.keys(item).map(
-                                                (column, columnIndex) => {
-                                                    if (column === 'history') {
-                                                        try {
-                                                            history =
-                                                                JSON.parse(
-                                                                    item[column]
-                                                                )
-                                                        } catch (err) {
-                                                            history = []
-                                                        }
-                                                        return (
-                                                            <React.Fragment
-                                                                key={`${index}-${columnIndex}`}
-                                                            >
-                                                                <td
-                                                                    key={`${index}-${columnIndex}-1`}
-                                                                >
-                                                                    {typeof history[0]
-                                                                        .debut ===
-                                                                    'undefined'
-                                                                        ? 'NaN'
-                                                                        : history[0]
-                                                                              .debut}
-                                                                </td>
-                                                                <td
-                                                                    key={`${index}-${columnIndex}-2`}
-                                                                >
-                                                                    {typeof history[
-                                                                        history.length -
-                                                                            1
-                                                                    ].fin ===
-                                                                    'undefined'
-                                                                        ? 'NaN'
-                                                                        : history[
-                                                                              history.length -
-                                                                                  1
-                                                                          ].fin}
-                                                                </td>
-                                                            </React.Fragment>
-                                                        )
-                                                    } else {
-                                                        return (
-                                                            <td
-                                                                key={`${index}-${columnIndex}`}
-                                                            >
-                                                                {typeof item[
-                                                                    column
-                                                                ] === 'number'
-                                                                    ? item[
-                                                                          column
-                                                                      ].toFixed(
-                                                                          0
-                                                                      )
-                                                                    : item[
-                                                                          column
-                                                                      ]}
-                                                            </td>
-                                                        )
-                                                    }
-                                                }
-                                            )}
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
-                    </>
-                )}
-            </div>
-        </>
+        </ConfigProvider>
     )
 }
 

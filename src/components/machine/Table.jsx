@@ -1,86 +1,46 @@
 import table from '../../assets/table.png'
-import { Table } from 'antd'
+import { Table, ConfigProvider } from 'antd'
 
 const columns = [
     {
         title: 'Post/heure',
         dataIndex: 'Post/heure',
-        sorter: {
-            compare: (a, b) => a['Post/heure'].localeCompare(b['Post/heure']),
-            multiple: 1,
-        },
     },
     {
         title: 'N°OF',
         dataIndex: 'N°OF',
-        sorter: {
-            compare: (a, b) => a['N°OF'] - b['N°OF'],
-            multiple: 2,
-        },
     },
     {
         title: 'Qté Prod OK',
         dataIndex: 'Qté Prod OK',
-        sorter: {
-            compare: (a, b) => a['Qté Prod OK'] - b['Qté Prod OK'],
-            multiple: 3,
-        },
     },
     {
         title: 'Qté NC',
         dataIndex: 'Qté NC',
-        sorter: {
-            compare: (a, b) => a['Qté NC'] - b['Qté NC'],
-            multiple: 4,
-        },
     },
     {
         title: 'Arrêts',
         dataIndex: 'Arrêts',
-        sorter: {
-            compare: (a, b) => a['Arrêts'].localeCompare(b['Arrêts']),
-            multiple: 5,
-        },
     },
     {
         title: 'TRS',
         dataIndex: 'TRS',
-        sorter: {
-            compare: (a, b) => parseFloat(a['TRS']) - parseFloat(b['TRS']),
-            multiple: 6,
-        },
     },
     {
         title: 'Cons. Plaque',
         dataIndex: 'Cons. Plaque',
-        sorter: {
-            compare: (a, b) => a['Cons. Plaque'] - b['Cons. Plaque'],
-            multiple: 7,
-        },
     },
     {
         title: 'Cons. Enveloppe',
         dataIndex: 'Cons. Enveloppe',
-        sorter: {
-            compare: (a, b) => a['Cons. Enveloppe'] - b['Cons. Enveloppe'],
-            multiple: 8,
-        },
     },
     {
         title: 'Cons. Bac',
         dataIndex: 'Cons. Bac',
-        sorter: {
-            compare: (a, b) => a['Cons. Bac'] - b['Cons. Bac'],
-            multiple: 9,
-        },
     },
     {
         title: 'Cons. Couvercle',
         dataIndex: 'Cons. Couvercle',
-        sorter: {
-            compare: (a, b) => a['Cons. Couvercle'] - b['Cons. Couvercle'],
-            multiple: 10,
-        },
     },
 ]
 
@@ -126,24 +86,30 @@ const data = [
     },
 ]
 
-const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra)
-}
-
 const TableHisto = ({ style }) => {
     return (
-        <div className={style.table}>
-            <p className={style.title}>
-                <img alt="icon" src={table} /> Historique des résultats - 24 h
-                [date dynamique dès l’ouverture de la session]
-            </p>
-            <Table
-                columns={columns}
-                dataSource={data}
-                onChange={onChange}
-                pagination={false}
-            />
-        </div>
+        <ConfigProvider
+            theme={{
+                components: {
+                    Table: {
+                        headerBg: '#b3c6e7',
+                        headerFilterHoverBg: '#b3c6e7',
+                        headerSortActiveBg: '#b3c6e7',
+                        headerSortHoverBg: '#b3c6e7',
+                        headerSortUpBg: '#b3c6e7',
+                        headerSortDownBg: '#b3c6e7',
+                    },
+                },
+            }}
+        >
+            <div className={style.table}>
+                <p className={style.title}>
+                    <img alt="icon" src={table} /> Historique des résultats - 24
+                    h [date dynamique dès l’ouverture de la session]
+                </p>
+                <Table columns={columns} dataSource={data} pagination={false} />
+            </div>
+        </ConfigProvider>
     )
 }
 
