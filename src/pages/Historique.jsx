@@ -3,7 +3,7 @@ import filtre from '../assets/filtre.png'
 import recherche from '../assets/recherche.png'
 import table from '../assets/table.png'
 import Loader from '../components/Loader'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { machineData } from '../config/config'
 import { DatePicker, Space, ConfigProvider, Table } from 'antd'
 
@@ -101,6 +101,7 @@ const data = [
 ]
 
 const Historique = () => {
+    const [clicked, setClicked] = useState(false)
     return (
         <ConfigProvider
             theme={{
@@ -108,6 +109,14 @@ const Historique = () => {
                     DatePicker: {
                         colorBorder: 'black',
                         colorTextPlaceholder: 'black',
+                    },
+                    Table: {
+                        headerBg: '#b3c6e7',
+                        headerFilterHoverBg: '#b3c6e7',
+                        headerSortActiveBg: '#b3c6e7',
+                        headerSortHoverBg: '#b3c6e7',
+                        headerSortUpBg: '#b3c6e7',
+                        headerSortDownBg: '#b3c6e7',
                     },
                 },
             }}
@@ -145,19 +154,25 @@ const Historique = () => {
                                 <Button text="Afficher W-1" style={style} />
                                 <Button text="Afficher M-1" style={style} />
                             </Suspense>
-                        </div>
-                        <div className={style.calendar}>
-                            <Suspense fallback={<Loader />}>
-                                <Button
-                                    text="Afficher calendrier"
-                                    style={style}
-                                />
-                            </Suspense>
-                            <div>
-                                <Space direction="horizontal">
-                                    <DatePicker placeholder="De: xx/xx/xxxx" />
-                                    <DatePicker placeholder="À : xx/xx/xxxx" />
-                                </Space>
+                            <div className={style.calendar}>
+                                <Suspense fallback={<Loader />}>
+                                    <Button
+                                        text="Afficher calendrier"
+                                        style={style}
+                                        onClick={() => setClicked(!clicked)}
+                                    />
+                                </Suspense>
+                                <div
+                                    style={{
+                                        display: clicked ? 'block' : 'none',
+                                        width: 'max-content',
+                                    }}
+                                >
+                                    <Space direction="horizontal">
+                                        <DatePicker placeholder="De: xx/xx/xxxx" />
+                                        <DatePicker placeholder="À : xx/xx/xxxx" />
+                                    </Space>
+                                </div>
                             </div>
                         </div>
                         <div className={style.recherche}>
@@ -167,39 +182,24 @@ const Historique = () => {
                     </div>
                 </div>
                 <div className={style.table}>
-                    <ConfigProvider
-                        theme={{
-                            components: {
-                                Table: {
-                                    headerBg: '#b3c6e7',
-                                    headerFilterHoverBg: '#b3c6e7',
-                                    headerSortActiveBg: '#b3c6e7',
-                                    headerSortHoverBg: '#b3c6e7',
-                                    headerSortUpBg: '#b3c6e7',
-                                    headerSortDownBg: '#b3c6e7',
-                                },
-                            },
-                        }}
-                    >
-                        <div className={style.table}>
-                            <div className={style.table_title}>
-                                <p className={style.title}>
-                                    <img alt="icon" src={table} /> Historique
-                                    des résultats - Ligne Sovema 1 [de
-                                    xx/xx/xxxx à xx/xx/xxxx]
-                                </p>
-                                <div className={style.recherche}>
-                                    <img src={table} alt="excel" />
-                                    <button>Exporter</button>
-                                </div>
+                    <div className={style.table}>
+                        <div className={style.table_title}>
+                            <p className={style.title}>
+                                <img alt="icon" src={table} /> Historique des
+                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
+                                xx/xx/xxxx]
+                            </p>
+                            <div className={style.recherche}>
+                                <img src={table} alt="excel" />
+                                <button>Exporter</button>
                             </div>
-                            <Table
-                                columns={columns}
-                                dataSource={data}
-                                pagination={false}
-                            />
                         </div>
-                    </ConfigProvider>
+                        <Table
+                            columns={columns}
+                            dataSource={data}
+                            pagination={false}
+                        />
+                    </div>
                 </div>
             </div>
         </ConfigProvider>

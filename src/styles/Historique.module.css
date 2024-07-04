@@ -23,7 +23,7 @@
 .content {
     border: 2px solid #ccc;
     display: grid;
-    grid-template-columns: 1fr 1fr 0.5fr 0.25fr;
+    grid-template-columns: 1fr 1fr 0.25fr;
     grid-template-rows: 1fr;
     column-gap: 1%;
     padding: 1%;
@@ -70,10 +70,11 @@
 /*-------------------*/
 
 .date {
-    display: flex;
-    flex-direction: row;
-    gap: 1%;
-    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 1%;
 }
 
 .button {
@@ -83,7 +84,6 @@
     box-shadow: 0 0 5px #ccc;
     color: #002060;
     background-color: white;
-    width: 200px;
     height: 30%;
     cursor: pointer;
 }
@@ -97,6 +97,8 @@
 
 .calendar > .button {
     background-color: #dedede;
+    margin-left: calc((-25% + 15px));
+    padding-inline: 15px;
 }
 
 .calendar > .button:hover {
@@ -111,7 +113,9 @@
 }
 
 .calendar > div {
-    margin-top: 5%;
+    position: absolute;
+    top: 50%;
+    left: 67%;
 }
 
 /*-------------------*/
