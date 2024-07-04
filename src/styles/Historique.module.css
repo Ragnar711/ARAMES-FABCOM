@@ -115,7 +115,7 @@
 .calendar > div {
     position: absolute;
     top: 50%;
-    left: 67%;
+    left: 65%;
 }
 
 /*-------------------*/
@@ -147,7 +147,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    width: 106%;
+    width: 105%;
 }
 
 .table_title > .recherche > img {

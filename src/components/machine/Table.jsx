@@ -27,20 +27,44 @@ const columns = [
         dataIndex: 'TRS',
     },
     {
+        title: 'Ref. Plaque',
+        dataIndex: 'Ref. Plaque',
+        colSpan: 0,
+    },
+    {
         title: 'Cons. Plaque',
         dataIndex: 'Cons. Plaque',
+        colSpan: 2,
+    },
+    {
+        title: 'Ref. Enveloppe',
+        dataIndex: 'Ref. Enveloppe',
+        colSpan: 0,
     },
     {
         title: 'Cons. Enveloppe',
         dataIndex: 'Cons. Enveloppe',
+        colSpan: 2,
+    },
+    {
+        title: 'Ref. Bac',
+        dataIndex: 'Ref. Bac',
+        colSpan: 0,
     },
     {
         title: 'Cons. Bac',
         dataIndex: 'Cons. Bac',
+        colSpan: 2,
+    },
+    {
+        title: 'Ref. Couvercle',
+        dataIndex: 'Ref. Couvercle',
+        colSpan: 0,
     },
     {
         title: 'Cons. Couvercle',
         dataIndex: 'Cons. Couvercle',
+        colSpan: 2,
     },
 ]
 
@@ -53,9 +77,13 @@ const data = [
         'Qté NC': 30,
         Arrêts: '00:03:25',
         TRS: '55%',
-        'Cons. Plaque': 10,
+        'Ref. Plaque': 'REF123',
+        'Cons. Plaque': 15,
+        'Ref. Enveloppe': 'REF456',
         'Cons. Enveloppe': 20,
+        'Ref. Bac': 'REF789',
         'Cons. Bac': 10,
+        'Ref. Couvercle': 'REF101112',
         'Cons. Couvercle': 30,
     },
     {
@@ -66,9 +94,13 @@ const data = [
         'Qté NC': 20,
         Arrêts: '00:01:25',
         TRS: '65%',
+        'Ref. Plaque': 'REF122',
         'Cons. Plaque': 5,
+        'Ref. Enveloppe': 'REF455',
         'Cons. Enveloppe': 5,
+        'Ref. Bac': 'REF788',
         'Cons. Bac': 0,
+        'Ref. Couvercle': 'REF101113',
         'Cons. Couvercle': 0,
     },
     {
@@ -79,9 +111,13 @@ const data = [
         'Qté NC': 0,
         Arrêts: '00:00:25',
         TRS: '85%',
+        'Ref. Plaque': 'REF121',
         'Cons. Plaque': 0,
+        'Ref. Enveloppe': 'REF454',
         'Cons. Enveloppe': 0,
+        'Ref. Bac': 'REF787',
         'Cons. Bac': 0,
+        'Ref. Couvercle': 'REF101114',
         'Cons. Couvercle': 0,
     },
 ]
