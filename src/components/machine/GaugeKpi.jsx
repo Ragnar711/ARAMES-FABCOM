@@ -27,7 +27,7 @@ const GaugeKPI = ({ value, kpi, style }) => {
                         },
                     },
                     valueLabel: {
-                        formatTextValue: (value) => `${value} / 100`,
+                        formatTextValue: (value) => `${value}`,
                         style: {
                             fontSize: '25px',
                             fill: '#000',

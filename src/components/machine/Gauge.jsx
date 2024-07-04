@@ -27,7 +27,7 @@ const Gauge = ({ value, kpi }) => {
                 },
                 valueLabel: {
                     formatTextValue: (value) =>
-                        `${kpi.toUpperCase()}: ${value} / 100`,
+                        `${kpi.toUpperCase()}: ${value}`,
                     style: {
                         fontSize: '35px',
                         fill: '#000',
