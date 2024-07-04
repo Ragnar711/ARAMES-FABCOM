@@ -104,8 +104,16 @@ const TableHisto = ({ style }) => {
         >
             <div className={style.table}>
                 <p className={style.title}>
-                    <img alt="icon" src={table} /> Historique des résultats - 24
-                    h [date dynamique dès l’ouverture de la session]
+                    <img
+                        alt="icon"
+                        src={table}
+                        style={{
+                            width: '2.5%',
+                            height: 'auto',
+                        }}
+                    />{' '}
+                    Historique des résultats - 24 h [date dynamique dès
+                    l’ouverture de la session]
                 </p>
                 <Table columns={columns} dataSource={data} pagination={false} />
             </div>

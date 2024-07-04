@@ -24,13 +24,17 @@
 }
 
 .title {
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     color: #000;
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 8%;
-    margin-bottom: 2%;
+    margin-bottom: 0.5%;
+}
+
+.title > img {
+    padding-right: 1%;
 }
 
 .content {
