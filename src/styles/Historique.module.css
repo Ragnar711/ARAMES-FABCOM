@@ -17,6 +17,7 @@
     flex-direction: row;
     align-items: center;
     height: 8%;
+    margin-bottom: 1%;
 }
 
 .content {
@@ -132,4 +133,25 @@
     background-color: white;
     color: black;
     font-size: 15px;
+    cursor: pointer;
+}
+
+/*-------------------*/
+
+.table_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 105%;
+}
+
+.table_title > .recherche > img {
+    width: 15%;
+    height: auto;
+}
+
+.table_title > .recherche > button {
+    padding-block: 1%;
+    cursor: pointer;
 }

@@ -182,11 +182,17 @@ const Historique = () => {
                         }}
                     >
                         <div className={style.table}>
-                            <p className={style.title}>
-                                <img alt="icon" src={table} /> Historique des
-                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
-                                xx/xx/xxxx]
-                            </p>
+                            <div className={style.table_title}>
+                                <p className={style.title}>
+                                    <img alt="icon" src={table} /> Historique
+                                    des résultats - Ligne Sovema 1 [de
+                                    xx/xx/xxxx à xx/xx/xxxx]
+                                </p>
+                                <div className={style.recherche}>
+                                    <img src={table} alt="excel" />
+                                    <button>Exporter</button>
+                                </div>
+                            </div>
                             <Table
                                 columns={columns}
                                 dataSource={data}
