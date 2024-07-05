@@ -20,8 +20,14 @@ const Card = ({ style, index, name, param1, value1, param2, value2 }) => {
             </div>
             <div className={style.separator}></div>
             <div className={style.card2}>
-                <div>
-                    <span style={{ paddingRight: '5px' }}>{param1}</span>
+                <div className={style.card_text}>
+                    <span
+                        style={{
+                            paddingRight: '5px',
+                        }}
+                    >
+                        {param1}
+                    </span>
                     <span
                         style={{
                             paddingLeft: '5px',
@@ -29,11 +35,17 @@ const Card = ({ style, index, name, param1, value1, param2, value2 }) => {
                             fontSize: '0.9rem',
                         }}
                     >
-                        | {value1}
+                        <span className={style.line}>|</span> {value1}
                     </span>
                 </div>
-                <div>
-                    <span style={{ paddingRight: '5px' }}>{param2}</span>
+                <div className={style.card_text}>
+                    <span
+                        style={{
+                            paddingRight: '5px',
+                        }}
+                    >
+                        {param2}
+                    </span>
                     <span
                         style={{
                             paddingLeft: '5px',
@@ -41,7 +53,7 @@ const Card = ({ style, index, name, param1, value1, param2, value2 }) => {
                             fontSize: '0.9rem',
                         }}
                     >
-                        | {value2}
+                        <span className={style.line}>|</span> {value2}
                     </span>
                 </div>
             </div>
