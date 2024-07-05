@@ -28,11 +28,21 @@ const Bloc1 = ({ style }) => {
                 </div>
                 <div className={style.bigGauges}>
                     <Suspense fallback={<Loader />}>
-                        <Gauge value={60} kpi="trs" />
+                        <Gauge
+                            value={60}
+                            kpi="trs"
+                            style={style}
+                            className={['value1', 'name1']}
+                        />
                     </Suspense>
                     <div className={style.verticalLine}></div>
                     <Suspense fallback={<Loader />}>
-                        <Gauge value={60} kpi="trs" />
+                        <Gauge
+                            value={30}
+                            kpi="tr"
+                            style={style}
+                            className={['value2', 'name2']}
+                        />
                     </Suspense>
                 </div>
                 <div className={style.smallGauges}>

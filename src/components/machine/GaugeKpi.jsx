@@ -7,6 +7,7 @@ const GaugeKPI = ({ value, kpi, style }) => {
     return (
         <div className={style.gaugeContainer}>
             <GaugeComponent
+                style={{ width: '120%', height: '120%' }}
                 value={value}
                 type="grafana"
                 labels={{
@@ -27,7 +28,7 @@ const GaugeKPI = ({ value, kpi, style }) => {
                         },
                     },
                     valueLabel: {
-                        formatTextValue: (value) => `${value}`,
+                        formatTextValue: (value) => `${value}%`,
                         style: {
                             fontSize: '25px',
                             fill: '#000',
@@ -42,7 +43,14 @@ const GaugeKPI = ({ value, kpi, style }) => {
                     cornerRadius: 0,
                 }}
             />
-            <p>{kpi.toUpperCase()}</p>
+            <p
+                style={{
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                }}
+            >
+                {kpi.toUpperCase()}
+            </p>
         </div>
     )
 }
