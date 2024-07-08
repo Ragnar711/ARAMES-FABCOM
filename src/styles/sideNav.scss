@@ -1,0 +1,234 @@
+.sidebar {
+    background-color: #404040;
+    color: #fff;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 2%;
+    width: 10%;
+    height: 100vh;
+    transition: 0.5s all;
+    z-index: 5;
+    border-right: 5px solid #ff0;
+}
+.sidebar .MuiTypography-root {
+    font-size: 1rem;
+    transition: font-size 0.4s;
+}
+.sidebar .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.sidebar .logoContainer h2.title {
+    font-size: calc(1.25 * 31.42px);
+    color: #ff0;
+    padding: 0 0 0 1rem;
+}
+.sidebar .burgerContainer {
+    content: '';
+    background-color: #ff0;
+    position: absolute;
+    right: -17.5px;
+    top: calc(9rem / 1.15);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    z-index: 1;
+}
+.sidebar .burgerContainer .burgerTrigger {
+    content: '';
+    width: 35px;
+    height: 35px;
+    background-color: red;
+    cursor: pointer;
+    z-index: 6;
+    opacity: 0;
+    position: relative;
+}
+.sidebar .burgerContainer .burgerMenu {
+    content: '';
+    background-color: #ff0;
+    position: relative;
+    z-index: 1;
+    width: 50%;
+    height: 3px;
+    border-radius: 50%;
+    bottom: calc(35px / 2);
+    left: 25%;
+    transition: 0.5s all;
+}
+.sidebar .burgerContainer .burgerMenu::after,
+.sidebar .burgerContainer .burgerMenu::before {
+    content: '';
+    background-color: #828282;
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    border-radius: 2rem;
+    transition: 0.5s all;
+}
+.sidebar .burgerContainer .burgerMenu::after {
+    top: 0.4rem;
+    transform: translateY(-0.4rem) rotate(45deg);
+}
+.sidebar .burgerContainer .burgerMenu::before {
+    top: -0.4rem;
+    transform: translateY(0.4rem) rotate(-45deg);
+}
+.sidebar .burgerContainer::after {
+    content: '';
+    position: absolute;
+    right: 35px;
+    top: 17px;
+    z-index: 0;
+    width: calc(6rem + 15rem);
+    background-color: #f2f2f2;
+    height: 2px;
+    transition: 0.5s all;
+}
+.sidebar .profileContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 0 0 0;
+}
+.sidebar .profileContainer img {
+    width: auto;
+    height: 3rem;
+}
+.sidebar .profileContainer .profileContents {
+    padding: 0 0 0 1rem;
+}
+.sidebar .profileContainer .profileContents p.name {
+    padding: 0;
+    margin: 0;
+    font-size: 16.7px;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+.sidebar .profileContainer .profileContents p {
+    padding: 0;
+    margin: 0;
+    font-size: 13.9px;
+    color: #fff;
+    text-transform: lowercase;
+}
+.sidebar .contentsContainer {
+    margin: 2rem 0 0 0;
+}
+.sidebar .contentsContainer ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar .contentsContainer ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0.75rem 0;
+    padding: 0.75rem 0.6rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.sidebar .contentsContainer ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 0 0.5rem;
+}
+.sidebar .contentsContainer ul li a:hover {
+    color: #404040;
+}
+.sidebar .contentsContainer ul li.active {
+    background-color: #ffc;
+    color: #404040;
+}
+.sidebar .contentsContainer ul li.active a {
+    color: #ff0;
+}
+.sidebar .contentsContainer ul li:hover {
+    background-color: #f2f2f2;
+    transition: 0.25s;
+    color: #404040;
+}
+.sidebar .contentsContainer ul li:hover a:hover {
+    color: #404040 !important;
+}
+.sidebar.active {
+    width: 3rem;
+    transition: 0.5s all;
+}
+.sidebar.active .MuiTypography-root {
+    font-size: 1px !important;
+    color: transparent;
+}
+.sidebar.active .logoContainer.active h2.title {
+    opacity: 0;
+}
+.sidebar.active .burgerContainer.active {
+    transition: 0.5s all;
+}
+.sidebar.active .burgerContainer.active .burgerMenu {
+    background-color: #cc0;
+    transition: 0.5s all;
+}
+.sidebar.active .burgerContainer.active .burgerMenu::before {
+    transform: translateY(0rem) rotate(0deg);
+    transition: 0.5s all;
+}
+.sidebar.active .burgerContainer.active .burgerMenu::after {
+    transform: translateY(0rem) rotate(0deg);
+    transition: 0.5s all;
+}
+.sidebar.active .profileContainer .profileContents {
+    opacity: 0;
+}
+.sidebar.active .contentsContainer a a {
+    opacity: 0;
+}
+.sidebar.active .contentsContainer li:hover {
+    background-color: #f2f2f2;
+    transition: 0.25s;
+    color: #404040;
+}
+.sidebar.active .contentsContainer li:hover a:hover {
+    color: #404040 !important;
+}
+.MuiListItem-root {
+    /* Your list item styles here */
+    transition: background-color 0.2s ease;
+    background-color: #ccc;
+    padding: 12px !important;
+    border-radius: 5px !important;
+    margin-bottom: 3px !important;
+    height: 50px !important;
+}
+/* Active list item styles */
+.MuiListItem-root.active {
+    background-color: #ccc;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+/* List item hover styles */
+.MuiListItem-root:hover {
+    background-color: #e0e0e0 !important;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    /* Hover item background color */
+}
+.logout {
+    color: white !important;
+    margin-top: 200px !important;
+}

@@ -20,6 +20,11 @@
     margin-bottom: 1%;
 }
 
+.title > img {
+    width: 2%;
+    height: auto;
+}
+
 .content {
     border: 2px solid #ccc;
     display: grid;

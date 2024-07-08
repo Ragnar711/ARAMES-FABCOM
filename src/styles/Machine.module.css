@@ -35,6 +35,8 @@
 
 .title > img {
     padding-right: 1%;
+    width: 5%;
+    height: auto;
 }
 
 .content {

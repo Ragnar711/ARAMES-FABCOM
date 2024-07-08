@@ -113,7 +113,6 @@
 }
 
 #section-dashboard {
-    flex-grow: 1;
     overflow: scroll;
     height: 100vh;
     margin: 1%;
