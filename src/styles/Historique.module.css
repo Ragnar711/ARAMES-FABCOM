@@ -102,7 +102,7 @@
 
 .calendar > .button {
     background-color: #dedede;
-    margin-left: calc((-25% + 15px));
+    margin-left: calc((-15% + 15px));
     padding-inline: 15px;
 }
 
@@ -120,7 +120,7 @@
 .calendar > div {
     position: absolute;
     top: 50%;
-    left: 65%;
+    left: calc(65% - 2rem);
 }
 
 /*-------------------*/
