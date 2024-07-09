@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+
 export const getTitle = (pathname) => {
     const uapRegex = /\/uap\/(UAP-Assemblage|UAP-Plaque|Charge-Finition)\/?/
     const machineRegex =
@@ -27,4 +29,11 @@ export const getTitle = (pathname) => {
         default:
             return 'Résultat Ligne'
     }
+}
+
+export const location = () => {
+    const { pathname } = useLocation()
+    const title = getTitle(pathname)
+
+    return title
 }

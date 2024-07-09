@@ -9,11 +9,14 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import logo from '../assets/logo2.png'
 import profile from '../assets/profile.png'
 import { useNavigate } from 'react-router-dom'
+import { IoMdArrowRoundBack } from 'react-icons/io'
+import { location } from '../utils/getTitle'
 
 export default function Header() {
     const [auth, setAuth] = useState(localStorage.getItem('token') === '')
     const [anchorEl, setAnchorEl] = useState(null)
     const menuRef = useRef(null)
+    const title = location()
 
     const navigate = useNavigate()
 
@@ -22,6 +25,13 @@ export default function Header() {
         setTimeout(() => {
             navigate('/')
         }, 1)
+    }
+
+    const handleBackClick = () => {
+        if (window.location.pathname == '/dashboard') {
+            sessionStorage.removeItem('user')
+        }
+        window.history.back()
     }
 
     useEffect(() => {
@@ -51,16 +61,38 @@ export default function Header() {
                         variant="h6"
                         component="div"
                         sx={{ flexGrow: 1 }}
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'flex-start',
+                            gap: '25px',
+                        }}
                     >
                         <img
                             src={logo}
                             alt="AradisLogo"
+                            style={{ width: '7%', height: 'auto' }}
+                        />
+                        <IoMdArrowRoundBack
+                            color="black"
+                            onClick={() => handleBackClick()}
                             style={{
-                                height: '26px',
-                                marginRight: '10px',
-                                marginTop: '10px',
+                                width: '30px',
+                                height: 'auto',
+                                cursor: 'pointer',
                             }}
                         />
+                        <h1
+                            style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#333',
+                                margin: 0,
+                            }}
+                        >
+                            {title}
+                        </h1>
                     </Typography>
                     <div>
                         <IconButton
