@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     padding: 2%;
-    width: 10%;
+    width: 15%;
     height: 100vh;
     transition: 0.5s all;
     z-index: 5;
@@ -165,7 +165,7 @@
     color: #404040 !important;
 }
 .sidebar.active {
-    width: 3rem;
+    width: 10%;
     transition: 0.5s all;
 }
 .sidebar.active .MuiTypography-root {
