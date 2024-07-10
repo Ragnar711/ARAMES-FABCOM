@@ -122,6 +122,9 @@ export default function Header() {
                                 <MenuItem
                                     onClick={handleLogout}
                                     className={style.menuItem}
+                                    style={{
+                                        fontSize: '15px',
+                                    }}
                                 >
                                     <ExitToAppIcon className={style.exitIcon} />
                                     Se déconnecter
