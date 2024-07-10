@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
     List,
     ListItem,
@@ -18,7 +18,6 @@ import '../styles/sideNav.scss'
 import profile from '../assets/profile.png'
 
 const Sidebar = () => {
-    const location = useLocation()
     const navigate = useNavigate()
 
     const [closeMenu, setCloseMenu] = useState(true)
@@ -74,15 +73,7 @@ const Sidebar = () => {
             >
                 <List>
                     <Tooltip title="Usine" placement="right">
-                        <ListItem
-                            component={Link}
-                            to="/dashboard"
-                            className={
-                                location.pathname === '/AuditPlanning'
-                                    ? 'active'
-                                    : ''
-                            }
-                        >
+                        <ListItem component={Link} to="/dashboard">
                             <ListItemIcon>
                                 <img
                                     src={home}
@@ -93,25 +84,11 @@ const Sidebar = () => {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText
-                                primary="Usine"
-                                style={{
-                                    color: 'white',
-                                    fontSize: '8px',
-                                }}
-                            />
+                            <ListItemText primary="Usine" />
                         </ListItem>
                     </Tooltip>
                     <Tooltip title="UAP" placement="right">
-                        <ListItem
-                            component={Link}
-                            to="/uap/UAP-Assemblage"
-                            className={
-                                location.pathname === '/AuditPlanning'
-                                    ? 'active'
-                                    : ''
-                            }
-                        >
+                        <ListItem component={Link} to="/uap/UAP-Assemblage">
                             <ListItemIcon>
                                 <img
                                     src={roue}
@@ -122,24 +99,13 @@ const Sidebar = () => {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText
-                                primary="UAP"
-                                style={{
-                                    color: 'white',
-                                    fontSize: '8px',
-                                }}
-                            />
+                            <ListItemText primary="UAP" />
                         </ListItem>
                     </Tooltip>
                     <Tooltip title="Machine" placement="right">
                         <ListItem
                             component={Link}
                             to="/machine/Ligne-d'assemblage-TBS"
-                            className={
-                                location.pathname === '/AuditPlanning'
-                                    ? 'active'
-                                    : ''
-                            }
                         >
                             <ListItemIcon>
                                 <img
@@ -151,25 +117,11 @@ const Sidebar = () => {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText
-                                primary="Machine"
-                                style={{
-                                    color: 'white',
-                                    fontSize: '8px',
-                                }}
-                            />
+                            <ListItemText primary="Machine" />
                         </ListItem>
                     </Tooltip>
                     <Tooltip title="Historique" placement="right">
-                        <ListItem
-                            component={Link}
-                            to="/historique"
-                            className={
-                                location.pathname === '/AuditPlanning'
-                                    ? 'active'
-                                    : ''
-                            }
-                        >
+                        <ListItem component={Link} to="/historique">
                             <ListItemIcon>
                                 <img
                                     src={historique}
@@ -180,13 +132,7 @@ const Sidebar = () => {
                                     }}
                                 />
                             </ListItemIcon>
-                            <ListItemText
-                                primary="Historique"
-                                style={{
-                                    color: 'white',
-                                    fontSize: '8px',
-                                }}
-                            />
+                            <ListItemText primary="Historique" />
                         </ListItem>
                     </Tooltip>
                     <Tooltip title="Se déconnecter" placement="right">
