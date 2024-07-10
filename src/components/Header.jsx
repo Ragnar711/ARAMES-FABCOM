@@ -11,6 +11,7 @@ import profile from '../assets/profile.png'
 import { useNavigate } from 'react-router-dom'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { location } from '../utils/getTitle'
+import style from '../styles/Header.module.css'
 
 export default function Header() {
     const [auth, setAuth] = useState(localStorage.getItem('token') === '')
@@ -61,38 +62,19 @@ export default function Header() {
                         variant="h6"
                         component="div"
                         sx={{ flexGrow: 1 }}
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'flex-start',
-                            gap: '25px',
-                        }}
+                        className={style.typography}
                     >
                         <img
                             src={logo}
                             alt="AradisLogo"
-                            style={{ width: '7%', height: 'auto' }}
+                            className={style.logo}
                         />
                         <IoMdArrowRoundBack
                             color="black"
                             onClick={() => handleBackClick()}
-                            style={{
-                                width: '30px',
-                                height: 'auto',
-                                cursor: 'pointer',
-                            }}
+                            className={style.backIcon}
                         />
-                        <h1
-                            style={{
-                                fontSize: '24px',
-                                fontWeight: 'bold',
-                                color: '#333',
-                                margin: 0,
-                            }}
-                        >
-                            {title}
-                        </h1>
+                        <h1 className={style.title}>{title}</h1>
                     </Typography>
                     <div>
                         <IconButton
@@ -121,71 +103,27 @@ export default function Header() {
                             onClose={handleClose}
                             ref={menuRef}
                         >
-                            <div
-                                className="popup-profile"
-                                style={{
-                                    padding: '10px',
-                                    backgroundColor: '#fff',
-                                    borderRadius: '8px',
-                                    width: '200px',
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                    }}
-                                >
+                            <div className={style.profileContainer}>
+                                <div className={style.profile}>
                                     <img
                                         src={profile}
                                         alt="profile"
-                                        className="profile"
-                                        style={{
-                                            width: '60px',
-                                            height: '60px',
-                                            borderRadius: '50%',
-                                            marginRight: '10px',
-                                        }}
+                                        className={style.profileImage}
                                     />
-                                    <div className="profileContents">
-                                        <p
-                                            className="name"
-                                            style={{
-                                                fontSize: '16px',
-                                                fontWeight: 'bold',
-                                                margin: 0,
-                                            }}
-                                        >
-                                            Bonjour,{' '}
-                                            {localStorage.getItem('nom')}👋
-                                        </p>
-                                        <p
-                                            style={{
-                                                fontSize: '14px',
-                                                color: '#666',
-                                                margin: 0,
-                                            }}
-                                        >
-                                            {localStorage.getItem('email')}
-                                        </p>
-                                    </div>
+                                    <p className={style.profileText}>
+                                        Bonjour,{' '}
+                                        {`${
+                                            localStorage.getItem('nom') ??
+                                            'user'
+                                        } `}
+                                        👋
+                                    </p>
                                 </div>
                                 <MenuItem
                                     onClick={handleLogout}
-                                    style={{
-                                        fontSize: '14px',
-                                        color: '#333',
-                                        paddingTop: '10px',
-                                        marginTop: '12px',
-                                    }}
+                                    className={style.menuItem}
                                 >
-                                    <ExitToAppIcon
-                                        style={{
-                                            fontSize: '18px',
-                                            marginRight: '5px',
-                                            color: '#888',
-                                        }}
-                                    />
+                                    <ExitToAppIcon className={style.exitIcon} />
                                     Se déconnecter
                                 </MenuItem>
                             </div>
