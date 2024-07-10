@@ -119,6 +119,7 @@
     padding-top: var(--header-height);
     box-sizing: border-box;
     scroll-snap-type: x mandatory;
+    width: 100%;
 }
 
 #content {
