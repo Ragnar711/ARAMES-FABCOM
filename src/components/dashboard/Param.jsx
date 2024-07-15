@@ -30,12 +30,12 @@ const Param = ({ param, name, value, style }) => {
                             value,
                             param.toLowerCase()
                         )}`,
-                        width: '25%',
+                        width: '30%',
                         fontSize: '0.45rem',
                     }}
                     className={style.kpiValue}
                 >
-                    {value} %
+                    {value}%
                 </div>
             ) : (
                 <div
