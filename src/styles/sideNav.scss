@@ -9,6 +9,7 @@
     transition: 0.5s all;
     z-index: 5;
     border-right: 5px solid #ff0;
+    width: 10%;
 }
 .sidebar .MuiTypography-root {
     font-size: 0.5rem;
@@ -165,7 +166,7 @@
     color: #404040 !important;
 }
 .sidebar.active {
-    width: 5%;
+    width: 4%;
     transition: 0.5s all;
 }
 .sidebar.active .MuiTypography-root {
@@ -207,28 +208,23 @@
 .MuiListItem-root {
     /* Your list item styles here */
     transition: background-color 0.2s ease;
-    background-color: #ccc;
-    padding: 12px !important;
-    border-radius: 5px !important;
-    margin-bottom: 3px !important;
-    height: 50px !important;
-}
-/* Active list item styles */
-.MuiListItem-root.active {
-    background-color: #ccc;
-    padding: 12px;
+    background-color: transparent;
     border-radius: 5px;
     margin-bottom: 3px;
+    height: 50px;
+}
+/* Active list item styles */
+.MuiListItem-root:active {
+    background-color: #e0e0e0;
 }
 /* List item hover styles */
 .MuiListItem-root:hover {
-    background-color: #e0e0e0 !important;
+    background-color: #e0e0e0;
     padding: 12px;
     border-radius: 5px;
     margin-bottom: 3px;
-    /* Hover item background color */
 }
 .logout {
     color: white !important;
-    margin-top: 200px !important;
+    margin-top: 11rem !important;
 }
