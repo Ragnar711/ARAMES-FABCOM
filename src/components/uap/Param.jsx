@@ -35,7 +35,7 @@ const Param = ({ param, name, value, style }) => {
                     }}
                     className={style.kpiValue}
                 >
-                    {value} %
+                    {value}%
                 </div>
             ) : (
                 <div

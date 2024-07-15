@@ -1,5 +1,5 @@
 :root {
-    --section-height: 12rem;
+    --section-height: 13rem;
 }
 
 * {
@@ -168,6 +168,7 @@
     font-weight: bold;
     height: 100%;
     width: 25%;
+    padding-inline: 5px;
     border-radius: 5px;
 }
 
