@@ -1,11 +1,8 @@
-import { lazy, Suspense } from "react";
-import { CSVLink } from "react-csv";
+import style from '../../styles/Management.module.css'
+import { CSVLink } from 'react-csv'
+import { lazy, Suspense } from 'react'
 
-import style from "../../styles/Historique.module.css";
-
-const Checkbox = lazy(() => import("./Checkbox"));
-
-import Loader from "../Loader";
+const Checkbox = lazy(() => import('./Checkbox'))
 
 const Popup = ({
     handleClose,
@@ -19,7 +16,7 @@ const Popup = ({
 }) => {
     return (
         <>
-            <div className={style.custom_backdrop} onClick={handleClose}></div>
+            <div className={style.custom_backdrop} onClick={handleClose} />
             <div className={style.custom_modal}>
                 <div className={style.modalHeader}>
                     <h5 className={style.customModalTitle}>
@@ -27,52 +24,52 @@ const Popup = ({
                     </h5>
                 </div>
                 <div className={style.modalBody}>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Checkbox
                             id="kpiTable"
                             label="Tableau KPI"
                             onChange={() =>
                                 toggleTable(
-                                    "kpiTable",
+                                    'kpiTable',
                                     filteredData.KPIdata,
                                     kpiHeaders
                                 )
                             }
                         />
                     </Suspense>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Checkbox
                             id="manDataTable1"
                             label="Tableau d'Arrêts"
                             onChange={() =>
                                 toggleTable(
-                                    "manDataTable1",
+                                    'manDataTable1',
                                     filteredData.Arrets,
                                     arretHeaders
                                 )
                             }
                         />
                     </Suspense>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Checkbox
                             id="manDataTable2"
                             label="Tableau de déchets"
                             onChange={() =>
                                 toggleTable(
-                                    "manDataTable2",
+                                    'manDataTable2',
                                     filteredData.Dechet,
                                     manDataHeaders
                                 )
                             }
                         />
                     </Suspense>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Checkbox
                             id="manDataTable3"
                             label="Tableau de non conforme"
                             onChange={() =>
                                 toggleTable(
-                                    "manDataTable3",
+                                    'manDataTable3',
                                     filteredData.NC,
                                     manDataHeaders
                                 )
@@ -89,12 +86,12 @@ const Popup = ({
                             className={style.downloadBtn}
                             onClick={handleClose}
                             style={{
-                                border: "none",
-                                padding: "2%",
-                                color: "white",
-                                backgroundColor: "green",
-                                marginLeft: "40%",
-                                marginBlock: "2%",
+                                border: 'none',
+                                padding: '2%',
+                                color: 'white',
+                                backgroundColor: 'green',
+                                marginLeft: '40%',
+                                marginBlock: '2%',
                             }}
                         >
                             Exporter CSV
@@ -103,7 +100,7 @@ const Popup = ({
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Popup;
+export default Popup

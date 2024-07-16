@@ -3,13 +3,11 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-}
-.tableResponsive table {
-    width: 100%;
+    margin-block: 1rem;
 }
 .ManagmentDataH2 {
     text-align: left;
-    font-size: 20px;
+    font-size: 12px;
 }
 .secondFiltre {
     display: flex;
@@ -49,10 +47,12 @@
 .chartHeader {
     background-color: #6d6d6d;
     color: white;
-    width: 95%;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 15px;
+    font-size: 12px;
+    margin-block: 1rem;
 }
 .toggle {
     margin-left: 75%;
@@ -84,8 +84,9 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    width: 97.5%;
-    width: 100%;
+    width: 95%;
+    font-size: 12px;
+    margin-bottom: 1rem;
 }
 .downloadBtn {
     background-color: red;
@@ -94,15 +95,7 @@
     text-align: center;
     margin-left: 12%;
 }
-#bTelecharger {
-    position: relative;
-    left: 27%;
-    width: 90px;
-    background-color: green;
-    border: none;
-    color: white;
-    text-align: center;
-}
+
 @media screen and (max-width: 1700px) {
     .tableHeader {
         width: 49rem;

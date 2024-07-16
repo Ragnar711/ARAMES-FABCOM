@@ -1,37 +1,141 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from 'react'
+import style from '../../styles/Managment.module.css'
+import pdfIcon from '../../assets/pdf.png'
+import Capitalize from '../../utils/strings'
+import { printAsPdf } from '../../utils/exportFunctions'
 
-import style from "../../styles/Managment.module.css";
-
-const Histo = lazy(() => import("./Histogramme"));
-const LineC = lazy(() => import("./LineChart"));
-
-import Loader from "../Loader";
-import pdf from "../../assets/pdf.png";
-
-import { downloadDivContentAsPDF } from "../../utils/exportFunctions";
-import Capitalize from "../../utils/strings";
+const Histo = lazy(() => import('./Histogramme'))
+const LineC = lazy(() => import('./LineChart'))
 
 const ManagmentKPI = ({ data }) => {
-    const [histoHeight, setHistoHeight] = useState(300);
-    const [lineHeight, setLineHeight] = useState(300);
-    const [histoVisible, setHistoVisible] = useState(true);
-    const [lineVisible, setLineVisible] = useState(true);
-    const [tableVisible, setTableVisible] = useState(true);
+    const [histoHeight, setHistoHeight] = useState(400)
+    const [lineHeight, setLineHeight] = useState(400)
+    const [histoVisible, setHistoVisible] = useState(true)
+    const [lineVisible, setLineVisible] = useState(true)
+    const [tableVisible, setTableVisible] = useState(true)
+
     const toggleHistoVisibility = () => {
-        setHistoVisible(!histoVisible);
-        setHistoHeight(histoVisible ? 0 : 300);
-    };
+        setHistoVisible(!histoVisible)
+        setHistoHeight(histoVisible ? 0 : 400)
+    }
+
     const toggleLineVisibility = () => {
-        setLineVisible(!lineVisible);
-        setLineHeight(lineVisible ? 0 : 300);
-    };
+        setLineVisible(!lineVisible)
+        setLineHeight(lineVisible ? 0 : 400)
+    }
+
     const toggleTableVisibility = () => {
-        setTableVisible(!tableVisible);
-    };
-    data = data === null ? { chart: [], table: [] } : data;
+        setTableVisible(!tableVisible)
+    }
+
+    const renderChart = (chartType, displayData) => {
+        let toggleButtonContent
+        if (chartType === 'histo') {
+            toggleButtonContent = histoVisible ? '-' : '+'
+        } else {
+            toggleButtonContent = lineVisible ? '-' : '+'
+        }
+        return (
+            <div
+                className={`${style.chart} export-item`}
+                id={chartType}
+                style={{
+                    height:
+                        chartType === 'histo'
+                            ? histoHeight + 'px'
+                            : lineHeight + 'px',
+                }}
+            >
+                <h3 className={style.chartHeader}>
+                    {chartType === 'histo'
+                        ? 'Histogramme KPI'
+                        : 'Graphique KPI'}{' '}
+                    <span className={style.spanB}>
+                        <img
+                            src={pdfIcon}
+                            alt="pdf"
+                            onClick={() => printAsPdf(chartType)}
+                            width={40}
+                            height={40}
+                        />
+                    </span>
+                    <span
+                        className={style.toggle}
+                        onClick={
+                            chartType === 'histo'
+                                ? toggleHistoVisibility
+                                : toggleLineVisibility
+                        }
+                    >
+                        {toggleButtonContent}
+                    </span>
+                </h3>
+                {chartType === 'histo' ? (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Histo displayData={displayData} />
+                    </Suspense>
+                ) : (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <LineC displayData={displayData} />
+                    </Suspense>
+                )}
+            </div>
+        )
+    }
+
+    const renderTable = () => {
+        return (
+            <div className={style.tableKPI}>
+                <h3 className={style.tableHeader2}>
+                    Tableau KPI{' '}
+                    <span
+                        className={style.toggle}
+                        onClick={toggleTableVisibility}
+                    >
+                        {tableVisible ? '-' : '+'}
+                    </span>
+                </h3>
+                {tableVisible && (
+                    <table border="1" cellPadding="5" cellSpacing="0">
+                        <thead>
+                            <tr>
+                                {Object.keys(
+                                    data.table.length ? data.table[0] : {}
+                                ).map((heading, index) => (
+                                    <th
+                                        key={index}
+                                        style={{ fontSize: '0.4rem' }}
+                                    >
+                                        {Capitalize(heading)}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.table.map((dataItem, index) => (
+                                <tr key={index}>
+                                    {Object.values(dataItem).map(
+                                        (value, idx) => (
+                                            <td key={idx}>
+                                                {typeof value === 'number'
+                                                    ? value.toFixed(0)
+                                                    : value}
+                                            </td>
+                                        )
+                                    )}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+        )
+    }
+
+    data = data === null ? { chart: [], table: [] } : data
 
     if (!data.table || data.table.length === 0) {
-        return null;
+        return null
     }
 
     return (
@@ -41,114 +145,13 @@ const ManagmentKPI = ({ data }) => {
             </h2>
             <div className={style.kpiCont}>
                 <div className={style.ManagmentKPICharts}>
-                    <div
-                        className={`${style.chart} export-item`}
-                        id="histo"
-                        style={{
-                            height: histoHeight + "px",
-                        }}
-                    >
-                        <h3 className={style.chartHeader}>
-                            Histogramme KPI
-                            <span
-                                className={style.spanB}
-                                onClick={() => downloadDivContentAsPDF("histo")}
-                            >
-                                <img src={pdf} alt="pdf" />
-                            </span>
-                            <span
-                                className={style.toggle}
-                                onClick={toggleHistoVisibility}
-                            >
-                                {histoVisible ? "-" : "+"}
-                            </span>
-                        </h3>
-                        {histoVisible && data !== null && (
-                            <Suspense fallback={<Loader />}>
-                                <Histo displayData={data.chart} />
-                            </Suspense>
-                        )}
-                    </div>
-                    <div
-                        className={`${style.chart} export-item`}
-                        id="lineChart"
-                        style={{
-                            height: lineHeight + "px",
-                        }}
-                    >
-                        <h3 className={style.chartHeader}>
-                            Graphique KPI
-                            <span
-                                className={style.spanB}
-                                onClick={() =>
-                                    downloadDivContentAsPDF("lineChart")
-                                }
-                            >
-                                <img src={pdf} alt="pdf" />
-                            </span>
-                            <span
-                                className={style.toggle}
-                                onClick={toggleLineVisibility}
-                            >
-                                {lineVisible ? "-" : "+"}
-                            </span>
-                        </h3>
-                        {lineVisible && (
-                            <Suspense fallback={<Loader />}>
-                                <LineC displayData={data.chart} />
-                            </Suspense>
-                        )}
-                    </div>
+                    {renderChart('histo', data.chart)}
+                    {renderChart('lineChart', data.chart)}
                 </div>
-                <div className={style.tableKPI}>
-                    <h3 className={style.tableHeader2}>
-                        Tableau KPI
-                        <span
-                            className={style.toggle}
-                            onClick={toggleTableVisibility}
-                        >
-                            {tableVisible ? "-" : "+"}
-                        </span>
-                    </h3>
-                    {tableVisible && (
-                        <table
-                            style={{ width: "100%" }}
-                            border="1"
-                            cellPadding="5"
-                            cellSpacing="0"
-                        >
-                            <thead>
-                                <tr>
-                                    {Object.keys(
-                                        data.table.length ? data.table[0] : {}
-                                    ).map((heading, index) => (
-                                        <th key={index}>
-                                            {Capitalize(heading)}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.table.map((dataItem, index) => (
-                                    <tr key={index}>
-                                        {Object.values(dataItem).map(
-                                            (value, idx) => (
-                                                <td key={idx}>
-                                                    {typeof value === "number"
-                                                        ? value.toFixed(0)
-                                                        : value}
-                                                </td>
-                                            )
-                                        )}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
-                </div>
+                {renderTable()}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ManagmentKPI;
+export default ManagmentKPI

@@ -1,7 +1,5 @@
-import { useState } from "react";
-import style from "../../styles/Managment.module.css";
-import { downloadDivContentAsPDF } from "../../utils/exportFunctions";
-import { formatDuration } from "../../utils/dates";
+import { useState } from 'react'
+import style from '../../styles/Managment.module.css'
 import {
     Tooltip,
     Bar,
@@ -11,97 +9,83 @@ import {
     Label,
     ReferenceLine,
     ComposedChart,
-} from "recharts";
-import pdf from "../../assets/pdf.png";
+} from 'recharts'
+import pdfIcon from '../../assets/pdf.png'
+import { printAsPdf } from '../../utils/exportFunctions'
 
 const Pareto = ({ IDPareto, title, yAxisLabel, chartData }) => {
-    const [paretoHeight, setParetoHeight] = useState(500);
-
-    const [paretoVisible, setParetoVisible] = useState(true);
-
+    const [paretoHeight, setParetoHeight] = useState(400)
+    const [paretoVisible, setParetoVisible] = useState(true)
     const toggleParetoVisibility = () => {
-        setParetoVisible(!paretoVisible);
-        setParetoHeight(paretoVisible ? 0 : 500);
-    };
-
-    let keyField = "Motif";
-    let valueField = "Durée";
-
-    if (title === "déchets" || title === "NC") {
-        valueField = "Quantité (KG)";
+        setParetoVisible(!paretoVisible)
+        setParetoHeight(paretoVisible ? 0 : 400)
     }
-
-    const convertDurationToSeconds = (chartData) => {
-        const modifiedChartData = chartData.map((data) => {
-            const durationParts = data.Durée.split(":");
-            const durationInSeconds =
-                parseInt(durationParts[0]) * 3600 +
-                parseInt(durationParts[1]) * 60 +
-                parseInt(durationParts[2]);
-            return { ...data, Durée: durationInSeconds };
-        });
-        return modifiedChartData;
-    };
-
-    if (valueField == "Durée") {
-        chartData = convertDurationToSeconds(chartData);
+    let keyField = 'Motif'
+    let valueField = 'Durée'
+    if (title === 'déchets' || title === 'NC') {
+        valueField = 'Quantité'
     }
-
+    const formatToTime = (value) => {
+        let seconds = value
+        let hours = Math.floor(seconds / 3600)
+        seconds %= 3600
+        let minutes = Math.floor(seconds / 60)
+        return [hours, minutes]
+            .map((v) => (v < 10 ? '0' + v : v))
+            .filter((v, i) => v !== '00' || i > 0)
+            .join(':')
+    }
     const renderCustomTooltip = ({ active, payload }) => {
-        if (!payload || payload.length === 0) {
-            return null;
-        }
-
         if (active) {
             return (
                 <div
                     style={{
-                        backgroundColor: "#ffffff",
-                        border: "1px solid #cccccc",
-                        padding: "5px",
-                        fontSize: "12px",
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cccccc',
+                        padding: '5px',
+                        fontSize: '12px',
                     }}
                 >
-                    <div>
-                        <p>{`${keyField}: ${payload[0].payload.Motif}`}</p>
-                        <p>{`${yAxisLabel}: ${
-                            valueField == "Durée"
-                                ? formatDuration(payload[0].value)
-                                : payload[0].value
-                        }`}</p>{" "}
-                    </div>
+                    {payload !== null && typeof payload !== 'undefined' ? (
+                        <>
+                            <p>{`${keyField}: ${payload[0].payload.Motif}`}</p>
+                            <p>{`${valueField}: ${
+                                valueField === 'Durée'
+                                    ? formatToTime(payload[0].value)
+                                    : payload[0].value
+                            }`}</p>
+                        </>
+                    ) : (
+                        <p>No</p>
+                    )}
                 </div>
-            );
+            )
         }
-        return null;
-    };
-
-    if (!chartData || chartData.length === 0) {
-        return null;
+        return null
     }
-
     const sortedChartData = [...chartData].sort(
         (a, b) => b[valueField] - a[valueField]
-    );
-
-    const top5ChartData = sortedChartData.slice(0, 5);
-
+    )
+    const top5ChartData = sortedChartData.slice(0, 5)
     return (
         <div
-            style={{ height: paretoHeight + "px" }}
+            style={{ height: paretoHeight + 'px' }}
             className={`${style.chart} export-item`}
             id={IDPareto}
         >
             <h3 className={style.chartHeader}>
                 Pareto {title}
-                <span
-                    className={style.spanB}
-                    onClick={() => downloadDivContentAsPDF(IDPareto)}
-                >
-                    <img src={pdf} alt="pdf" />
+                <span className={style.spanB}>
+                    <img
+                        src={pdfIcon}
+                        alt="pdf"
+                        onClick={() => printAsPdf(IDPareto)}
+                        width={40}
+                        height={40}
+                    />
                 </span>
                 <span className={style.toggle} onClick={toggleParetoVisibility}>
-                    {paretoVisible ? "-" : "+"}
+                    {paretoVisible ? '-' : '+'}
                 </span>
             </h3>
             {paretoVisible && (
@@ -112,7 +96,9 @@ const Pareto = ({ IDPareto, title, yAxisLabel, chartData }) => {
                         fontSize={10}
                         yAxisId="left"
                         orientation="left"
-                        tickFormatter={(value) => `${value}`}
+                        tickFormatter={(value) =>
+                            valueField === 'Durée' ? formatToTime(value) : value
+                        }
                     >
                         <Label
                             value={yAxisLabel}
@@ -147,7 +133,7 @@ const Pareto = ({ IDPareto, title, yAxisLabel, chartData }) => {
                 </ComposedChart>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default Pareto;
+export default Pareto

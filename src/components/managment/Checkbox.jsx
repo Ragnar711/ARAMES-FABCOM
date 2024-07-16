@@ -4,7 +4,7 @@ const Checkbox = ({ id, label, onChange }) => {
             <input type="checkbox" id={id} onChange={onChange} />
             <label htmlFor={id}>{label}</label>
         </div>
-    );
-};
+    )
+}
 
-export default Checkbox;
+export default Checkbox

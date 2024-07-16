@@ -1,11 +1,10 @@
-import { useState } from "react";
-import style from "../../styles/Managment.module.css";
-import { downloadDivContentAsPDF } from "../../utils/exportFunctions";
-import { formatDuration } from "../../utils/dates";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
-import pdf from "../../assets/pdf.png";
+import { useState } from 'react'
+import style from '../../styles/Managment.module.css'
+import { PieChart, Pie, Tooltip, Cell } from 'recharts'
+import pdfIcon from '../../assets/pdf.png'
+import { printAsPdf } from '../../utils/exportFunctions'
 
-const COLORS = ["#1d3557", "#457b9d", "#a8dadc", "#f1faee"];
+const COLORS = ['#1d3557', '#457b9d', '#a8dadc', '#f1faee']
 
 const PieDataChart = ({
     IDPie,
@@ -14,96 +13,80 @@ const PieDataChart = ({
     yAxisLabel,
     totalDuration,
 }) => {
-    const [pieHeight, setPieHeight] = useState(500);
-    const [pieVisible, setPieVisible] = useState(true);
-
+    const [pieHeight, setPieHeight] = useState(400)
+    const [pieVisible, setPieVisible] = useState(true)
     const togglePieVisibility = () => {
-        setPieVisible(!pieVisible);
-        setPieHeight(pieVisible ? 0 : 500);
-    };
-
-    let keyField = "Motif";
-    let valueField = "Durée";
-    if (title === "déchets" || title === "NC") {
-        valueField = "Quantité (KG)";
+        setPieVisible(!pieVisible)
+        setPieHeight(pieVisible ? 0 : 400)
     }
-
-    const convertDurationToSeconds = (chartData) => {
-        const modifiedChartData = chartData.map((data) => {
-            const durationParts = data.Durée.split(":");
-            const durationInSeconds =
-                parseInt(durationParts[0]) * 3600 +
-                parseInt(durationParts[1]) * 60 +
-                parseInt(durationParts[2]);
-            return { ...data, Durée: durationInSeconds };
-        });
-        return modifiedChartData;
-    };
-
-    if (valueField == "Durée") {
-        chartData = convertDurationToSeconds(chartData);
+    let keyField = 'Motif'
+    let valueField = 'Durée'
+    if (title === 'déchets' || title === 'NC') {
+        valueField = 'Quantité'
     }
-
     const renderCustomTooltip = ({ active, payload }) => {
-        if (!payload || payload.length === 0) {
-            return null;
-        }
-
-        let value = payload[0].value;
-
         if (active) {
             return (
                 <div
                     style={{
-                        backgroundColor: "#ffffff",
-                        border: "1px solid #cccccc",
-                        padding: "5px",
-                        fontSize: "12px",
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cccccc',
+                        padding: '5px',
+                        fontSize: '12px',
                     }}
                 >
-                    <div>
-                        <p>{`${keyField}: ${payload[0].payload.Motif}`}</p>
-                        <p>{`${yAxisLabel}: ${
-                            valueField == "Durée"
-                                ? formatDuration(value)
-                                : value
-                        }`}</p>{" "}
-                    </div>
+                    {payload !== null ? (
+                        <>
+                            <p>{`${keyField}: ${payload[0].payload.Motif}`}</p>
+                            <p>
+                                {`${yAxisLabel}: ${
+                                    valueField === 'Durée'
+                                        ? `${Math.floor(
+                                              payload[0].value / 3600
+                                          )} heures`
+                                        : `${payload[0].value} Kg`
+                                }`}{' '}
+                            </p>{' '}
+                        </>
+                    ) : (
+                        <p>No</p>
+                    )}
                 </div>
-            );
+            )
         }
-        return null;
-    };
-
-    if (!chartData || chartData.length === 0) {
-        return null;
+        return null
     }
-
-    const sortedChartData = [...chartData].sort(
-        (a, b) => b[valueField] - a[valueField]
-    );
-
-    const top5ChartData = sortedChartData.slice(0, 5);
-
+    const getTopNChartData = (data, n) => {
+        const topNData = data.slice(0, n)
+        const otherData = data.slice(n)
+        if (otherData.length > 0) {
+            const otherSum = otherData.reduce(
+                (sum, entry) => sum + entry[valueField],
+                0
+            )
+            topNData.push({ [keyField]: 'Autres', [valueField]: otherSum })
+        }
+        return topNData
+    }
     const renderCustomLegend = (chartData, totalDuration) => {
+        const topNChartData = getTopNChartData(chartData, 3)
         return (
-            <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
-                {top5ChartData.map((entry, index) => {
-                    let percentage =
+            <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
+                {topNChartData.map((entry, index) => {
+                    const percentage =
                         totalDuration > 0
                             ? (
                                   (entry[valueField] / totalDuration) *
                                   100
                               ).toFixed(2)
-                            : 0;
-
+                            : 0
                     return (
                         <div
                             key={`legend-${index}`}
                             style={{
-                                display: "flex",
-                                alignItems: "center",
-                                width: "50%",
+                                display: 'flex',
+                                alignItems: 'center',
+                                width: '50%',
                             }}
                         >
                             <div
@@ -114,33 +97,35 @@ const PieDataChart = ({
                                         COLORS[index % COLORS.length],
                                     marginRight: 5,
                                 }}
-                            ></div>
+                            />
                             <p
-                                style={{ fontSize: "12px" }}
+                                style={{ fontSize: '12px' }}
                             >{`${entry[keyField]}: ${percentage}%`}</p>
                         </div>
-                    );
+                    )
                 })}
             </div>
-        );
-    };
-
+        )
+    }
     return (
         <div
             className={`${style.chart} export-item`}
-            style={{ height: pieHeight + "px" }}
+            style={{ height: pieHeight + 'px' }}
             id={IDPie}
         >
             <h3 className={style.chartHeader}>
                 Pie {title}
-                <span
-                    className={style.spanB}
-                    onClick={() => downloadDivContentAsPDF(IDPie)}
-                >
-                    <img src={pdf} alt="pdf" />
+                <span className={style.spanB}>
+                    <img
+                        src={pdfIcon}
+                        alt="pdf"
+                        onClick={() => printAsPdf(IDPie)}
+                        width={40}
+                        height={40}
+                    />
                 </span>
                 <span onClick={togglePieVisibility} className={style.toggle}>
-                    {pieVisible ? "-" : "+"}
+                    {pieVisible ? '-' : '+'}
                 </span>
             </h3>
             {pieVisible && (
@@ -164,11 +149,11 @@ const PieDataChart = ({
                         </Pie>
                         <Tooltip content={renderCustomTooltip} />
                     </PieChart>
-                    {pieVisible && renderCustomLegend(chartData, totalDuration)}
+                    {renderCustomLegend(chartData, totalDuration)}
                 </div>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default PieDataChart;
+export default PieDataChart

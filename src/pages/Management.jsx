@@ -1,16 +1,13 @@
+import style from '../styles/Management.module.css'
+import { Arrets, Dechet, NC, KPIdata } from '../utils/data'
 import { useState, useEffect, lazy, Suspense } from 'react'
+import { mgd } from '../utils/managementData'
 
-import style from '../styles/Historique.module.css'
-
-const ManagmentData = lazy(() =>
+const ManagementKPI = lazy(() => import('../components/managment/ManagmentKPI'))
+const ManagementData = lazy(() =>
     import('../components/managment/ManagmentData')
 )
-const ManagmentKPI = lazy(() => import('../components/managment/ManagmentKPI'))
 const Popup = lazy(() => import('../components/managment/Popup'))
-
-import Loader from '../components/Loader'
-
-import fetchData from '../utils/fetchData'
 
 const Managment = () => {
     // State variables
@@ -22,7 +19,12 @@ const Managment = () => {
         dechets: null,
     })
     const [selectedTables, setSelectedTables] = useState([])
-    const filteredData = {}
+    const filteredData = {
+        KPIdata: KPIdata,
+        Arrets: Arrets,
+        Dechet: Dechet,
+        NC: NC,
+    }
     const [filters, setFilters] = useState({
         machine: null,
         from: new Date().toISOString().split('T')[0],
@@ -45,28 +47,26 @@ const Managment = () => {
             }
         }
         if (callGetData) {
-            const { error, status, data } = await fetchData(
-                `/admin/management/${filters.machine}/${filters.from}/${filters.to}`,
-                'GET'
-            )
-            if (status === 200 && data.success) {
-                setData(data.data)
+            if (mgd.success) {
+                setData(mgd.data)
                 setChartData({
                     ...chartData,
-                    kpi: data.data.kpi.chart,
-                    arrets: data.data.arret.chart,
-                    dechets: data.data.dechets.chart,
-                    NC: data.data.NC.chart,
+                    kpi: mgd.data.kpi.chart,
+                    arrets: mgd.data.arret.chart,
+                    dechets: mgd.data.dechets.chart,
+                    NC: mgd.data.NC.chart,
                 })
-            } else {
-                console.error(error)
             }
         }
     }
     useEffect(() => {
         getData()
     }, [filters])
-
+    // Process and machine options
+    const processOptions = [{ label: 'Section1', value: 'Section1' }]
+    const machineOptions = {
+        Section1: [{ label: 'Machine-1', value: 'machine1' }],
+    }
     // Table headers
     const createHeaders = (keys) => keys.map((key) => ({ label: key, key }))
     const kpiHeaders = createHeaders([
@@ -126,11 +126,22 @@ const Managment = () => {
         })
         return formattedData
     }
-
+    const handleSelect = (event) => {
+        const selectedValue = event.target.value
+        switch (selectedValue) {
+            case 'csv':
+                setShowModal(true)
+                break
+            case 'pdf':
+                break
+            default:
+                break
+        }
+    }
     return (
         <div>
             {showModal && (
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={<div>Loading...</div>}>
                     <Popup
                         handleClose={handleClose}
                         toggleTable={toggleTable}
@@ -144,44 +155,39 @@ const Managment = () => {
                 </Suspense>
             )}
             <div className={style.filtre}>
-                <div>
-                    {' '}
-                    <select
-                        className={style.buttonfiltre}
-                        value={process}
-                        onChange={handleProcessChange}
-                    >
-                        <option value="" disabled>
-                            Section
+                <select
+                    className={style.buttonfiltre}
+                    value={process}
+                    onChange={handleProcessChange}
+                >
+                    <option value="" disabled>
+                        Section
+                    </option>
+                    {processOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
                         </option>
-                        {processOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <select
-                        className={style.buttonfiltre}
-                        value={filters.machine ?? ''}
-                        onChange={(event) => {
-                            const value = event.target.value
-                            if (value) {
-                                changeFilter('machine', value)
-                            }
-                        }}
-                    >
-                        <option value="" disabled>
-                            Machine
+                    ))}
+                </select>
+                <select
+                    className={style.buttonfiltre}
+                    value={filters.machine ?? ''}
+                    onChange={(event) => {
+                        const value = event.target.value
+                        if (value) {
+                            changeFilter('machine', value)
+                        }
+                    }}
+                >
+                    <option value="" disabled>
+                        Machine
+                    </option>
+                    {machines.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
                         </option>
-                        {machines.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <h3>Filtrage de Dates</h3>
+                    ))}
+                </select>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <button
                         className={style.buttonSecondFiltre}
@@ -241,21 +247,34 @@ const Managment = () => {
                         }
                     />
                 </div>
-                {/*<h3>Exporter les données</h3>
-                <button
-                    className={style.exportData}
-                    onClick={() => setShowModal(true)}
+                <select
+                    id={style.bTelecharger}
+                    style={{
+                        position: 'relative',
+                        width: '80px',
+                        left: '35%',
+                        backgroundColor: 'green',
+                        border: 'none',
+                    }}
+                    className={style.buttonSecondFiltre}
+                    onChange={handleSelect}
+                    value=""
                 >
-                    <RiDownloadFill fontSize={20} />
-                    Excel
-                </button>*/}
+                    <option value="" disabled>
+                        Exporter
+                    </option>
+                    <option value="csv">Excel</option>
+                    <option disabled value="pdf">
+                        PDF
+                    </option>
+                </select>
             </div>
             <div id="pdf">
-                <Suspense fallback={<Loader />}>
-                    <ManagmentKPI data={data.kpi} />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ManagementKPI data={data.kpi} />
                 </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <ManagmentData
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ManagementData
                         data={data.arret}
                         displayData={chartData.arrets}
                         headers={arretHeaders}
@@ -265,8 +284,8 @@ const Managment = () => {
                         IDPie="arretsPie"
                     />
                 </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <ManagmentData
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ManagementData
                         data={data.dechets}
                         displayData={chartData.dechets}
                         headers={manDataHeaders}
@@ -276,8 +295,8 @@ const Managment = () => {
                         IDPie="dechetPie"
                     />
                 </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <ManagmentData
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ManagementData
                         data={data.NC}
                         displayData={chartData.NC}
                         headers={manDataHeaders}

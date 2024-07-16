@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { PureComponent } from 'react'
 import {
     LineChart,
     Line,
@@ -8,12 +8,12 @@ import {
     Tooltip,
     Legend,
     ResponsiveContainer,
-} from "recharts";
-import { CustomTooltip } from "./Histogramme";
+} from 'recharts'
+import { CustomTooltip } from './Histogramme'
 
 export default class LineC extends PureComponent {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             linesVisibility: {
                 TP: true,
@@ -21,20 +21,20 @@ export default class LineC extends PureComponent {
                 TD: true,
                 TRS: true,
             },
-        };
+        }
     }
     handleLegendClick = (e) => {
-        const { dataKey } = e;
+        const { dataKey } = e
         this.setState((prevState) => ({
             linesVisibility: {
                 ...prevState.linesVisibility,
                 [dataKey]: !prevState.linesVisibility[dataKey],
             },
-        }));
-    };
+        }))
+    }
     render() {
-        const { linesVisibility } = this.state;
-        const { displayData } = this.props;
+        const { linesVisibility } = this.state
+        const { displayData } = this.props
         return (
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart
@@ -50,39 +50,39 @@ export default class LineC extends PureComponent {
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Date" fontSize={10} />
-                    <YAxis fontSize={10} tick={true} />
+                    <YAxis fontSize={10} tick />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend
-                        wrapperStyle={{ fontSize: "10px" }}
+                        wrapperStyle={{ fontSize: '10px' }}
                         onClick={this.handleLegendClick}
                     />
                     <Line
                         type="monotone"
-                        dataKey="TP (%)"
+                        dataKey="TP"
                         stroke="#a8dadc"
                         activeDot={{ r: 8 }}
-                        hide={linesVisibility["TP (%)"]}
+                        hide={!linesVisibility.TP}
                     />
                     <Line
                         type="monotone"
-                        dataKey="TQ (%)"
+                        dataKey="TQ"
                         stroke="#1d3557"
-                        hide={linesVisibility["TQ (%)"]}
+                        hide={!linesVisibility.TQ}
                     />
                     <Line
                         type="monotone"
-                        dataKey="TD (%)"
+                        dataKey="TD"
                         stroke="#457b9d"
-                        hide={linesVisibility["TD (%)"]}
+                        hide={!linesVisibility.TD}
                     />
                     <Line
                         type="monotone"
-                        dataKey="TRS (%)"
+                        dataKey="TRS"
                         stroke="#b7dabc"
-                        hide={linesVisibility["TRS (%)"]}
+                        hide={!linesVisibility.TRS}
                     />
                 </LineChart>
             </ResponsiveContainer>
-        );
+        )
     }
 }

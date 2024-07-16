@@ -1,13 +1,9 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from 'react'
+import style from '../../styles/Managment.module.css'
+import Capitalize from '../../utils/strings'
 
-const Pareto = lazy(() => import("./Pareto"));
-const PieDataChart = lazy(() => import("./Pie"));
-
-import Loader from "../Loader";
-
-import style from "../../styles/Managment.module.css";
-
-import Capitalize from "../../utils/strings";
+const Pareto = lazy(() => import('./Pareto'))
+const PieDataChart = lazy(() => import('./Pie'))
 
 const ManagmentData = ({
     data,
@@ -17,67 +13,94 @@ const ManagmentData = ({
     IDPareto,
     IDPie,
 }) => {
-    const [tableVisible, setTableVisible] = useState(true);
+    const [tableVisible, setTableVisible] = useState(true)
 
     const prepareChartData = (data, keyField, valueField) => {
-        const chartData = {};
+        const chartData = {}
         data.forEach((item) => {
             if (!chartData[item[keyField]]) {
-                chartData[item[keyField]] = 0;
+                chartData[item[keyField]] = 0
             }
-            chartData[item[keyField]] += item[valueField];
-        });
+            chartData[item[keyField]] += item[valueField]
+        })
         const sortedData = Object.keys(chartData)
             .map((key) => ({ [keyField]: key, [valueField]: chartData[key] }))
-            .sort((a, b) => b[valueField] - a[valueField]);
-        let totalDuration = 0;
+            .sort((a, b) => b[valueField] - a[valueField])
+        let totalDuration = 0
         sortedData.forEach((entry) => {
-            totalDuration += entry[valueField];
-            entry.cumulativePercentage = totalDuration;
-        });
-        return sortedData;
-    };
-
-    let keyField = "Motif";
-    let valueField = "Durée";
-
-    if (title === "déchets" || title === "NC") {
-        valueField = "Quantité (KG)";
+            totalDuration += entry[valueField]
+            entry.cumulativePercentage = totalDuration
+        })
+        return sortedData
     }
 
-    const chartData = prepareChartData(displayData, keyField, valueField);
-
-    let totalDuration = 0;
-
-    chartData.forEach((entry) => {
-        if (title === "arrêts") {
-            const duratiomParts = entry.Durée.split(":");
-            const durationInSeconds =
-                duratiomParts[0] * 3600 +
-                duratiomParts[1] * 60 +
-                parseFloat(duratiomParts[2]);
-            totalDuration += durationInSeconds;
-        } else {
-            totalDuration += entry["Quantité (KG)"];
-        }
-    });
+    const calculateTotalDuration = (chartData) => {
+        let totalDuration = 0
+        chartData.forEach((entry) => {
+            if (title === 'arrêts') {
+                totalDuration += entry.Durée
+            } else {
+                totalDuration += entry.Quantité
+            }
+        })
+        return totalDuration
+    }
 
     const toggleTableVisibility = () => {
-        setTableVisible(!tableVisible);
-    };
-
-    data = data === null ? { chart: [], table: [] } : data;
-
-    if (!data.table || data.table.length === 0) {
-        return null;
+        setTableVisible(!tableVisible)
     }
+
+    const renderTable = (tableData) => {
+        return (
+            <table
+                border="1"
+                cellPadding="5"
+                cellSpacing="0"
+                style={{
+                    width: '100%',
+                }}
+            >
+                <thead>
+                    <tr>
+                        {Object.keys(tableData.length ? tableData[0] : {}).map(
+                            (heading, index) => (
+                                <th key={index} style={{ fontSize: '0.4rem' }}>
+                                    {Capitalize(heading)}
+                                </th>
+                            )
+                        )}
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.values(tableData).map((dataItem, index) => (
+                        <tr key={index}>
+                            {Object.values(dataItem).map((value, idx) => (
+                                <td key={idx}>
+                                    {typeof value === 'number'
+                                        ? value.toFixed(0)
+                                        : value}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )
+    }
+
+    if (!data?.table?.length) {
+        return null
+    }
+
+    const chartData = prepareChartData(displayData, 'Motif', 'Durée')
+    const totalDuration = calculateTotalDuration(chartData)
 
     return (
         <div className={style.Cont}>
             <h2 className={style.ManagmentDataH2}>Les {title} de production</h2>
             <div className={style.kpiCont}>
                 <div className={style.ManagmentDataCharts}>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Pareto
                             IDPareto={IDPareto}
                             title={title}
@@ -85,7 +108,7 @@ const ManagmentData = ({
                             chartData={data.chart}
                         />
                     </Suspense>
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <PieDataChart
                             IDPie={IDPie}
                             title={title}
@@ -102,53 +125,14 @@ const ManagmentData = ({
                             onClick={toggleTableVisibility}
                             className={style.toggle}
                         >
-                            {tableVisible ? "-" : "+"}
+                            {tableVisible ? '-' : '+'}
                         </span>
                     </h3>
-                    {tableVisible && (
-                        <table
-                            border="1"
-                            cellPadding="5"
-                            cellSpacing="0"
-                            style={{
-                                width: "100%",
-                            }}
-                        >
-                            <thead>
-                                <tr>
-                                    {Object.keys(
-                                        data.table.length ? data.table[0] : {}
-                                    ).map((heading, index) => (
-                                        <th key={index}>
-                                            {Capitalize(heading)}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Object.values(data.table).map(
-                                    (dataItem, index) => (
-                                        <tr key={index}>
-                                            {Object.values(dataItem).map(
-                                                (value, idx) => (
-                                                    <td key={idx}>
-                                                        {typeof value ===
-                                                        "number"
-                                                            ? value.toFixed(0)
-                                                            : value}
-                                                    </td>
-                                                )
-                                            )}
-                                        </tr>
-                                    )
-                                )}
-                            </tbody>
-                        </table>
-                    )}
+                    {tableVisible && renderTable(data.table)}
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ManagmentData;
+export default ManagmentData
