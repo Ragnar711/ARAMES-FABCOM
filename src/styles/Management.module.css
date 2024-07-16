@@ -43,7 +43,6 @@ th {
 }
 thead,
 th {
-    position: sticky;
     top: 0;
     background-color: #96cce0;
 }
