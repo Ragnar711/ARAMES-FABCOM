@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import style from "../styles/Planification.module.css";
+import { useState } from 'react'
+import PropTypes from 'prop-types'
+import style from '../styles/Planification.module.css'
 
 function App() {
-    const [divs, setDivs] = useState([{ id: 0, className: "my-div" }]);
-    const [tableData, setTableData] = useState([]);
+    const [divs, setDivs] = useState([{ id: 0, className: 'my-div' }])
+    const [tableData, setTableData] = useState([])
     const handleAddDiv = () => {
-        const newId = divs.length;
-        setDivs([...divs, { id: newId, className: "my-div" }]);
-    };
+        const newId = divs.length
+        setDivs([...divs, { id: newId, className: 'my-div' }])
+    }
     const handleRemoveDiv = () => {
-        const newDivs = [...divs];
-        newDivs.pop();
-        setDivs(newDivs);
-    };
+        const newDivs = [...divs]
+        newDivs.pop()
+        setDivs(newDivs)
+    }
     const handleAddTableData = (data) => {
-        const newData = [...tableData];
+        const newData = [...tableData]
         if (!newData.includes(data)) {
-            newData.push(data);
-            setTableData(newData);
+            newData.push(data)
+            setTableData(newData)
         }
-    };
+    }
     return (
         <div>
             <h3 id={style.title}>Planification de production</h3>
@@ -41,14 +41,14 @@ function App() {
             )}
             <MyTable data={tableData} />
         </div>
-    );
+    )
 }
 
 function MyDiv({ className }) {
-    const [selectValue, setSelectValue] = useState("");
+    const [selectValue, setSelectValue] = useState('')
     const handleSelectChange = (event) => {
-        setSelectValue(event.target.value);
-    };
+        setSelectValue(event.target.value)
+    }
     return (
         <div className={className} id={style.divOF}>
             <select
@@ -81,7 +81,7 @@ function MyDiv({ className }) {
                 <option>Non-Urgent</option>
             </select>
         </div>
-    );
+    )
 }
 
 function MyTable({ data }) {
@@ -92,7 +92,7 @@ function MyTable({ data }) {
                     <th>N'OF</th>
                     <th>Status</th>
                     <th>Date de fabrication</th>
-                    <th>Séction</th>
+                    <th>Section</th>
                     <th>Machine</th>
                 </tr>
             </thead>
@@ -104,12 +104,12 @@ function MyTable({ data }) {
                 ))}
             </tbody>
         </table>
-    );
+    )
 }
 MyTable.propTypes = {
     data: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+}
 MyDiv.propTypes = {
     className: PropTypes.string.isRequired,
-};
-export default App;
+}
+export default App

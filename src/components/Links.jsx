@@ -3,6 +3,7 @@ import roue from '../assets/roue.png'
 import roues from '../assets/roues.png'
 import historique from '../assets/his.png'
 import rapport from '../assets/rapport.png'
+import planning from '../assets/iconPl.png'
 import {
     List,
     ListItem,
@@ -97,6 +98,21 @@ const Links = () => {
                         />
                     </ListItemIcon>
                     <ListItemText primary="Management 4.0" />
+                </ListItem>
+            </Tooltip>
+            <Tooltip title="Planification" placement="right">
+                <ListItem component={Link} to="/planification">
+                    <ListItemIcon>
+                        <img
+                            src={planning}
+                            alt="planification"
+                            style={{
+                                width: '35px',
+                                height: 'auto',
+                            }}
+                        />
+                    </ListItemIcon>
+                    <ListItemText primary="Planification" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Se déconnecter" placement="right">

@@ -43,6 +43,7 @@ th {
 thead,
 th {
     position: sticky;
+    font-size: 12px;
     top: 0;
 }
 .date {

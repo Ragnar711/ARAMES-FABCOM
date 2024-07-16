@@ -20,14 +20,10 @@ export const getTitle = (pathname) => {
             return 'Historique'
         case '/management':
             return 'Management 4.0'
-        case '/Planification':
+        case '/planification':
             return 'Planification'
         case '/Recette':
             return 'Recette'
-        case '/Fmts':
-            return 'Fmts'
-        default:
-            return 'Résultat Ligne'
     }
 }
 
