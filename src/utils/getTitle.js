@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom'
 
 export const getTitle = (pathname) => {
-    const uapRegex = /\/uap\/(UAP-Assemblage|UAP-Plaque|Charge-Finition)\/?/
+    const uapRegex = /\/uap\/(UAP-Extrusion|Unite-Extrusion|Unite-Impression)\/?/
     const machineRegex =
-        /\/machine\/(Ligne-d'assemblage-TBS|Ligne-d'assemblage-1-SOVEMA|Ligne-d'assemblage-2-SOVEMA)\/?/
+        /\/machine\/(Macchi 1|Macchi 2|Varex)\/?/
 
     if (uapRegex.test(pathname)) {
         const section = pathname.match(uapRegex)[1]
@@ -15,7 +15,7 @@ export const getTitle = (pathname) => {
 
     switch (pathname) {
         case '/dashboard':
-            return 'Real Time Usine - FABCOM'
+            return 'Real Time Usine - Comptoir National du Plastique CNP'
         case '/historique':
             return 'Historique'
         case '/management':

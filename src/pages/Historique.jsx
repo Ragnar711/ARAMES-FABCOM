@@ -41,23 +41,23 @@ const columns = [
         dataIndex: 'TRS',
     },
     {
-        title: 'Ref. Plaque',
-        dataIndex: 'Ref. Plaque',
+        title: 'TP',
+        dataIndex: 'TP',
         colSpan: 0,
     },
     {
-        title: 'Cons. Plaque',
-        dataIndex: 'Cons. Plaque',
+        title: 'TQ',
+        dataIndex: 'TQ',
         colSpan: 2,
     },
     {
-        title: 'Ref. Enveloppe',
-        dataIndex: 'Ref. Enveloppe',
+        title: 'TD',
+        dataIndex: 'TD',
         colSpan: 0,
     },
     {
-        title: 'Cons. Enveloppe',
-        dataIndex: 'Cons. Enveloppe',
+        title: 'Tdé',
+        dataIndex: 'Tdé',
         colSpan: 2,
     },
     {
@@ -193,7 +193,7 @@ const Historique = () => {
                             <div className={style.calendar}>
                                 <Suspense fallback={<Loader />}>
                                     <Button
-                                        text="Afficher calendrier"
+                                        text="Calendrier"
                                         style={style}
                                         onClick={() => setClicked(!clicked)}
                                     />
@@ -222,8 +222,7 @@ const Historique = () => {
                         <div className={style.table_title}>
                             <p className={style.title}>
                                 <img alt="icon" src={table} /> Historique des
-                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
-                                xx/xx/xxxx]
+                                résultats - Ligne Macchi 1 
                             </p>
                             <div className={style.recherche}>
                                 <img src={table} alt="excel" />

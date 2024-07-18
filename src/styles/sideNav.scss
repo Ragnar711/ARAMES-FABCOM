@@ -9,7 +9,7 @@
     transition: 0.5s all;
     z-index: 5;
     border-right: 5px solid #ff0;
-    width: 10%;
+    min-width: 5%;
 }
 .sidebar .MuiTypography-root {
     font-size: 0.5rem;
@@ -226,5 +226,5 @@
 }
 .logout {
     color: white !important;
-    margin-top: 9rem !important;
+    margin-top: 150px !important;
 }

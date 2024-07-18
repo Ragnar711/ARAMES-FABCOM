@@ -2,14 +2,24 @@ import style from '../styles/Management.module.css'
 import { Arrets, Dechet, NC, KPIdata } from '../utils/data'
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { mgd } from '../utils/managementData'
-
+import filtre from '../assets/filtre.png'
+import recherche from '../assets/recherche.png'
+import { DatePicker, Space, ConfigProvider, Table } from 'antd'
+import Loader from '../components/Loader'
+import { machineData } from '../config/config'
 const ManagementKPI = lazy(() => import('../components/managment/ManagmentKPI'))
 const ManagementData = lazy(() =>
     import('../components/managment/ManagmentData')
 )
+const Button = lazy(() => import('../components/historique/Button'))
+const users = ['user1', 'user2', 'user3', 'user4']
+const GenericSelect = lazy(() =>
+    import('../components/historique/GenericSelect')
+)
 const Popup = lazy(() => import('../components/managment/Popup'))
-
+const Select = lazy(() => import('../components/historique/Select'))
 const Managment = () => {
+    const [clicked, setClicked] = useState(false)
     // State variables
     const [showModal, setShowModal] = useState(false)
     const [data, setData] = useState({
@@ -154,120 +164,52 @@ const Managment = () => {
                     />
                 </Suspense>
             )}
-            <div className={style.filtre}>
-                <select
-                    className={style.buttonfiltre}
-                    value={process}
-                    onChange={handleProcessChange}
-                >
-                    <option value="" disabled>
-                        Section
-                    </option>
-                    {processOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <select
-                    className={style.buttonfiltre}
-                    value={filters.machine ?? ''}
-                    onChange={(event) => {
-                        const value = event.target.value
-                        if (value) {
-                            changeFilter('machine', value)
-                        }
-                    }}
-                >
-                    <option value="" disabled>
-                        Machine
-                    </option>
-                    {machines.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <button
-                        className={style.buttonSecondFiltre}
-                        onClick={() => {
-                            let date = new Date()
-                            const to = date.toISOString().split('T')[0]
-                            date.setDate(date.getDate() - 1)
-                            const from = date.toISOString().split('T')[0]
-                            setFilters({ ...filters, from, to })
-                        }}
-                    >
-                        J-1
-                    </button>
-                    <button
-                        className={style.buttonSecondFiltre}
-                        onClick={() => {
-                            let date = new Date()
-                            const to = date.toISOString().split('T')[0]
-                            date.setDate(date.getDate() - 7)
-                            const from = date.toISOString().split('T')[0]
-                            setFilters({ ...filters, from, to })
-                        }}
-                    >
-                        W-1
-                    </button>
-                    <button
-                        className={style.buttonSecondFiltre}
-                        onClick={() => {
-                            let date = new Date()
-                            const to = date.toISOString().split('T')[0]
-                            date.setMonth(date.getMonth() - 1)
-                            const from = date.toISOString().split('T')[0]
-                            setFilters({ ...filters, from, to })
-                            changeFilter()
-                        }}
-                    >
-                        M-1
-                    </button>
-
-                    <input
-                        id="startDateInput"
-                        className={style.date}
-                        type="date"
-                        value={filters.from}
-                        onChange={(event) =>
-                            changeFilter('from', event.target.value)
-                        }
-                    />
-                    <span style={{ fontSize: '14px', color: 'black' }}>à</span>
-                    <input
-                        id="endDateInput"
-                        className={style.date}
-                        type="date"
-                        value={filters.to}
-                        onChange={(event) =>
-                            changeFilter('to', event.target.value)
-                        }
-                    />
+            <div className={style.filters}>
+                <p className={style.title}>
+                    <img alt="icon" src={filtre} /> Filtre de recherche
+                </p>
+                <div className={style.content}>
+                    <div className={style.select}>
+                        <div className={style.div1}>
+                            <Suspense fallback={<Loader />}>
+                                <Select style={style} data={machineData} />
+                            </Suspense>
+                        </div>
+                     
+                    
+                    </div>
+                    <div className={style.date}>
+                        <Suspense fallback={<Loader />}>
+                            <Button text="Afficher J-1" style={style} />
+                            <Button text="Afficher W-1" style={style} />
+                            <Button text="Afficher M-1" style={style} />
+                        </Suspense>
+                        <div className={style.calendar}>
+                            <Suspense fallback={<Loader />}>
+                                <Button
+                                    text="Calendrier"
+                                    style={style}
+                                    onClick={() => setClicked(!clicked)}
+                                />
+                            </Suspense>
+                            <div
+                                style={{
+                                    display: clicked ? 'block' : 'none',
+                                    width: 'max-content',
+                                }}
+                            >
+                                <Space direction="horizontal">
+                                    <DatePicker placeholder="De: xx/xx/xxxx" />
+                                    <DatePicker placeholder="À : xx/xx/xxxx" />
+                                </Space>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.recherche}>
+                        <img src={recherche} alt="recherche" />
+                        <button>Recherche</button>
+                    </div>
                 </div>
-                <select
-                    id={style.bTelecharger}
-                    style={{
-                        position: 'relative',
-                        width: '80px',
-                        left: '35%',
-                        backgroundColor: 'green',
-                        border: 'none',
-                    }}
-                    className={style.buttonSecondFiltre}
-                    onChange={handleSelect}
-                    value=""
-                >
-                    <option value="" disabled>
-                        Exporter
-                    </option>
-                    <option value="csv">Excel</option>
-                    <option disabled value="pdf">
-                        PDF
-                    </option>
-                </select>
             </div>
             <div id="pdf">
                 <Suspense fallback={<div>Loading...</div>}>

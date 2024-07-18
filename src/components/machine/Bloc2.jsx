@@ -114,39 +114,32 @@ const Bloc2 = ({ style }) => {
                     <Suspense fallback={<Loader />}>
                         <Card
                             style={style}
-                            index={1}
-                            name="Enveloppeuse"
-                            param1="Qté piles"
-                            value1={35}
-                            param2="Plaque NC"
+                            index="DR"
+                            name="Débit réel instantannée"
                             value2={5}
+                            param2="Kg/min"
+                          
                         />
                         <Card
                             style={style}
-                            index={2}
-                            name="COS"
-                            param1="Qté"
+                            index="VT"
+                            name="Vitesse de tirage instantannée"
+                            param1="Kg"
                             value1={35}
-                            param2="Qté NC"
-                            value2={5}
                         />
                         <Card
                             style={style}
-                            index={3}
-                            name="Soudure des connexions"
-                            param1="Qté"
+                            index="PM"
+                            name="Poids au métre instantannée"
+                            param1="m/min"
                             value1={35}
-                            param2="Qté NC"
-                            value2={5}
                         />
                         <Card
                             style={style}
-                            index={4}
-                            name="Soudure bac / couvercle"
-                            param1="Qté"
+                            index="VE"
+                            name="Vitesse d'extrusion instantannée"
+                            param1="Tr/min"
                             value1={35}
-                            param2="Qté NC"
-                            value2={5}
                         />
                     </Suspense>
                 </div>

@@ -1,5 +1,6 @@
 import iconparam from '../../assets/iconparam.webp'
 import { lazy, Suspense } from 'react'
+import macchi from "../../assets/macchi1.png"
 import Loader from '../Loader'
 
 const Gauge = lazy(() => import('./Gauge'))
@@ -36,14 +37,7 @@ const Bloc1 = ({ style }) => {
                         />
                     </Suspense>
                     <div className={style.verticalLine}></div>
-                    <Suspense fallback={<Loader />}>
-                        <Gauge
-                            value={30}
-                            kpi="tr"
-                            style={style}
-                            className={['value2', 'name2']}
-                        />
-                    </Suspense>
+                   <img src={macchi} className={style.macchi} />
                 </div>
                 <div className={style.smallGauges}>
                     <Suspense fallback={<Loader />}>

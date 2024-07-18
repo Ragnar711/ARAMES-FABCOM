@@ -41,7 +41,7 @@ const Links = () => {
                 </ListItem>
             </Tooltip>
             <Tooltip title="UAP" placement="right">
-                <ListItem component={Link} to="/uap/UAP-Assemblage">
+                <ListItem component={Link} to="/uap/UAP-Extrusion">
                     <ListItemIcon>
                         <img
                             src={roue}
@@ -56,7 +56,7 @@ const Links = () => {
                 </ListItem>
             </Tooltip>
             <Tooltip title="Machine" placement="right">
-                <ListItem component={Link} to="/machine/Ligne-d'assemblage-TBS">
+                <ListItem component={Link} to="/machine/Macchi-1">
                     <ListItemIcon>
                         <img
                             src={roues}

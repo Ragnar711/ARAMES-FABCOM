@@ -23,7 +23,7 @@ function App() {
     }
     return (
         <div>
-            <h3 id={style.title}>Planification de production</h3>
+            {/* <h3 id={style.title}>Planification de production</h3>
             {divs.map((div) => (
                 <MyDiv
                     key={div.id}
@@ -39,7 +39,7 @@ function App() {
                     -
                 </button>
             )}
-            <MyTable data={tableData} />
+            <MyTable data={tableData} /> */}
         </div>
     )
 }
@@ -51,7 +51,7 @@ function MyDiv({ className }) {
     }
     return (
         <div className={className} id={style.divOF}>
-            <select
+            {/* <select
                 className={style.buttonfiltre}
                 value={selectValue}
                 onChange={handleSelectChange}
@@ -79,7 +79,7 @@ function MyDiv({ className }) {
             <select className={style.date}>
                 <option>Urgent</option>
                 <option>Non-Urgent</option>
-            </select>
+            </select> */}
         </div>
     )
 }

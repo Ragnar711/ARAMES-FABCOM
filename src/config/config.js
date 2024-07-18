@@ -1,29 +1,29 @@
-import assemblage from '../assets/assemblage.png'
-import plaque from '../assets/plaque.png'
-import charge from '../assets/charge.png'
+import extrusion from '../assets/extrusion.png'
+import miraflex from '../assets/miraflex.png'
+import confection from '../assets/confection.png'
 import mach from '../assets/mach.png'
 
 export const machineData = {
-    'UAP-Assemblage': {
+    'UAP-Extrusion': {
         status: true,
-        image: assemblage,
-        section: 'UAP-Assemblage',
+        image: extrusion,
+        section: 'Unité-Extrusion',
         machines: [
-            { machine: "Ligne-d'assemblage-TBS", image: mach },
-            { machine: "Ligne-d'assemblage-1-SOVEMA", image: mach },
-            { machine: "Ligne-d'assemblage-2-SOVEMA", image: mach },
+            { machine: "Macchi 1", image: mach },
+            { machine: "Macchi 2", image: mach },
+            { machine: "Varex", image: mach },
         ],
     },
-    'UAP-Plaque': {
+    'Unité-Impression': {
         status: false,
-        image: plaque,
-        section: 'UAP-Plaque',
+        image: miraflex ,
+        section: 'Unité-Impression',
         machines: [],
     },
-    'Charge-Finition': {
+    'Unité-Confection': {
         status: false,
-        image: charge,
-        section: 'Charge-Finition',
+        image: confection,
+        section: 'Unité-Confection',
         machines: [],
     },
 }

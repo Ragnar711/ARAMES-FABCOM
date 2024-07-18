@@ -46,7 +46,7 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
     return (
         <div className={style.machine}>
             <button className={style.state_btn}>
-                <span>Marche</span>
+                <span>  Marche</span>
             </button>
             <Suspense fallback={<Loader />}>
                 <Bloc1

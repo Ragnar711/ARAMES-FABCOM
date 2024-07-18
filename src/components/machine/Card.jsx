@@ -24,36 +24,41 @@ const Card = ({ style, index, name, param1, value1, param2, value2 }) => {
                     <span
                         style={{
                             paddingRight: '5px',
+                            
+                            fontSize: '0.9rem',
                         }}
                     >
-                        {param1}
+                        {value1}
                     </span>
                     <span
                         style={{
                             paddingLeft: '5px',
                             color: '#00b050',
-                            fontSize: '0.9rem',
+                            
+                            fontSize:"0.6rem"
                         }}
                     >
-                        <span className={style.line}>|</span> {value1}
+                        <span className={style.line}></span> {param1}
                     </span>
                 </div>
                 <div className={style.card_text}>
                     <span
                         style={{
                             paddingRight: '5px',
+                            
+                            fontSize: '0.9rem',
                         }}
                     >
-                        {param2}
+                        {value2}
                     </span>
                     <span
                         style={{
                             paddingLeft: '5px',
                             color: '#ff2f2f',
-                            fontSize: '0.9rem',
+                            fontSize:"0.6rem"
                         }}
                     >
-                        <span className={style.line}>|</span> {value2}
+                        <span className={style.line}></span> {param2}
                     </span>
                 </div>
             </div>

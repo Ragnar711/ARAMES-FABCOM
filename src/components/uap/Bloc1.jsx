@@ -14,7 +14,7 @@ const Bloc1 = ({ style, sequenceNumber, machineData }) => {
         <div className={style.bloc1}>
             <h2
                 className={style.title_machine}
-            >{`Assemblage ${sequenceNumber} - ${machine}`}</h2>
+            >{`Extrusion  - ${machine}`}</h2>
             <div className={style.user}>
                 <img className={style.iconUser} src={User} alt="user" />
                 <span className={style.userText}>
