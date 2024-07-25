@@ -1,74 +1,63 @@
 import style from '../styles/Machine.module.css'
-import { machineData } from '../config/config'
+import { useState, useEffect } from 'react'
+import alerte from '../assets/arret.png'
+// const data1 = [
+//     {
+//         name: 'Défaut 7',
+//         uv: 35,
+//     },
+//     {
+//         name: 'Défaut 6',
+//         uv: 27,
+//     },
+//     {
+//         name: 'Défaut 3',
+//         uv: 20,
+//     },
+//     {
+//         name: 'Défaut 2',
+//         uv: 15,
+//     },
+//     {
+//         name: 'Défaut 5',
+//         uv: 13,
+//     },
+//     {
+//         name: 'Défaut 8',
+//         uv: 11,
+//     },
+//     {
+//         name: 'Défaut 1',
+//         uv: 10,
+//     },
+//     {
+//         name: 'Défaut 4',
+//         uv: 7,
+//     },
+// ]
 
-import { lazy, Suspense, useState, useEffect } from 'react'
-import Loader from '../components/Loader'
-
-const Bloc1 = lazy(() => import('../components/machine/Bloc1'))
-const Bloc2 = lazy(() => import('../components/machine/Bloc2'))
-const Yamazumi = lazy(() => import('../components/machine/Yamazumi'))
-const Pareto = lazy(() => import('../components/machine/Pareto'))
-const LineChart = lazy(() => import('../components/machine/LineChart'))
-const Table = lazy(() => import('../components/machine/Table'))
-const Select = lazy(() => import('../components/machine/Select'))
-
-const data1 = [
-    {
-        name: 'Défaut 7',
-        uv: 35,
-    },
-    {
-        name: 'Défaut 6',
-        uv: 27,
-    },
-    {
-        name: 'Défaut 3',
-        uv: 20,
-    },
-    {
-        name: 'Défaut 2',
-        uv: 15,
-    },
-    {
-        name: 'Défaut 5',
-        uv: 13,
-    },
-    {
-        name: 'Défaut 8',
-        uv: 11,
-    },
-    {
-        name: 'Défaut 1',
-        uv: 10,
-    },
-    {
-        name: 'Défaut 4',
-        uv: 7,
-    },
-]
-
-const data2 = [
-    {
-        name: 'Arrêt 4',
-        uv: 180,
-    },
-    {
-        name: 'Arrêt 3',
-        uv: 120,
-    },
-    {
-        name: 'Arrêt 2',
-        uv: 85,
-    },
-    {
-        name: 'Arrêt 5',
-        uv: 45,
-    },
-    {
-        name: 'Arrêt 1',
-        uv: 15,
-    },
-]
+// const data2 = [
+//     {
+//         name: 'Arrêt 4',
+//         uv: 180,
+//     },
+//     {
+//         name: 'Arrêt 3',
+//         uv: 120,
+//     },
+//     {
+//         name: 'Arrêt 2',
+//         uv: 85,
+//     },
+//     {
+//         name: 'Arrêt 5',
+//         uv: 45,
+//     },
+//     {
+//         name: 'Arrêt 1',
+//         uv: 15,
+//     },
+// ]
 
 function Machine() {
     const [time, setTime] = useState(new Date().toLocaleString())
@@ -82,48 +71,54 @@ function Machine() {
     }, [])
     return (
         <>
-            <div className={style.top}>
-                <Suspense fallback={<Loader />}>
-                    <Select data={machineData} style={style} />
-                </Suspense>
-                <p className={style.time}>{time}</p>
-            </div>
-            <div className={style.container}>
-                <Suspense fallback={<Loader />}>
-                    <Bloc1 style={style} />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Bloc2 style={style} />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Yamazumi style={style} />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Pareto
-                        style={style}
-                        title="Pareto des Défauts qualité"
-                        subtitle="Evolution des défauts qualité de la ligne"
-                        data={data1}
-                        color="#ffd34c"
-                        tickFormatter={false}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Pareto
-                        style={style}
-                        title="Pareto des Arrêts"
-                        subtitle="Evolution des arrêts de la ligne depuis 24h"
-                        data={data2}
-                        color="#ff0000"
-                        tickFormatter={true}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <LineChart style={style} />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Table style={style} />
-                </Suspense>
+            <div className={style.Content}>
+                <div className={style.ColumnDiv}>
+                    <div className={style.arret}>
+                        <img src={alerte} alt="" />
+                        <div className={style.firstArret}>
+                            <span>Déclaration arret</span>
+                        </div>
+                        <div className={style.column}>
+                            <span className={style.blackSpan}>Date et heure</span>
+                            <div>15/02/2024 02:30:15</div>
+                        </div>
+
+                        <div className={style.column} >
+                            <span className={style.blackSpan}>Durée</span>
+                            <span>00:12:15</span>
+                        </div>
+                    </div>
+                    <div className={style.arret}>
+                    <img src={alerte} alt="" />
+                        <div>
+                            <span className={style.firstArret}>Déclaration arret</span>
+                        </div>
+                        <div className={style.column}>
+                            <span className={style.blackSpan}>Date et heure</span>
+                            <div>15/02/2024 02:30:15</div>
+                        </div>
+
+                        <div className={style.column} >
+                            <span className={style.blackSpan}>Durée</span>
+                            <span>00:12:15</span>
+                        </div>
+                    </div>
+                    <div className={style.arret}>
+                    <img src={alerte} alt="" />
+                        <div>
+                            <span className={style.firstArret}>Déclaration arret</span>
+                        </div>
+                        <div className={style.column}>
+                            <span className={style.blackSpan}>Date et heure</span>
+                            <div>15/02/2024 02:30:15</div>
+                        </div>
+
+                        <div className={style.column} >
+                            <span className={style.blackSpan}>Durée</span>
+                            <span>00:12:15</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

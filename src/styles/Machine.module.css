@@ -324,3 +324,55 @@
     justify-content: flex-end;
     padding: 0.2rem;
 }
+
+/*  */
+.Content {
+    width: 100%;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    background: #ececec;
+    border-radius: 30px;
+    width: 85%;
+    margin: auto;
+    padding: 0.5rem;
+}
+.Content > div{
+    display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.arret {
+    background: white;
+    border-radius: 30px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 0.2rem;
+    margin-bottom: 0.3rem;
+    color:red;
+    position:relative;
+}
+.blackSpan{
+    color:black;
+}
+.arret img{
+    width:5%;
+    position:absolute;
+    left:0;
+    top:0;
+
+}
+
+.firstArret{
+    margin-left:2rem;
+}

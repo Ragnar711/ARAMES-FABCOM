@@ -12,6 +12,7 @@
     background-color: var(--bg2-tr);
     height: 20px;
 }
+
 .Content {
     width: 100%;
     overflow: auto;
