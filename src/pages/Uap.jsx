@@ -3,6 +3,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import Loader from '../components/Loader'
 
 import style from '../styles/Section.module.css'
+import mach from '../assets/mach.png'
 
 const DivsSection = lazy(() => import('../components/uap/DivsSection'))
 const Select = lazy(() => import('../components/uap/Select'))
@@ -22,21 +23,55 @@ const Uap = () => {
 
     return (
         <>
-            <div className={style.top}>
-                <Suspense fallback={<Loader />}>
-                    <Select data={machineData} style={style} />
-                </Suspense>
-                <p className={style.time}>{time}</p>
-            </div>
-            {machineData[section].machines.map((machine, index) => (
-                <Suspense fallback={<Loader />} key={machine}>
-                    <DivsSection
-                        machineData={machine}
-                        sequenceNumber={index + 1}
-                        style={style}
-                    />
-                </Suspense>
-            ))}
+          <div className={style.Content}>
+                <div className={style.OFdeclaration}>
+                  <div className={style.rowOF}>
+                    <div >
+                    <h4>N°OF</h4>
+                    <span className={style.declaration}>Numéro de l'order de fabrication</span>
+                    </div>
+                    <div>
+                        <input type="text" />
+                    </div>
+                    
+                  </div>
+                  <div className={style.rowOF}>
+                    <div >
+                    <h4>Réf Art</h4>
+                    <span className={style.declaration}>Référence de l'article à réaliser</span>
+                    </div>
+                    <div>
+                        <input type="text" />
+                    </div>
+                    
+                  </div>
+                  <div className={style.rowOF}>
+                    <div >
+                    <h4>Qté Obj</h4>
+                    <span className={style.declaration}>Quantité objectif à réaliser</span>
+                    </div>
+                    <div>
+                        <input type="text" />
+                    </div>
+                    
+                  </div>
+                  <div className={style.rowOF}>
+                    <div >
+                    <h4>Cad Thé </h4>
+                    <span className={style.declaration}>Cadence théorique de la ligne</span>
+                    </div>
+                    <div>
+                        <input type="text" />
+                    </div>
+                    
+                  </div>
+                  <div className={style.machine}>
+                    
+                  <img src={mach}alt="" />
+                  </div>
+                </div>
+
+          </div>
         </>
     )
 }

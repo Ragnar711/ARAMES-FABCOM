@@ -12,20 +12,15 @@
     background-color: var(--bg2-tr);
     height: 20px;
 }
-.Container {
+.Content {
     width: 100%;
     overflow: auto;
     scroll-snap-type: x mandatory;
-}
-.Container > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: -moz-fit-content;
-    width: fit-content;
-}
-.Container > div > div {
-    scroll-snap-align: center;
+    background: #ececec;
+    border-radius: 30px;
+    width: 85%;
+    margin: auto;
+    padding: 0.5rem;
 }
 
 #avanceOF {
@@ -75,8 +70,16 @@
 
 .value {
     font-weight: bold;
-    color: #2ab023;
-    font-size: 11px;
+    color: black;
+    font-size: 0.7rem;
+}
+.bigBloc {
+    border-bottom: 2px solid gray;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #chef > span {
@@ -320,12 +323,182 @@ th {
     height: 50%;
     box-shadow: 1px 2px 1px gray;
 }
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(50px, auto);
+    margin-left: 10%;
+}
+
+.two {
+    grid-column: 2;
+    grid-row: 2;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #d9d9d9;
+    position: relative;
+    box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
+    height: 70px;
+  padding: 0.3rem;
+}
+.icons {
+    width: 5%;
+    height: 5%;
+}
+.trsRow {
+    display: flex;
+    margin: 1rem;
+}
+.trs {
+    display: flex;
+    flex-direction: row;
+    background-color: #5a5a5a;
+    border-radius: 50px;
+    padding: 20px;
+    margin-left: 0.5rem;
+    width: 80%;
+    box-shadow: 2px 4px 3px 0px #484646 inset;
+    color: #d9d9d9;
+    align-items: center;
+    justify-content: space-between;
+}
+.trs2 {
+    display: flex;
+    flex-direction: row;
+    background-color: #5a5a5a;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 0.5rem;
+    width: 28%;
+    box-shadow: 2px 4px 3px 0px #484646 inset;
+    color: #d9d9d9;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.kpis {
+    display: flex;
+    width:80%;
+margin-left:7.5%;
+    
+}
+
+.valueTrs {
+    font-size: 4rem;
+    color: #24ED38;
+    font-weight: bold;
+}
+.perc {
+    color: #24ed38;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.spanCard {
+    font-size: 0.5rem;
+}
+.three {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #d9d9d9;
+    position: relative;
+    box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
+    padding-top: 0.8rem;
+}
+.four {
+    grid-column: 3;
+    grid-row: 2;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #d9d9d9;
+    position: relative;
+    box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
+    height: 70px;
+    padding: 0.3rem;
+}
+.five {
+    grid-column: 2;
+    grid-row: 3;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #d9d9d9;
+    position: relative;
+    box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
+    height: 70px;
+    padding: 0.3rem;
+}
+.six {
+    grid-column: 3;
+    grid-row: 3;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background: #d9d9d9;
+    position: relative;
+    box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
+    height: 70px;
+    padding: 0.3rem;
+}
+
 .labelInput {
     display: flex;
     justify-content: space-between;
     width: 71%;
     align-items: center;
 }
+/*  */
+.kpiContent {
+    height: 50%;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+
+.kpi {
+    font-size: 0.4rem;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.subKpi {
+    font-size: 0.3rem;
+    padding: 0.2rem 0.2rem 0 0;
+    margin: 0;
+}
+
+.kpiValue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.35rem;
+    font-weight: bold;
+    padding: 0.15rem 0.2rem;
+    height: 100%;
+    width: 25%;
+    border-radius: 5px;
+}
+/*  */
 #BtnAjouter {
     width: 18%;
     margin-left: 42%;
@@ -336,6 +509,20 @@ th {
     border: none;
     padding: 12px;
     cursor: pointer;
+}
+
+.avOf {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+.avOf > span {
+    font-size: 0.5rem;
+    margin: 0;
+}
+.avOf > h3 {
+    font-size: 0.7rem;
+    font-weight: bold;
 }
 #btnClose {
     background-color: transparent;

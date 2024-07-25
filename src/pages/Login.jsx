@@ -40,7 +40,7 @@ const Login = () => {
                 <div>
                     
                          <img src={logo} alt="" className={style.logo2} />
-                    <p className={style.pBinvenue}>Bienvenu dans l'ère digital 4.0 avec ARAMES 
+                    <p className={style.pBienvenue}>Bienvenue dans l'ère digital 4.0 avec ARAMES 
                     </p>
                     
                     <form
@@ -65,7 +65,7 @@ const Login = () => {
                                 />
                             </div>
                             <div className={style['input-div']}>
-                            <label> Passe Word</label>
+                            <label> PassWord</label>
                                 <input
                                     type="password"
                                     placeholder="Enter Mot de passe"

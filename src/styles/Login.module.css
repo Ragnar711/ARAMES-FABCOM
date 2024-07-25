@@ -101,9 +101,10 @@ label {
     color: gray;
     font-weight: 1000;
 }
-.pBinevenue {
+.pBienvenue {
     text-align: center;
     margin: 1rem;
+    font-size: 0.5rem;
 }
 #form svg {
     color: white;

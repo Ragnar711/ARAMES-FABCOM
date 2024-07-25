@@ -324,3 +324,51 @@
     justify-content: flex-end;
     padding: 0.2rem;
 }
+/* opFabcom */
+.Content {
+    width: 100%;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    background: #ececec;
+    border-radius: 30px;
+    width: 85%;
+    margin: auto;
+    padding: 0.5rem;
+    
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    justify-content:center;
+    align-items:center;
+
+}
+.declaration{
+    font-size:14px;
+}
+h4{
+    margin:0;
+    font-size:18px;
+    margin-top:1rem
+}
+.rowOF{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+}
+.OFdeclaration{
+    width:100%;
+}
+.machine{
+    display:flex;
+    justify-content:center;
+    border:none;
+}
+input{
+    border: 2px solid rgba(147, 145, 145, 0.25);
+    box-shadow: 2px 2px 22px 1px #d5d5d5;
+    background: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    width: 60%;
+}
