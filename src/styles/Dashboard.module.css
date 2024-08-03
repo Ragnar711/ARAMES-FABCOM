@@ -64,7 +64,19 @@
     justify-content: space-between;
     font-size: clamp(0.25rem, 1vw + 0.3rem, 1rem);
 }
-
+h2{
+    margin:0;
+}
+.iconsOf{
+    width:8%
+}
+.pTrs{
+    font-size: 0.7rem;
+    margin:0;
+}
+p{
+    font-size: 0.4rem;
+}
 .object {
     color: var(--bg-color);
 }
@@ -73,6 +85,7 @@
     font-weight: bold;
     color: black;
     font-size: 0.7rem;
+    margin-bottom: 0.7rem;
 }
 .bigBloc {
     border-bottom: 2px solid gray;
@@ -331,6 +344,9 @@ th {
     grid-auto-rows: minmax(50px, auto);
     margin-left: 10%;
 }
+.wrapper > div {
+    padding: 20px;
+}
 
 .two {
     grid-column: 2;
@@ -345,7 +361,7 @@ th {
     position: relative;
     box-shadow: 2px 4px 3px 0px #b5b5b5 inset;
     height: 70px;
-  padding: 0.3rem;
+    padding: 0.3rem;
 }
 .icons {
     width: 5%;
@@ -384,14 +400,13 @@ th {
 }
 .kpis {
     display: flex;
-    width:80%;
-margin-left:7.5%;
-    
+    width: 80%;
+    margin-left: 7.5%;
 }
 
 .valueTrs {
     font-size: 4rem;
-    color: #24ED38;
+    color: #24ed38;
     font-weight: bold;
 }
 .perc {
@@ -511,19 +526,25 @@ margin-left:7.5%;
     padding: 12px;
     cursor: pointer;
 }
-
+.divOfSpan{
+    display:flex;
+    justify-content:space-between
+}
 .avOf {
     display: flex;
     justify-content: space-between;
     width: 50%;
+    align-items: center;
 }
-.avOf > span {
+.avOf > span {  
     font-size: 0.5rem;
     margin: 0;
+    font-weight: bold;
 }
 .avOf > h3 {
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: bold;
+    margin: 0;
 }
 #btnClose {
     background-color: transparent;

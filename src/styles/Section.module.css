@@ -28,7 +28,6 @@
     justify-content: space-around;
     margin-bottom: 1rem;
     height: var(--section-height);
-    overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
 }

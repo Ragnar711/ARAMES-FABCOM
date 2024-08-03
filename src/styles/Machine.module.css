@@ -328,13 +328,12 @@
 /*  */
 .Content {
     width: 100%;
-    overflow: auto;
-    scroll-snap-type: x mandatory;
     background: #ececec;
     border-radius: 30px;
     width: 85%;
     margin: auto;
     padding: 0.5rem;
+    height:85vh;
 }
 .Content > div{
     display: flex;
@@ -349,24 +348,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width:100%;
+    justify-content:space-between;
 }
 .arret {
     background: white;
     border-radius: 30px;
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     padding: 0.2rem;
-    margin-bottom: 0.3rem;
     color:red;
     position:relative;
+    margin-top:0.5rem
 }
 .blackSpan{
     color:black;
 }
-.arret img{
-    width:5%;
+.alerte{
+    width:39px;
     position:absolute;
     left:0;
     top:0;
@@ -375,4 +376,63 @@
 
 .firstArret{
     margin-left:2rem;
+    width:100%;
+}
+.fleche{
+  width:4.5%;
+
+  position: absolute;
+  cursor:pointer;
+  right:0
+}
+.columnDiv{
+    width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.causeArret{
+    width:60%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+    bottom:2.6vh;
+
+
+}
+.equipement{
+   margin-top:0.3rem;
+    background:white;
+    margin-left:0.5rem;
+    padding:10px;
+    width:50%;
+    display:flex;
+    align-items :center;
+    justify-content:center;
+    flex-direction:column
+}
+.ButtonCause{
+    
+    color: black;
+    background: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 0.3rem;
+    width: 70%;
+}
+.ArretContent{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.Valider{
+    background:red;
+    margin:0
 }

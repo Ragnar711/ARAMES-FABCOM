@@ -4,6 +4,7 @@ import Loader from '../components/Loader'
 import style from '../styles/Dashboard.module.css'
 import { Progress } from 'antd'
 import iconKpi from '../assets/iconKpi.webp'
+import iconOf from '../assets/yamazumi.png'
 
 const DivsUsine = lazy(() => import('../components/dashboard/DivsUsine'))
 
@@ -34,7 +35,9 @@ const Dashboard = () => {
     return (
         <>
             <div className={style.Content}>
+              
                 <div className={style.avOf}>
+                  <img src={iconOf} alt='of'  className={style.iconsOf}/>
                     <span>Avancement OF</span>
                     <h3>60%</h3>
                 </div>
@@ -91,7 +94,7 @@ const Dashboard = () => {
                             <div className={style.trs}>
                                 <div>
                                     <h2>TRS</h2>
-                                    <p>Taux de rendement synthétique </p>
+                                    <p className={style.pTrs}>Taux de rendement synthétique </p>
                                 </div>
                                 <div className={style.perc} ><span className={style.valueTrs}>98</span>%</div>
                             </div>

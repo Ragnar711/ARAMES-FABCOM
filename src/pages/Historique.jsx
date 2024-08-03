@@ -158,78 +158,10 @@ const Historique = () => {
             }}
         >
             <div className={style.container}>
-                <div className={style.filters}>
-                    <p className={style.title}>
-                        <img alt="icon" src={filtre} /> Filtre de recherche
-                    </p>
-                    <div className={style.content}>
-                        <div className={style.select}>
-                            <div className={style.div1}>
-                                <Suspense fallback={<Loader />}>
-                                    <Select style={style} data={machineData} />
-                                </Suspense>
-                            </div>
-                            <div className={style.div2}>
-                                <GenericSelect
-                                    title="Sélectionner Opérateur"
-                                    data={users}
-                                    style={style}
-                                />
-                            </div>
-                            <div className={style.div3}>
-                                <GenericSelect
-                                    title="Entre N°OF"
-                                    data={users}
-                                    style={style}
-                                />
-                            </div>
-                        </div>
-                        <div className={style.date}>
-                            <Suspense fallback={<Loader />}>
-                                <Button text="Afficher J-1" style={style} />
-                                <Button text="Afficher W-1" style={style} />
-                                <Button text="Afficher M-1" style={style} />
-                            </Suspense>
-                            <div className={style.calendar}>
-                                <Suspense fallback={<Loader />}>
-                                    <Button
-                                        text="Afficher calendrier"
-                                        style={style}
-                                        onClick={() => setClicked(!clicked)}
-                                    />
-                                </Suspense>
-                                <div
-                                    style={{
-                                        display: clicked ? 'block' : 'none',
-                                        width: 'max-content',
-                                    }}
-                                >
-                                    <Space direction="horizontal">
-                                        <DatePicker placeholder="De: xx/xx/xxxx" />
-                                        <DatePicker placeholder="À : xx/xx/xxxx" />
-                                    </Space>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.recherche}>
-                            <img src={recherche} alt="recherche" />
-                            <button>Recherche</button>
-                        </div>
-                    </div>
-                </div>
+               
                 <div className={style.table}>
                     <div className={style.table}>
-                        <div className={style.table_title}>
-                            <p className={style.title}>
-                                <img alt="icon" src={table} /> Historique des
-                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
-                                xx/xx/xxxx]
-                            </p>
-                            <div className={style.recherche}>
-                                <img src={table} alt="excel" />
-                                <button>Exporter</button>
-                            </div>
-                        </div>
+                      
                         <Table
                             columns={columns}
                             dataSource={data}
