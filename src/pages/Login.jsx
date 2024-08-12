@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAlert } from 'react-alert'
 import { AiOutlineUser } from 'react-icons/ai'
 import { MdMail } from 'react-icons/md'
 import { FaLock } from 'react-icons/fa'
 import style from '../styles/Login.module.css'
+import axios from 'redaxios'
 
 const Login = () => {
     const [matricule, setMatricule] = useState('')
     const [password, setPassword] = useState('')
-    const alert = useAlert()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -20,11 +19,20 @@ const Login = () => {
     }, [navigate])
 
     const connect = async () => {
-        if (matricule === '9898' && password === '1234') {
-            sessionStorage.setItem('user', 'user')
-            navigate('/dashboard')
-        } else {
-            alert.error('Matricule ou mot de passe est incorrecte')
+        try {
+            const res = await axios.post(
+                'http://localhost:3000/api/v1/signin',
+                {
+                    matricule,
+                    motDePasse: password,
+                }
+            )
+            if (res.data) {
+                sessionStorage.setItem('user', JSON.stringify(res.data))
+                navigate('/dashboard')
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
     return (
