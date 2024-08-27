@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AiOutlineUser } from 'react-icons/ai'
-import { MdMail } from 'react-icons/md'
-import { FaLock } from 'react-icons/fa'
 import style from '../styles/Login.module.css'
 import axios from 'redaxios'
+import back from '../assets/back.png'
+import logo from '../assets/logo2.png'
 
 const Login = () => {
     const [matricule, setMatricule] = useState('')
@@ -18,7 +17,7 @@ const Login = () => {
         }
     }, [navigate])
 
-    const connect = async () => {
+    const handleLogin = async () => {
         try {
             const res = await axios.post(
                 'http://localhost:3000/api/v1/signin',
@@ -37,32 +36,29 @@ const Login = () => {
     }
     return (
         <main id={style.main}>
+            <div className={style.imgBack}>
+                <img src={back} alt="" />
+            </div>
             <section id={style.section} className="blocLogin">
                 <div>
+                    <img src={logo} alt="" className={style.logo2} />
+                    <p className={style.pBinevenue}>
+                        Bienvenue dans l'ère digital 4.0 avec ARAMES
+                    </p>
+
                     <form
                         id={style.form}
                         onSubmit={(e) => {
                             e.preventDefault()
-                            connect()
+                            handleLogin()
                         }}
                     >
-                        <AiOutlineUser
-                            color="white"
-                            size={100}
-                            id={style['user-icon']}
-                        />
-                        <h1>Welcome to ARAMES</h1>
                         <div>
                             <div className={style['input-div']}>
-                                <MdMail
-                                    value={{
-                                        backgoundColor: 'blue',
-                                        size: '50px',
-                                    }}
-                                />
+                                <label> Login</label>
                                 <input
                                     type="text"
-                                    placeholder="Matricule"
+                                    placeholder="Enter Login"
                                     value={matricule}
                                     onChange={(e) =>
                                         setMatricule(e.target.value)
@@ -70,17 +66,17 @@ const Login = () => {
                                 />
                             </div>
                             <div className={style['input-div']}>
-                                <FaLock />
+                                <label> Password</label>
                                 <input
                                     type="password"
-                                    placeholder="Mot de passe"
+                                    placeholder="Enter Mot de passe"
                                     value={password}
                                     onChange={(e) =>
                                         setPassword(e.target.value)
                                     }
                                 />
                             </div>
-                            <button>LOGIN</button>
+                            <button>Accéder</button>
                         </div>
                     </form>
                 </div>
