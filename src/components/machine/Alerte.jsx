@@ -59,7 +59,9 @@ const Alerte = () => {
       <div className={style.arret}>
         <img src={alerte} alt="" className={style.alerte} />
         <div className={style.firstArret}>
-          <span>Déclaration arret</span>
+          <span>Déclaration arrêt
+            
+          </span>
         </div>
         <div className={style.column}>
           <span className={style.blackSpan}>Date et heure</span>

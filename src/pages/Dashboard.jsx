@@ -94,7 +94,7 @@ const Dashboard = () => {
                             <div className={style.trs}>
                                 <div>
                                     <h2>TRS</h2>
-                                    <p className={style.pTrs}>Taux de rendement synthétique </p>
+                                    <p className={style.pTrs}>Taux de Rendement Synthétique </p>
                                 </div>
                                 <div className={style.perc} ><span className={style.valueTrs}>98</span>%</div>
                             </div>
@@ -104,7 +104,7 @@ const Dashboard = () => {
         <div className={style.trs2}>
           <div>
             <h2>TP</h2>
-            <p>Taux de performance</p>
+            <p>Taux de Performance</p>
           </div>
           <div className={style.perc}>
             <span 
@@ -118,7 +118,7 @@ const Dashboard = () => {
         <div className={style.trs2}>
           <div>
             <h2>TQ</h2>
-            <p>Taux de qualité</p>
+            <p>Taux de Qualité</p>
           </div>
           <div className={style.perc}>
             <span 

@@ -1,9 +1,11 @@
-import home from '../assets/home.png'
-import roue from '../assets/roue.png'
-import roues from '../assets/roues.png'
-import historique from '../assets/his.png'
-import rapport from '../assets/rapport.png'
-import planning from '../assets/iconPl.png'
+import home from '../assets/horloge.png'
+import roue from '../assets/of.png'
+import roues from '../assets/alerte.png'
+import historique from '../assets/NC.png'
+import rapport from '../assets/histo.png'
+import planning from '../assets/MI.png'
+
+
 import {
     List,
     ListItem,
@@ -37,7 +39,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Usine" />
+                    <ListItemText primary="Tableau de bord" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="UAP" placement="right">
@@ -52,7 +54,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="UAP" />
+                    <ListItemText primary="Lancement OF" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Machine" placement="right">
@@ -67,7 +69,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Machine" />
+                    <ListItemText primary="Déclaration alerte" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Historique" placement="right">
@@ -82,7 +84,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Historique" />
+                    <ListItemText primary="Déclaration NC" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Management 4.0" placement="right">
@@ -97,7 +99,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Management 4.0" />
+                    <ListItemText primary="Historique" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Planification" placement="right">
@@ -112,7 +114,7 @@ const Links = () => {
                             }}
                         />
                     </ListItemIcon>
-                    <ListItemText primary="Planification" />
+                    <ListItemText primary="Maintenance  1er Niv" />
                 </ListItem>
             </Tooltip>
             <Tooltip title="Se déconnecter" placement="right">

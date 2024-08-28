@@ -128,7 +128,7 @@
     padding: 0;
     margin: 0;
 }
-.sidebar .contentsContainer ul li {
+.sidebar .contentsContainer ul li a{
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -137,6 +137,8 @@
     padding: 0.75rem 0.6rem;
     border-radius: 1rem;
     cursor: pointer;
+    
+    background-color: white !important;
 }
 .sidebar .contentsContainer ul li a {
     text-decoration: none;
@@ -146,6 +148,8 @@
     align-items: center;
     justify-content: space-between;
     margin: 0 0 0 0.5rem;
+    background-color: white !important;
+    
 }
 .sidebar .contentsContainer ul li a:hover {
     color: #404040;

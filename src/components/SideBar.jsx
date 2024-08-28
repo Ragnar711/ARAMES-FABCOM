@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/sideNav.scss'
-import profile from '../assets/profile.png'
+import profile from '../assets/user.png'
 import Loader from './Loader'
 
 const List = lazy(() => import('./Links'))
@@ -43,7 +43,6 @@ const Sidebar = () => {
             >
                 <img src={profile} alt="profile" className="profile" />
                 <div className="profileContents">
-                    <p className="name">Bonjour, Admin 👋</p>
                 </div>
             </div>
             <div
