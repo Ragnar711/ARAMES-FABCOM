@@ -1,7 +1,7 @@
 .container {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr 0.75fr 0.75fr max-content;
+    grid-template-columns: 49% 49%;
+    grid-template-rows: 1fr 0.75fr 0.75fr 1fr;
     row-gap: 2%;
     column-gap: 2%;
 }
@@ -16,7 +16,7 @@
 }
 
 .table {
-    width: 195%;
+    width: 200%;
 }
 
 .title {
