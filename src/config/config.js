@@ -9,9 +9,17 @@ export const machineData = {
         image: assemblage,
         section: 'UAP-Assemblage',
         machines: [
-            { machine: "Ligne-d'assemblage-TBS", image: mach },
-            { machine: "Ligne-d'assemblage-1-SOVEMA", image: mach },
-            { machine: "Ligne-d'assemblage-2-SOVEMA", image: mach },
+            { machine: "Ligne-d'assemblage-TBS", image: mach, value: 'tbs' },
+            {
+                machine: "Ligne-d'assemblage-1-SOVEMA",
+                image: mach,
+                value: 'sovema1',
+            },
+            {
+                machine: "Ligne-d'assemblage-2-SOVEMA",
+                image: mach,
+                value: 'sovema2',
+            },
         ],
     },
     'UAP-Plaque': {

@@ -10,82 +10,7 @@ import {
     Legend,
 } from 'recharts'
 
-const data = [
-    {
-        name: '6h',
-        tde: 5,
-        trs: 75,
-        td: 100,
-        tp: 80,
-        tq: 100,
-    },
-    {
-        name: '7h',
-        tde: 15,
-        trs: 25,
-        td: 70,
-        tp: 70,
-        tq: 55,
-    },
-    {
-        name: '8h',
-        tde: 10,
-        trs: 10,
-        td: 40,
-        tp: 40,
-        tq: 65,
-    },
-    {
-        name: '9h',
-        tde: 5,
-        trs: 40,
-        td: 70,
-        tp: 70,
-        tq: 70,
-    },
-    {
-        name: '10h',
-        tde: 5,
-        trs: 20,
-        td: 100,
-        tp: 50,
-        tq: 40,
-    },
-    {
-        name: '11h',
-        tde: 5,
-        trs: 10,
-        td: 50,
-        tp: 50,
-        tq: 50,
-    },
-    {
-        name: '12h',
-        tde: 10,
-        trs: 65,
-        td: 100,
-        tp: 80,
-        tq: 80,
-    },
-    {
-        name: '13h',
-        tde: 20,
-        trs: 30,
-        td: 90,
-        tp: 85,
-        tq: 40,
-    },
-    {
-        name: '14h',
-        tde: 5,
-        trs: 90,
-        td: 90,
-        tp: 90,
-        tq: 95,
-    },
-]
-
-const LineChart = ({ style }) => {
+const LineChart = ({ style, data }) => {
     return (
         <div className={style.kpiChart}>
             <p className={style.title}>
@@ -109,7 +34,7 @@ const LineChart = ({ style }) => {
                     <ComposedChart width={500} height={300} data={data}>
                         <CartesianGrid strokeDasharray="4 4" />
                         <XAxis
-                            dataKey="name"
+                            dataKey="Date"
                             fontSize={11}
                             tick={{ fill: '#000' }}
                         />
@@ -132,15 +57,15 @@ const LineChart = ({ style }) => {
                             }}
                         />
                         <Bar
-                            dataKey="tde"
+                            dataKey="TDech"
                             fill="#f4b183"
                             barSize={70}
                             yAxisId="left"
-                            name="TDE"
+                            name="TDech"
                         />
                         <Line
                             type="monotone"
-                            dataKey="trs"
+                            dataKey="TRS"
                             stroke="#4673c5"
                             strokeWidth={3}
                             yAxisId="right"
@@ -149,7 +74,7 @@ const LineChart = ({ style }) => {
                         />
                         <Line
                             type="monotone"
-                            dataKey="td"
+                            dataKey="TD"
                             stroke="#6f6f6f"
                             strokeWidth={3}
                             yAxisId="right"
@@ -158,7 +83,7 @@ const LineChart = ({ style }) => {
                         />
                         <Line
                             type="monotone"
-                            dataKey="tp"
+                            dataKey="TP"
                             stroke="#ffc000"
                             strokeWidth={3}
                             yAxisId="left"
@@ -167,7 +92,7 @@ const LineChart = ({ style }) => {
                         />
                         <Line
                             type="monotone"
-                            dataKey="tq"
+                            dataKey="TQ"
                             stroke="#ed7d31"
                             strokeWidth={3}
                             yAxisId="left"
