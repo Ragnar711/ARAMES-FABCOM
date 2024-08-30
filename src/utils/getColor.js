@@ -10,7 +10,7 @@ export const getColor = (data, kpi) => {
         tp: { green: 90, yellow: 80 },
         tq: { green: 90, yellow: 80 },
         td: { green: 75, yellow: 55 },
-        tde: { red: 2 },
+        tdech: { red: 2 },
         tr: { green: 90, yellow: 80 },
     }
     const range = ranges[kpi]
