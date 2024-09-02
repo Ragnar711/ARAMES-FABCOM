@@ -1,4 +1,4 @@
-const Of = ({ title, data, values, style, icon }) => {
+const Of = ({ title, values, style, icon }) => {
     const progress = ((values.QP / values.QO) * 100).toFixed(0) ?? 0
 
     return (

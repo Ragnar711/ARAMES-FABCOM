@@ -140,7 +140,7 @@ function Machine() {
                                 />
                                 <GaugeKpi
                                     value={data?.KPIs?.TDech?.toFixed(0) ?? 0}
-                                    kpi="tde"
+                                    kpi="tdech"
                                     style={style}
                                 />
                             </Suspense>

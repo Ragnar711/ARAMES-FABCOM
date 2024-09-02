@@ -41,7 +41,7 @@ export const Parameters = {
             'TC th [sec]': 'Temps de cycle théorique de la ligne',
         },
         Alerte: {
-            'Déchet  [Kg]': 'Dernier déchet enregistré par cause',
+            'Déchet [Kg]': 'Dernier déchet enregistré par cause',
             'Arrêt [sec]': 'Dernier arrêt enregistré par cause',
             'Qté NC [Kg]': 'Dernière quantité NC déclarée par cause',
         },

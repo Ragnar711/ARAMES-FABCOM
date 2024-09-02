@@ -1,7 +1,7 @@
 import { getColor } from '../../utils/getColor'
 
 const Param = ({ param, name, value, style }) => {
-    const KPIs = ['TRS', 'TD', 'TP', 'TQ', 'Tde']
+    const KPIs = ['TRS', 'TD', 'TP', 'TQ', 'TDech']
     let color = ''
     if (!value) {
         value = 'N/A'

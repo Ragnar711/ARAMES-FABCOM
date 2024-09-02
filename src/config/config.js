@@ -1,6 +1,4 @@
 import assemblage from '../assets/assemblage.png'
-import plaque from '../assets/plaque.png'
-import charge from '../assets/charge.png'
 import mach from '../assets/mach.png'
 
 export const machineData = {
@@ -22,16 +20,16 @@ export const machineData = {
             // },
         ],
     },
-    'UAP-Plaque': {
-        status: false,
-        image: plaque,
-        section: 'UAP-Plaque',
-        machines: [],
-    },
-    'Charge-Finition': {
-        status: false,
-        image: charge,
-        section: 'Charge-Finition',
-        machines: [],
-    },
+    // 'UAP-Plaque': {
+    //     status: false,
+    //     image: plaque,
+    //     section: 'UAP-Plaque',
+    //     machines: [],
+    // },
+    // 'Charge-Finition': {
+    //     status: false,
+    //     image: charge,
+    //     section: 'Charge-Finition',
+    //     machines: [],
+    // },
 }

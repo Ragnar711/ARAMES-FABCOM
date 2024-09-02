@@ -1,23 +1,21 @@
-import { lazy, useState, useEffect } from 'react'
-import User from '../../assets/usericon.png'
+import { lazy, useState, useEffect, Suspense } from 'react'
+import { useNavigate } from 'react-router-dom'
+import of from '../../assets/of.png'
+import icon from '../../assets/news.png'
 import alert from '../../assets/alert.png'
+import User from '../../assets/usericon.png'
 import kpi from '../../assets/iconKpi.webp'
+import process from '../../assets/process.webp'
 import { getPoste } from '../../utils/getPoste'
 import { getColor } from '../../utils/getColor'
-import { Suspense } from 'react'
-
-const Of = lazy(() => import('./Of'))
-const Container = lazy(() => import('./Container'))
-const Alerts = lazy(() => import('./Alerts'))
-
+import { Parameters } from '../../config/params'
 import Loader from '../Loader'
 
-import of from '../../assets/of.png'
-
-import { Parameters } from '../../config/params'
+const Of = lazy(() => import('./Of'))
 
 const MesDivs = ({ machineData, sequenceNumber, style }) => {
     const [data, setData] = useState({})
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         try {
@@ -44,7 +42,10 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
 
     return (
         <div className={style.machine}>
-            <button className={style.state_btn}>
+            <button
+                className={style.state_btn}
+                onClick={() => navigate(`/machine/${machineData.machine}`)}
+            >
                 <span>Marche</span>
             </button>
             <div className={style.bloc1}>
@@ -237,22 +238,171 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
                         </div>
                     </div>
                 </div>
-                {/* <Suspense fallback={<Loader />}>
-                    <Container
-                        title="Process | Paramètres process"
-                        data={Parameters.machine.Process}
-                        values={data?.Process ?? {}}
-                        style={style}
-                        icon={process}
-                    />
-                </Suspense>
-                <Suspense fallback={<Loader />}>
-                    <Alerts
-                        data={Parameters.machine.Alerte}
-                        values={data?.Alert ?? {}}
-                        style={style}
-                    />
-                </Suspense> */}
+                <div className={style.blocKpi}>
+                    <div className={style.titreImageOf}>
+                        <img
+                            src={process}
+                            alt="iconkpi"
+                            className={style.iconOf}
+                        />
+                        <h2 className={style.blocTitle}>
+                            Process | Paramètres process
+                        </h2>
+                    </div>
+                    <div className={style.kpis}>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>TC Env [sec]</p>
+                                <p className={style.subKpi}>
+                                    Cadence réelle de la phase enveloppeuse
+                                </p>
+                            </div>
+                            <div
+                                className={style.kpiValue}
+                                style={{
+                                    border: '2px solid rgba(0, 0, 0, 0.25)',
+                                    boxShadow: '0 0 0.5px rgba(0, 0, 0, 0.25)',
+                                }}
+                            >
+                                20
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>TC COS [sec]</p>
+                                <p className={style.subKpi}>
+                                    Temps de cycle réel de la phase COS
+                                </p>
+                            </div>
+                            <div
+                                className={style.kpiValue}
+                                style={{
+                                    border: '2px solid rgba(0, 0, 0, 0.25)',
+                                    boxShadow: '0 0 0.5px rgba(0, 0, 0, 0.25)',
+                                }}
+                            >
+                                20
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>TC SC [sec]</p>
+                                <p className={style.subKpi}>
+                                    Temps de cycle réel soudure des connexions
+                                </p>
+                            </div>
+                            <div
+                                className={style.kpiValue}
+                                style={{
+                                    border: '2px solid rgba(0, 0, 0, 0.25)',
+                                    boxShadow: '0 0 0.5px rgba(0, 0, 0, 0.25)',
+                                }}
+                            >
+                                20
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>TC BC [sec]</p>
+                                <p className={style.subKpi}>
+                                    Temps de cycle réel soudure Bac/Couvercle
+                                </p>
+                            </div>
+                            <div
+                                className={style.kpiValue}
+                                style={{
+                                    border: '2px solid rgba(0, 0, 0, 0.25)',
+                                    boxShadow: '0 0 0.5px rgba(0, 0, 0, 0.25)',
+                                }}
+                            >
+                                20
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>TC th [sec]</p>
+                                <p className={style.subKpi}>
+                                    Temps de cycle théorique de la ligne
+                                </p>
+                            </div>
+                            <div
+                                className={style.kpiValue}
+                                style={{
+                                    border: '2px solid rgba(0, 0, 0, 0.25)',
+                                    boxShadow: '0 0 0.5px rgba(0, 0, 0, 0.25)',
+                                }}
+                            >
+                                20
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={style.blocKpi}>
+                    <div className={style.titreImageOf}>
+                        <img
+                            src={icon}
+                            alt="iconkpi"
+                            className={style.iconOf}
+                        />
+                        <h2 className={style.blocTitle}>
+                            Alerte | flash incidents
+                        </h2>
+                    </div>
+                    <div className={style.kpis}>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>Déchet [Kg]</p>
+                                <p className={style.subKpi}>
+                                    Dernier déchet enregistré par cause
+                                </p>
+                            </div>
+                            <div className={style.alert}>
+                                <div className={style.alertValue}>
+                                    {data?.lastDechet?.cause ?? ''}
+                                </div>
+                                <div>----------</div>
+                                <div>
+                                    {data?.lastDechet?.quantite?.toFixed(0) ??
+                                        0}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>Qté NC [Kg]</p>
+                                <p className={style.subKpi}>
+                                    Dernière quantité NC déclarée par cause
+                                </p>
+                            </div>
+                            <div className={style.alert}>
+                                <div className={style.alertValue}>
+                                    {data?.lastNC?.cause ?? ''}
+                                </div>
+                                <div>----------</div>
+                                <div>
+                                    {data?.lastNC?.quantite?.toFixed(0) ?? 0}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.kpiContainer}>
+                            <div className={style.kpiContent}>
+                                <p className={style.kpi}>Arrêt [sec]</p>
+                                <p className={style.subKpi}>
+                                    Dernier arrêt enregistré par cause
+                                </p>
+                            </div>
+                            <div className={style.alert}>
+                                <div className={style.alertValue}>
+                                    {data?.lastArret?.cause ?? ''}
+                                </div>
+                                <div>----------</div>
+                                <div>
+                                    {data?.lastArret?.duree?.toFixed(0) ?? 0}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

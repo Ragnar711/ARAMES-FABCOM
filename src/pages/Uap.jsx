@@ -1,14 +1,13 @@
 import { machineData } from '../config/config'
 import { useState, useEffect, lazy, Suspense } from 'react'
 import Loader from '../components/Loader'
-
 import style from '../styles/Section.module.css'
 
 const DivsSection = lazy(() => import('../components/uap/DivsSection'))
-const Select = lazy(() => import('../components/uap/Select'))
 
 const Uap = () => {
     const [time, setTime] = useState(new Date().toLocaleString())
+    const uaps = Object.keys(machineData)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -23,9 +22,16 @@ const Uap = () => {
     return (
         <>
             <div className={style.top}>
-                <Suspense fallback={<Loader />}>
-                    <Select data={machineData} style={style} />
-                </Suspense>
+                <select className={style.select}>
+                    <option value="" disabled selected>
+                        Select UAP
+                    </option>
+                    {uaps.map((uap) => (
+                        <option key={uap} value={uap}>
+                            {uap}
+                        </option>
+                    ))}
+                </select>
                 <p className={style.time}>{time}</p>
             </div>
             {machineData[section].machines.map((machine, index) => (
