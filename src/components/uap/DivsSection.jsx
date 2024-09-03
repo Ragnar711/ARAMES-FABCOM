@@ -30,7 +30,11 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
     }
 
     useEffect(() => {
-        fetchData()
+        const intervalId = setInterval(() => {
+            fetchData()
+        }, [1000])
+
+        return () => clearInterval(intervalId)
     }, [])
 
     const machine =

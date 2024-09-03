@@ -8,13 +8,13 @@ export const Parameters = {
     },
     OFs: {
         TBS: 'Ligne d’assemblage TBS',
-        'SOVEMA 1': 'Ligne d’assemblage SOVEMA 1',
-        'SOVEMA 2': 'Ligne d’assemblage SOVEMA 2',
+        SOVEMA1: 'Ligne d’assemblage SOVEMA 1',
+        SOVEMA2: 'Ligne d’assemblage SOVEMA 2',
         'Ligne 4': "Ligne d'assemblage 4",
         'Ligne 5': "Ligne d'assemblage 5",
     },
     Quantities: {
-        'Qté Conf  [batterie]': 'Quantité totale produite conformes',
+        'Qté Conf [batterie]': 'Quantité totale produite conformes',
         'Qté NC [batterie]': 'Quantité totale Non conforme',
         'Qté Ret [batterie]': 'Quantité totale retouchée',
         'Qté déchet [Kg]': 'Quantité déchet déclarée vers recyclage',
