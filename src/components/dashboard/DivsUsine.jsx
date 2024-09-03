@@ -19,12 +19,13 @@ const MesDivs = ({ machineData }) => {
     const uap = machineData.section
     const state = false
     const [data, setData] = useState([])
-    const machines = ['tbs'] // Ensure this array has valid identifiers
+    const machines = ['tbs', 'sovema1']
+    const ports = [3001, 3002]
 
-    const fetchData = async (machine) => {
+    const fetchData = async (machine, port) => {
         try {
             const res = await fetch(
-                `http://${window.location.hostname}:3001/api/v1/machine/${machine}`
+                `http://${window.location.hostname}:${port}/api/v1/machine/${machine}`
             )
             if (!res.ok) {
                 throw new Error(
@@ -52,16 +53,18 @@ const MesDivs = ({ machineData }) => {
     }
 
     useEffect(() => {
-        const intervalIds = machines.map((machine) => {
-            return setInterval(() => {
-                fetchData(machine)
-            }, 1000)
+        const intervalIds = machines.flatMap((machine) => {
+            return ports.map((port) => {
+                return setInterval(() => {
+                    fetchData(machine, port)
+                }, 1000)
+            })
         })
 
         return () => {
             intervalIds.forEach((intervalId) => clearInterval(intervalId))
         }
-    }, [machines])
+    }, [machines, ports])
 
     const TRS = calculateAverageKPI(data, 'TRS')
     const TD = calculateAverageKPI(data, 'TD')
