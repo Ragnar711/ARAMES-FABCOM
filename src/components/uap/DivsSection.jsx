@@ -8,6 +8,7 @@ import kpi from '../../assets/iconKpi.webp'
 import process from '../../assets/process.webp'
 import { getPoste } from '../../utils/getPoste'
 import { getColor } from '../../utils/getColor'
+import { formatDuration } from '../../utils/dates'
 import { Parameters } from '../../config/params'
 import Loader from '../Loader'
 
@@ -401,7 +402,9 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
                                 </div>
                                 <div>----------</div>
                                 <div>
-                                    {data?.lastArret?.duree?.toFixed(0) ?? 0}
+                                    {formatDuration(
+                                        data?.lastArret?.duree?.toFixed(0)
+                                    ) ?? 0}
                                 </div>
                             </div>
                         </div>
