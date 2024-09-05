@@ -358,7 +358,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 13px;
-    padding: 0.2rem;
+    padding: 0.5rem;
     color:red;
     position:relative;
     margin-top:0.5rem
@@ -367,7 +367,7 @@
     color:black;
 }
 .alerte{
-    width:39px;
+    width:58px;
     position:absolute;
     left:0;
     top:0;
@@ -397,7 +397,7 @@
     align-items:center;
     justify-content:center;
     position: relative;
-    bottom:2.6vh;
+    bottom:1.6vh;
 
 
 }

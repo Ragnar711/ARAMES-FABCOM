@@ -2,7 +2,7 @@ import { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import style from './styles/Dashboard.module.css'
 
-const Planification = lazy(() => import('./pages/Planification'))
+
 const Management = lazy(() => import('./pages/Management'))
 const Historique = lazy(() => import('./pages/Historique'))
 const Machine = lazy(() => import('./pages/Machine'))
@@ -78,7 +78,7 @@ const App = () => {
                                 }
                             />
                             <Route
-                                path="/uap/:section"
+                                path="/of"
                                 element={
                                     <Suspense fallback={<Loader />}>
                                         {' '}
@@ -87,11 +87,20 @@ const App = () => {
                                 }
                             />
                             <Route
-                                path="/machine/:machine"
+                                path="/machine/alerte"
                                 element={
                                     <Suspense fallback={<Loader />}>
                                         {' '}
                                         <Machine />{' '}
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/NC"
+                                element={
+                                    <Suspense fallback={<Loader />}>
+                                        {' '}
+                                        <Management />{' '}
                                     </Suspense>
                                 }
                             />
@@ -104,24 +113,7 @@ const App = () => {
                                     </Suspense>
                                 }
                             />
-                            <Route
-                                path="/management"
-                                element={
-                                    <Suspense fallback={<Loader />}>
-                                        {' '}
-                                        <Management />{' '}
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/planification"
-                                element={
-                                    <Suspense fallback={<Loader />}>
-                                        {' '}
-                                        <Planification />{' '}
-                                    </Suspense>
-                                }
-                            />{' '}
+                           
                             <Route
                                 path="*"
                                 element={

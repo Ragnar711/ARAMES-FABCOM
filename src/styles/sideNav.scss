@@ -12,7 +12,7 @@
     min-width: 5%;
 }
 .sidebar .MuiTypography-root {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     color: white;
     transition: font-size 0.4s;
 }
@@ -127,6 +127,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 200px;
 }
 .sidebar .contentsContainer ul li a{
     display: flex;
@@ -137,6 +138,7 @@
     padding: 0.75rem 0.6rem;
     border-radius: 1rem;
     cursor: pointer;
+    width:200px;
     
     background-color: white !important;
 }
@@ -155,14 +157,12 @@
     color: #404040;
 }
 .sidebar .contentsContainer ul li.active {
-    background-color: #ffc;
     color: #404040;
 }
 .sidebar .contentsContainer ul li.active a {
     color: #ff0;
 }
 .sidebar .contentsContainer ul li:hover {
-    background-color: #f2f2f2;
     transition: 0.25s;
     color: #404040;
 }
@@ -202,7 +202,6 @@
     opacity: 0;
 }
 .sidebar.active .contentsContainer li:hover {
-    background-color: #f2f2f2;
     transition: 0.25s;
     color: #404040;
 }
@@ -220,10 +219,11 @@
 /* Active list item styles */
 .MuiListItem-root:active {
     background-color: #e0e0e0;
+    width: auto;
 }
 /* List item hover styles */
 .MuiListItem-root:hover {
-    background-color: #e0e0e0;
+    
     padding: 12px;
     border-radius: 5px;
     margin-bottom: 3px;
