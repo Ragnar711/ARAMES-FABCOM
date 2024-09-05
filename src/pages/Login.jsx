@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
-import { AiOutlineUser } from 'react-icons/ai'
-import { MdMail } from 'react-icons/md'
-import { FaLock } from 'react-icons/fa'
 import style from '../styles/Login.module.css'
 import back from '../assets/back.png'
 import logo from '../assets/logo2.png'
@@ -32,17 +29,15 @@ const Login = () => {
     return (
         <main id={style.main}>
             <div className={style.imgBack}>
-                
                 <img src={back} alt="" />
             </div>
             <section id={style.section} className="blocLogin">
-            
                 <div>
-                    
-                         <img src={logo} alt="" className={style.logo2} />
-                    <p className={style.pBienvenue}>Bienvenue dans l'ère digital 4.0 avec ARAMES 
+                    <img src={logo} alt="" className={style.logo2} />
+                    <p className={style.pBienvenue}>
+                        Bienvenue dans l&apos;ère digital 4.0 avec ARAMES
                     </p>
-                    
+
                     <form
                         id={style.form}
                         onSubmit={(e) => {
@@ -50,11 +45,9 @@ const Login = () => {
                             connect()
                         }}
                     >
-                      
-                        
                         <div>
                             <div className={style['input-div']}>
-                             <label> Login</label>
+                                <label> Login</label>
                                 <input
                                     type="text"
                                     placeholder="Enter Login"
@@ -65,7 +58,7 @@ const Login = () => {
                                 />
                             </div>
                             <div className={style['input-div']}>
-                            <label> PassWord</label>
+                                <label> PassWord</label>
                                 <input
                                     type="password"
                                     placeholder="Enter Mot de passe"
