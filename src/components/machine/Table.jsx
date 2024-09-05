@@ -13,10 +13,12 @@ const columns = [
     {
         title: 'Qté Prod OK',
         dataIndex: 'Qté Prod OK',
+        render: (text) => <span>{text.toFixed(2)} pcs</span>,
     },
     {
         title: 'Qté NC',
         dataIndex: 'Qté NC',
+        render: (text) => <span>{text.toFixed(2)} pcs</span>,
     },
     {
         title: 'Arrêts',
@@ -25,6 +27,7 @@ const columns = [
     {
         title: 'TRS',
         dataIndex: 'TRS',
+        render: (text) => <span>{text.toFixed(2)} %</span>,
     },
     {
         title: 'Ref. Plaque',
@@ -35,6 +38,7 @@ const columns = [
         title: 'Cons. Plaque',
         dataIndex: 'Cons. Plaque',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Enveloppe',
@@ -45,6 +49,7 @@ const columns = [
         title: 'Cons. Enveloppe',
         dataIndex: 'Cons. Enveloppe',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Bac',
@@ -55,6 +60,7 @@ const columns = [
         title: 'Cons. Bac',
         dataIndex: 'Cons. Bac',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Couvercle',
@@ -65,64 +71,12 @@ const columns = [
         title: 'Cons. Couvercle',
         dataIndex: 'Cons. Couvercle',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
 ]
 
-const data = [
-    {
-        key: '3',
-        'Post/heure': 'Matin I 12h',
-        'N°OF': 605847,
-        'Qté Prod OK': 307,
-        'Qté NC': 0,
-        Arrêts: '00:00:25',
-        TRS: '85%',
-        'Ref. Plaque': 'REF121',
-        'Cons. Plaque': 0,
-        'Ref. Enveloppe': 'REF454',
-        'Cons. Enveloppe': 0,
-        'Ref. Bac': 'REF787',
-        'Cons. Bac': 0,
-        'Ref. Couvercle': 'REF101114',
-        'Cons. Couvercle': 0,
-    },
-    {
-        key: '2',
-        'Post/heure': 'Matin I 11h',
-        'N°OF': 605847,
-        'Qté Prod OK': 357,
-        'Qté NC': 20,
-        Arrêts: '00:01:25',
-        TRS: '65%',
-        'Ref. Plaque': 'REF122',
-        'Cons. Plaque': 5,
-        'Ref. Enveloppe': 'REF455',
-        'Cons. Enveloppe': 5,
-        'Ref. Bac': 'REF788',
-        'Cons. Bac': 0,
-        'Ref. Couvercle': 'REF101113',
-        'Cons. Couvercle': 0,
-    },
-    {
-        key: '1',
-        'Post/heure': 'Matin I 10h',
-        'N°OF': 605847,
-        'Qté Prod OK': 367,
-        'Qté NC': 30,
-        Arrêts: '00:03:25',
-        TRS: '55%',
-        'Ref. Plaque': 'REF123',
-        'Cons. Plaque': 15,
-        'Ref. Enveloppe': 'REF456',
-        'Cons. Enveloppe': 20,
-        'Ref. Bac': 'REF789',
-        'Cons. Bac': 10,
-        'Ref. Couvercle': 'REF101112',
-        'Cons. Couvercle': 30,
-    },
-]
-
-const TableHisto = ({ style }) => {
+const TableHisto = ({ style, data }) => {
+    const tableData = Array.isArray(data) ? data : []
     return (
         <ConfigProvider
             theme={{
@@ -151,7 +105,11 @@ const TableHisto = ({ style }) => {
                     Historique des résultats - 24 h [date dynamique dès
                     l’ouverture de la session]
                 </p>
-                <Table columns={columns} dataSource={data} pagination={false} />
+                <Table
+                    columns={columns}
+                    dataSource={tableData}
+                    pagination={false}
+                />
             </div>
         </ConfigProvider>
     )

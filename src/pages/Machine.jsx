@@ -334,7 +334,7 @@ function Machine() {
                     />
                 </Suspense>
                 <Suspense fallback={<Loader />}>
-                    <Table style={style} />
+                    <Table style={style} data={data?.historique ?? {}} />
                 </Suspense>
             </div>
         </>
