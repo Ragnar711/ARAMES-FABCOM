@@ -3,17 +3,14 @@ import filtre from '../assets/filtre.png'
 import recherche from '../assets/recherche.png'
 import table from '../assets/table.png'
 import Loader from '../components/Loader'
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import { machineData } from '../config/config'
-import { DatePicker, Space, ConfigProvider, Table } from 'antd'
+import { DatePicker, Space, ConfigProvider, Table, Input } from 'antd'
 
-const Select = lazy(() => import('../components/historique/Select'))
 const GenericSelect = lazy(() =>
     import('../components/historique/GenericSelect')
 )
 const Button = lazy(() => import('../components/historique/Button'))
-
-const users = ['user1', 'user2', 'user3', 'user4']
 
 const columns = [
     {
@@ -27,10 +24,12 @@ const columns = [
     {
         title: 'Qté Prod OK',
         dataIndex: 'Qté Prod OK',
+        render: (text) => <span>{text.toFixed(2)} pcs</span>,
     },
     {
         title: 'Qté NC',
         dataIndex: 'Qté NC',
+        render: (text) => <span>{text.toFixed(2)} pcs</span>,
     },
     {
         title: 'Arrêts',
@@ -39,6 +38,7 @@ const columns = [
     {
         title: 'TRS',
         dataIndex: 'TRS',
+        render: (text) => <span>{text.toFixed(2)} %</span>,
     },
     {
         title: 'Ref. Plaque',
@@ -49,6 +49,7 @@ const columns = [
         title: 'Cons. Plaque',
         dataIndex: 'Cons. Plaque',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Enveloppe',
@@ -59,6 +60,7 @@ const columns = [
         title: 'Cons. Enveloppe',
         dataIndex: 'Cons. Enveloppe',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Bac',
@@ -69,6 +71,7 @@ const columns = [
         title: 'Cons. Bac',
         dataIndex: 'Cons. Bac',
         colSpan: 2,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
     {
         title: 'Ref. Couvercle',
@@ -79,65 +82,43 @@ const columns = [
         title: 'Cons. Couvercle',
         dataIndex: 'Cons. Couvercle',
         colSpan: 2,
-    },
-]
-
-const data = [
-    {
-        key: '1',
-        'Post/heure': 'Matin I 10h',
-        'N°OF': 605847,
-        'Qté Prod OK': 367,
-        'Qté NC': 30,
-        Arrêts: '00:03:25',
-        TRS: '55%',
-        'Ref. Plaque': 'REF123',
-        'Cons. Plaque': 15,
-        'Ref. Enveloppe': 'REF456',
-        'Cons. Enveloppe': 20,
-        'Ref. Bac': 'REF789',
-        'Cons. Bac': 10,
-        'Ref. Couvercle': 'REF101112',
-        'Cons. Couvercle': 30,
-    },
-    {
-        key: '2',
-        'Post/heure': 'Matin I 11h',
-        'N°OF': 605847,
-        'Qté Prod OK': 357,
-        'Qté NC': 20,
-        Arrêts: '00:01:25',
-        TRS: '65%',
-        'Ref. Plaque': 'REF122',
-        'Cons. Plaque': 5,
-        'Ref. Enveloppe': 'REF455',
-        'Cons. Enveloppe': 5,
-        'Ref. Bac': 'REF788',
-        'Cons. Bac': 0,
-        'Ref. Couvercle': 'REF101113',
-        'Cons. Couvercle': 0,
-    },
-    {
-        key: '3',
-        'Post/heure': 'Matin I 12h',
-        'N°OF': 605847,
-        'Qté Prod OK': 307,
-        'Qté NC': 0,
-        Arrêts: '00:00:25',
-        TRS: '85%',
-        'Ref. Plaque': 'REF121',
-        'Cons. Plaque': 0,
-        'Ref. Enveloppe': 'REF454',
-        'Cons. Enveloppe': 0,
-        'Ref. Bac': 'REF787',
-        'Cons. Bac': 0,
-        'Ref. Couvercle': 'REF101114',
-        'Cons. Couvercle': 0,
+        render: (text) => <span>{text.toFixed(2)}</span>,
     },
 ]
 
 const Historique = () => {
     const [clicked, setClicked] = useState(false)
+    const [data, setData] = useState([])
+    const [filteredData, setFilteredData] = useState([])
+    const [uap, setUap] = useState('')
+    const uaps = Object.keys(machineData)
+    const [machine, setMachine] = useState('')
+    const [dateDebut, setDateDebut] = useState('')
+    const [dateFin, setDateFin] = useState('')
+    const [of, setOf] = useState('')
+
+    const fetchHistoriqueData = async () => {
+        try {
+            const res = await fetch(
+                `http://${window.location.hostname}:3001/api/v1/historique/${machine}/${dateDebut}/${dateFin}`
+            )
+            const resData = await res.json()
+            setData(resData)
+            setFilteredData(resData)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        if (of !== '') {
+            const filtered = data.filter((item) => item['N°OF'] === of)
+            setFilteredData(filtered)
+        } else {
+            setFilteredData(data)
+        }
+    }, [of, data])
+
     return (
         <ConfigProvider
             theme={{
@@ -165,30 +146,145 @@ const Historique = () => {
                     <div className={style.content}>
                         <div className={style.select}>
                             <div className={style.div1}>
-                                <Suspense fallback={<Loader />}>
-                                    <Select style={style} data={machineData} />
-                                </Suspense>
+                                <div className={style.selects}>
+                                    <select
+                                        className={style.selector}
+                                        onChange={(e) => setUap(e.target.value)}
+                                        value={uap}
+                                    >
+                                        <option value="" disabled>
+                                            Sélectionner UAP
+                                        </option>
+                                        {uaps.map((uap) =>
+                                            machineData[uap].machines.length !==
+                                            0 ? (
+                                                <option key={uap} value={uap}>
+                                                    {uap}
+                                                </option>
+                                            ) : null
+                                        )}
+                                    </select>
+                                    <select
+                                        className={style.selector}
+                                        value={machine}
+                                        onChange={(e) =>
+                                            setMachine(e.target.value)
+                                        }
+                                    >
+                                        <option value="" disabled>
+                                            Sélectionner Ligne
+                                        </option>
+                                        {machineData[uap]?.machines.map(
+                                            (machine) => (
+                                                <option
+                                                    key={machine.machine}
+                                                    value={machine.value}
+                                                >
+                                                    {machine.machine}
+                                                </option>
+                                            )
+                                        )}
+                                    </select>
+                                </div>
                             </div>
                             <div className={style.div2}>
-                                <GenericSelect
-                                    title="Sélectionner Opérateur"
-                                    data={users}
-                                    style={style}
-                                />
+                                <select className={style.selector}>
+                                    <option value="" disabled>
+                                        "Sélectionner Opérateur"
+                                    </option>
+                                </select>
                             </div>
                             <div className={style.div3}>
-                                <GenericSelect
-                                    title="Entre N°OF"
-                                    data={users}
-                                    style={style}
-                                />
+                                <Space.Compact>
+                                    <Input
+                                        style={{
+                                            width: '20%',
+                                            border: '1px solid black',
+                                        }}
+                                        defaultValue="OF"
+                                        disabled
+                                    />
+                                    <Input
+                                        style={{
+                                            width: '80%',
+                                            border: '1px solid black',
+                                        }}
+                                        value={of}
+                                        onChange={(e) => setOf(e.target.value)}
+                                    />
+                                </Space.Compact>
                             </div>
                         </div>
                         <div className={style.date}>
                             <Suspense fallback={<Loader />}>
-                                <Button text="Afficher J-1" style={style} />
-                                <Button text="Afficher W-1" style={style} />
-                                <Button text="Afficher M-1" style={style} />
+                                <Button
+                                    text="Afficher J-1"
+                                    style={style}
+                                    onClick={() => {
+                                        const now = new Date()
+                                        const yesterday = new Date(
+                                            now.getTime() - 1000 * 60 * 60 * 24
+                                        )
+                                        setDateDebut(
+                                            `${
+                                                yesterday
+                                                    .toISOString()
+                                                    .split('T')[0]
+                                            }T00:00:00.000Z`
+                                        )
+                                        setDateFin(
+                                            `${
+                                                now.toISOString().split('T')[0]
+                                            }T23:59:59.999Z`
+                                        )
+                                    }}
+                                />
+                                <Button
+                                    text="Afficher W-1"
+                                    style={style}
+                                    onClick={() => {
+                                        const now = new Date()
+                                        const lastWeek = new Date(
+                                            now.getTime() -
+                                                1000 * 60 * 60 * 24 * 7
+                                        )
+                                        setDateDebut(
+                                            `${
+                                                lastWeek
+                                                    .toISOString()
+                                                    .split('T')[0]
+                                            }T00:00:00.000Z`
+                                        )
+                                        setDateFin(
+                                            `${
+                                                now.toISOString().split('T')[0]
+                                            }T23:59:59.999Z`
+                                        )
+                                    }}
+                                />
+                                <Button
+                                    text="Afficher M-1"
+                                    style={style}
+                                    onClick={() => {
+                                        const now = new Date()
+                                        const lastWeek = new Date(
+                                            now.getTime() -
+                                                1000 * 60 * 60 * 24 * 30
+                                        )
+                                        setDateDebut(
+                                            `${
+                                                lastWeek
+                                                    .toISOString()
+                                                    .split('T')[0]
+                                            }T00:00:00.000Z`
+                                        )
+                                        setDateFin(
+                                            `${
+                                                now.toISOString().split('T')[0]
+                                            }T23:59:59.999Z`
+                                        )
+                                    }}
+                                />
                             </Suspense>
                             <div className={style.calendar}>
                                 <Suspense fallback={<Loader />}>
@@ -205,15 +301,53 @@ const Historique = () => {
                                     }}
                                 >
                                     <Space direction="horizontal">
-                                        <DatePicker placeholder="De: xx/xx/xxxx" />
-                                        <DatePicker placeholder="À : xx/xx/xxxx" />
+                                        <DatePicker
+                                            placeholder="De: xx/xx/xxxx"
+                                            onChange={(date) => {
+                                                const year = date['$y']
+                                                const month = date['$M']
+                                                const day = date['$D']
+                                                setDateDebut(
+                                                    `${year}-${
+                                                        month > 9
+                                                            ? month
+                                                            : `0${month}`
+                                                    }-${
+                                                        day > 9
+                                                            ? day
+                                                            : `0${day}`
+                                                    }T00:00:00.000Z`
+                                                )
+                                            }}
+                                        />
+                                        <DatePicker
+                                            placeholder="À : xx/xx/xxxx"
+                                            onChange={(date) => {
+                                                const year = date['$y']
+                                                const month = date['$M']
+                                                const day = date['$D']
+                                                setDateFin(
+                                                    `${year}-${
+                                                        month > 9
+                                                            ? month
+                                                            : `0${month}`
+                                                    }-${
+                                                        day > 9
+                                                            ? day
+                                                            : `0${day}`
+                                                    }T00:00:00.000Z`
+                                                )
+                                            }}
+                                        />
                                     </Space>
                                 </div>
                             </div>
                         </div>
                         <div className={style.recherche}>
                             <img src={recherche} alt="recherche" />
-                            <button>Recherche</button>
+                            <button onClick={() => fetchHistoriqueData()}>
+                                Recherche
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -222,8 +356,9 @@ const Historique = () => {
                         <div className={style.table_title}>
                             <p className={style.title}>
                                 <img alt="icon" src={table} /> Historique des
-                                résultats - Ligne Sovema 1 [de xx/xx/xxxx à
-                                xx/xx/xxxx]
+                                résultats - Ligne {machine.toUpperCase()} [de{' '}
+                                {dateDebut.slice(0, 10)} à{' '}
+                                {dateFin.slice(0, 10)}]
                             </p>
                             <div className={style.recherche}>
                                 <img src={table} alt="excel" />
@@ -232,7 +367,7 @@ const Historique = () => {
                         </div>
                         <Table
                             columns={columns}
-                            dataSource={data}
+                            dataSource={filteredData ?? data}
                             pagination={false}
                         />
                     </div>
