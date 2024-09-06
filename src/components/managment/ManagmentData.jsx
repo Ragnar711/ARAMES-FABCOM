@@ -118,7 +118,7 @@ const ManagmentData = ({
                         />
                     </Suspense>
                 </div>
-                <div className={style.tableData}>
+                {/* <div className={style.tableData}>
                     <h3 className={style.tableHeader2}>
                         Tableau {title}
                         <span
@@ -129,7 +129,7 @@ const ManagmentData = ({
                         </span>
                     </h3>
                     {tableVisible && renderTable(data.table)}
-                </div>
+                </div> */}
             </div>
         </div>
     )

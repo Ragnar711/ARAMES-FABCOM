@@ -217,10 +217,10 @@ const Managment = () => {
                 <Suspense fallback={<Loader />}>
                     <ManagmentKPI data={data.kpi ?? []} />
                 </Suspense>
-                {/* <Suspense fallback={<Loader />}>
+                <Suspense fallback={<Loader />}>
                     <ManagmentData
                         data={data.arret}
-                        displayData={chartData.arrets}
+                        displayData={data.arrets}
                         headers={arretHeaders}
                         title="arrêts"
                         yAxisLabel="Durée"
@@ -228,7 +228,7 @@ const Managment = () => {
                         IDPie="arretsPie"
                     />
                 </Suspense>
-                <Suspense fallback={<Loader />}>
+                {/* <Suspense fallback={<Loader />}>
                     <ManagmentData
                         data={data.dechets}
                         displayData={chartData.dechets}
