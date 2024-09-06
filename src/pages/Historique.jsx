@@ -7,9 +7,6 @@ import { lazy, Suspense, useState, useEffect } from 'react'
 import { machineData } from '../config/config'
 import { DatePicker, Space, ConfigProvider, Table, Input } from 'antd'
 
-const GenericSelect = lazy(() =>
-    import('../components/historique/GenericSelect')
-)
 const Button = lazy(() => import('../components/historique/Button'))
 
 const columns = [

@@ -99,26 +99,26 @@ const ManagmentKPI = ({ data }) => {
                     <table border="1" cellPadding="5" cellSpacing="0">
                         <thead>
                             <tr>
-                                {Object.keys(
-                                    data.table.length ? data.table[0] : {}
-                                ).map((heading, index) => (
-                                    <th
-                                        key={index}
-                                        style={{ fontSize: '0.4rem' }}
-                                    >
-                                        {Capitalize(heading)}
-                                    </th>
-                                ))}
+                                {Object.keys(data.length ? data[0] : {}).map(
+                                    (heading, index) => (
+                                        <th
+                                            key={index}
+                                            style={{ fontSize: '0.4rem' }}
+                                        >
+                                            {Capitalize(heading)}
+                                        </th>
+                                    )
+                                )}
                             </tr>
                         </thead>
                         <tbody>
-                            {data.table.map((dataItem, index) => (
+                            {data.map((dataItem, index) => (
                                 <tr key={index}>
                                     {Object.values(dataItem).map(
                                         (value, idx) => (
                                             <td key={idx}>
                                                 {typeof value === 'number'
-                                                    ? value.toFixed(0)
+                                                    ? `${value.toFixed(0)} %`
                                                     : value}
                                             </td>
                                         )
@@ -132,12 +132,6 @@ const ManagmentKPI = ({ data }) => {
         )
     }
 
-    data = data === null ? { chart: [], table: [] } : data
-
-    if (!data.table || data.table.length === 0) {
-        return null
-    }
-
     return (
         <div className={style.Cont}>
             <h2 className={style.ManagmentDataH2}>
@@ -145,8 +139,8 @@ const ManagmentKPI = ({ data }) => {
             </h2>
             <div className={style.kpiCont}>
                 <div className={style.ManagmentKPICharts}>
-                    {renderChart('histo', data.chart)}
-                    {renderChart('lineChart', data.chart)}
+                    {renderChart('histo', data)}
+                    {renderChart('lineChart', data)}
                 </div>
                 {renderTable()}
             </div>

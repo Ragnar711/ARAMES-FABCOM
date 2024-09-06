@@ -6,27 +6,70 @@ td {
 option {
     text-align: center;
 }
+.selectDiv {
+    display: flex;
+    justify-content: space-between;
+}
 .buttonfiltre {
-    width: 125px;
-    height: 40px;
-    cursor: pointer;
-    border: 2px solid;
-    background: #6d6d6d;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: left;
+    background-color: white;
+    color: black;
+    padding: 0.2rem 2.2rem 0.2rem 0.2rem;
+    font-size: 0.4rem;
+    appearance: none;
+    width: 100%;
+    margin-left: 0.3rem;
+}
+
+.calendar > .button {
+    background-color: #dedede;
+    margin-left: calc((-15% + 15px));
+    padding-inline: 15px;
+}
+
+.calendar > .button:hover {
+    background-color: #002060;
     color: white;
 }
-.buttonfiltre:hover {
-    background: #167da4;
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+.date {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 1%;
+}
+.calendar > div {
+    position: absolute;
+    top: 25%;
+    left: calc(65% - 5rem);
+}
+
 .buttonSecondFiltre {
-    width: 74px;
-    height: 40px;
-    color: white;
-    background: #165473;
-    border: 2px solid;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 5px #ccc;
+    color: #002060;
+    background-color: white;
     cursor: pointer;
+    height: 1rem;
 }
-.buttonSecondFiltre:hover {
-    background: blue;
+
+.filtre {
+    padding: 1rem;
+    border: 2px solid #ccc;
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.25fr;
+    grid-template-rows: 1fr;
+    column-gap: 1%;
+    width: 95%;
 }
 table {
     width: 99%;
@@ -48,6 +91,9 @@ th {
 }
 .filtre {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .filtre2 {
@@ -99,13 +145,17 @@ th {
     font-weight: bold;
     text-align: center;
 }
-.date {
-    color: white;
-    background: #165473;
-    border: 2px solid;
-    width: 110px;
-    padding: 9px;
+.button {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 5px #ccc;
+    color: #002060;
+    background-color: white;
+    cursor: pointer;
+    height: 1rem;
 }
+
 #sousButton {
     background-color: white;
     padding: 1%;
@@ -189,6 +239,21 @@ label {
     padding: 2%;
     color: white;
 }
+.title {
+    font-size: 0.45rem;
+    color: #000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 8%;
+    margin-block: 1%;
+}
+
+.title > img {
+    width: 2%;
+    height: auto;
+}
+
 .optionWithIcon {
     display: flex;
     align-items: center;
