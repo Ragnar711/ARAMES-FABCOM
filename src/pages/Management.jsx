@@ -215,13 +215,11 @@ const Managment = () => {
             </div>
             <div id="pdf">
                 <Suspense fallback={<Loader />}>
-                    <ManagmentKPI data={data.kpi ?? []} />
+                    <ManagmentKPI data={data?.kpi ?? []} />
                 </Suspense>
                 <Suspense fallback={<Loader />}>
                     <ManagmentData
-                        data={data.arret}
-                        displayData={data.arrets}
-                        headers={arretHeaders}
+                        data={data?.arret ?? {}}
                         title="arrêts"
                         yAxisLabel="Durée"
                         IDPareto="arretsPareto"

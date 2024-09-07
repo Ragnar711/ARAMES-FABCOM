@@ -13,7 +13,7 @@ import {
 import pdfIcon from '../../assets/pdf.png'
 import { printAsPdf } from '../../utils/exportFunctions'
 
-const Pareto = ({ IDPareto, title, yAxisLabel, chartData }) => {
+const Pareto = ({ IDPareto, title, yAxisLabel, data }) => {
     const [paretoHeight, setParetoHeight] = useState(400)
     const [paretoVisible, setParetoVisible] = useState(true)
     const toggleParetoVisibility = () => {
@@ -63,7 +63,7 @@ const Pareto = ({ IDPareto, title, yAxisLabel, chartData }) => {
         }
         return null
     }
-    const sortedChartData = [...chartData].sort(
+    const sortedChartData = [...data].sort(
         (a, b) => b[valueField] - a[valueField]
     )
     const top5ChartData = sortedChartData.slice(0, 5)

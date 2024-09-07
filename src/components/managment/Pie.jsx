@@ -6,13 +6,7 @@ import { printAsPdf } from '../../utils/exportFunctions'
 
 const COLORS = ['#1d3557', '#457b9d', '#a8dadc', '#f1faee']
 
-const PieDataChart = ({
-    IDPie,
-    title,
-    chartData,
-    yAxisLabel,
-    totalDuration,
-}) => {
+const PieDataChart = ({ IDPie, title, data, yAxisLabel, totalDuration }) => {
     const [pieHeight, setPieHeight] = useState(400)
     const [pieVisible, setPieVisible] = useState(true)
     const togglePieVisibility = () => {
@@ -68,8 +62,8 @@ const PieDataChart = ({
         }
         return topNData
     }
-    const renderCustomLegend = (chartData, totalDuration) => {
-        const topNChartData = getTopNChartData(chartData, 3)
+    const renderCustomLegend = (data, totalDuration) => {
+        const topNChartData = getTopNChartData(data, 3)
         return (
             <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
                 {topNChartData.map((entry, index) => {
@@ -132,7 +126,7 @@ const PieDataChart = ({
                 <div>
                     <PieChart width={300} height={300}>
                         <Pie
-                            data={chartData}
+                            data={data}
                             cx={150}
                             cy={150}
                             labelLine={false}
@@ -140,7 +134,7 @@ const PieDataChart = ({
                             fill="#8884d8"
                             dataKey={`${valueField}`}
                         >
-                            {chartData.map((entry, index) => (
+                            {data.map((entry, index) => (
                                 <Cell
                                     key={`cell-${index}`}
                                     fill={COLORS[index % COLORS.length]}
@@ -149,7 +143,7 @@ const PieDataChart = ({
                         </Pie>
                         <Tooltip content={renderCustomTooltip} />
                     </PieChart>
-                    {renderCustomLegend(chartData, totalDuration)}
+                    {renderCustomLegend(data, totalDuration)}
                 </div>
             )}
         </div>

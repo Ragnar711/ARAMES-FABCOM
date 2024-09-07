@@ -132,6 +132,10 @@ const ManagmentKPI = ({ data }) => {
         )
     }
 
+    if (data.length === 0) {
+        return null
+    }
+
     return (
         <div className={style.Cont}>
             <h2 className={style.ManagmentDataH2}>

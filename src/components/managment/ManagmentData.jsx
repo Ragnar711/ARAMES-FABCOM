@@ -1,42 +1,15 @@
-import { useState, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import style from '../../styles/Managment.module.css'
-import Capitalize from '../../utils/strings'
 
 const Pareto = lazy(() => import('./Pareto'))
 const PieDataChart = lazy(() => import('./Pie'))
 
-const ManagmentData = ({
-    data,
-    displayData,
-    title,
-    yAxisLabel,
-    IDPareto,
-    IDPie,
-}) => {
-    const [tableVisible, setTableVisible] = useState(true)
+const ManagmentData = ({ data = {}, title, yAxisLabel, IDPareto, IDPie }) => {
+    // const [tableVisible, setTableVisible] = useState(true)
 
-    const prepareChartData = (data, keyField, valueField) => {
-        const chartData = {}
-        data.forEach((item) => {
-            if (!chartData[item[keyField]]) {
-                chartData[item[keyField]] = 0
-            }
-            chartData[item[keyField]] += item[valueField]
-        })
-        const sortedData = Object.keys(chartData)
-            .map((key) => ({ [keyField]: key, [valueField]: chartData[key] }))
-            .sort((a, b) => b[valueField] - a[valueField])
+    const calculateTotalDuration = (data) => {
         let totalDuration = 0
-        sortedData.forEach((entry) => {
-            totalDuration += entry[valueField]
-            entry.cumulativePercentage = totalDuration
-        })
-        return sortedData
-    }
-
-    const calculateTotalDuration = (chartData) => {
-        let totalDuration = 0
-        chartData.forEach((entry) => {
+        data.forEach((entry) => {
             if (title === 'arrêts') {
                 totalDuration += entry.Durée
             } else {
@@ -46,54 +19,54 @@ const ManagmentData = ({
         return totalDuration
     }
 
-    const toggleTableVisibility = () => {
-        setTableVisible(!tableVisible)
-    }
+    // const toggleTableVisibility = () => {
+    //     setTableVisible(!tableVisible)
+    // }
 
-    const renderTable = (tableData) => {
-        return (
-            <table
-                border="1"
-                cellPadding="5"
-                cellSpacing="0"
-                style={{
-                    width: '100%',
-                }}
-            >
-                <thead>
-                    <tr>
-                        {Object.keys(tableData.length ? tableData[0] : {}).map(
-                            (heading, index) => (
-                                <th key={index} style={{ fontSize: '0.4rem' }}>
-                                    {Capitalize(heading)}
-                                </th>
-                            )
-                        )}
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.values(tableData).map((dataItem, index) => (
-                        <tr key={index}>
-                            {Object.values(dataItem).map((value, idx) => (
-                                <td key={idx}>
-                                    {typeof value === 'number'
-                                        ? value.toFixed(0)
-                                        : value}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        )
-    }
+    // const renderTable = (data) => {
+    //     return (
+    //         <table
+    //             border="1"
+    //             cellPadding="5"
+    //             cellSpacing="0"
+    //             style={{
+    //                 width: '100%',
+    //             }}
+    //         >
+    //             <thead>
+    //                 <tr>
+    //                     {Object.keys(data.length ? data[0] : {}).map(
+    //                         (heading, index) => (
+    //                             <th key={index} style={{ fontSize: '0.4rem' }}>
+    //                                 {Capitalize(heading)}
+    //                             </th>
+    //                         )
+    //                     )}
+    //                 </tr>
+    //             </thead>
+    //             <tbody>
+    //                 {Object.values(data).map((dataItem, index) => (
+    //                     <tr key={index}>
+    //                         {Object.values(dataItem).map((value, idx) => (
+    //                             <td key={idx}>
+    //                                 {typeof value === 'number'
+    //                                     ? value.toFixed(0)
+    //                                     : value}
+    //                             </td>
+    //                         ))}
+    //                     </tr>
+    //                 ))}
+    //             </tbody>
+    //         </table>
+    //     )
+    // }
 
-    if (!data?.table?.length) {
+    const totalDuration = calculateTotalDuration(data?.chart ?? [])
+    // const tableData = data?.table?.slice(0, 10) ?? []
+
+    if (data?.chart?.length === 0) {
         return null
     }
-
-    const chartData = prepareChartData(displayData, 'Motif', 'Durée')
-    const totalDuration = calculateTotalDuration(chartData)
 
     return (
         <div className={style.Cont}>
@@ -105,7 +78,7 @@ const ManagmentData = ({
                             IDPareto={IDPareto}
                             title={title}
                             yAxisLabel={yAxisLabel}
-                            chartData={data.chart}
+                            data={data?.chart ?? []}
                         />
                     </Suspense>
                     <Suspense fallback={<div>Loading...</div>}>
@@ -113,7 +86,7 @@ const ManagmentData = ({
                             IDPie={IDPie}
                             title={title}
                             yAxisLabel={yAxisLabel}
-                            chartData={data.chart}
+                            data={data?.chart ?? []}
                             totalDuration={totalDuration}
                         />
                     </Suspense>
@@ -128,7 +101,7 @@ const ManagmentData = ({
                             {tableVisible ? '-' : '+'}
                         </span>
                     </h3>
-                    {tableVisible && renderTable(data.table)}
+                    {tableVisible && renderTable(tableData)}
                 </div> */}
             </div>
         </div>
