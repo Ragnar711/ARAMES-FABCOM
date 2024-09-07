@@ -226,11 +226,9 @@ const Managment = () => {
                         IDPie="arretsPie"
                     />
                 </Suspense>
-                {/* <Suspense fallback={<Loader />}>
+                <Suspense fallback={<Loader />}>
                     <ManagmentData
-                        data={data.dechets}
-                        displayData={chartData.dechets}
-                        headers={manDataHeaders}
+                        data={data?.dechet ?? {}}
                         title="déchets"
                         yAxisLabel="Quantitée"
                         IDPareto="dechetPareto"
@@ -239,15 +237,13 @@ const Managment = () => {
                 </Suspense>
                 <Suspense fallback={<Loader />}>
                     <ManagmentData
-                        data={data.NC}
-                        displayData={chartData.NC}
-                        headers={manDataHeaders}
+                        data={data?.NC ?? {}}
                         title="NC"
                         yAxisLabel="Quantitée"
                         IDPareto="NCPareto"
                         IDPie="NCPie"
                     />
-                </Suspense> */}
+                </Suspense>
             </div>
         </div>
     )
