@@ -230,16 +230,16 @@ const Managment = () => {
                     <ManagmentData
                         data={data?.dechet ?? {}}
                         title="déchets"
-                        yAxisLabel="Quantitée"
+                        yAxisLabel="Quantité"
                         IDPareto="dechetPareto"
                         IDPie="dechetPie"
                     />
                 </Suspense>
                 <Suspense fallback={<Loader />}>
                     <ManagmentData
-                        data={data?.NC ?? {}}
+                        data={data?.nc ?? {}}
                         title="NC"
-                        yAxisLabel="Quantitée"
+                        yAxisLabel="Quantité"
                         IDPareto="NCPareto"
                         IDPie="NCPie"
                     />
