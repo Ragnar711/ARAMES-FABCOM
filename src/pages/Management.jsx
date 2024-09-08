@@ -4,6 +4,7 @@ import Loader from '../components/Loader'
 import style from '../styles/Management.module.css'
 import { machineData } from '../config/config'
 import { useEffect } from 'react'
+import { Space, DatePicker } from 'antd'
 
 const ManagmentData = lazy(() =>
     import('../components/managment/ManagmentData')
@@ -43,7 +44,12 @@ const Managment = () => {
             <p className={style.title}>
                 <img alt="icon" src={filtre} /> Filtre de recherche
             </p>
-            <div className={style.filtre}>
+            <div
+                className={style.filtre}
+                style={{
+                    height: '75px',
+                }}
+            >
                 <div className={style.selectDiv}>
                     {' '}
                     <select
@@ -141,29 +147,11 @@ const Managment = () => {
                     >
                         Afficher M-1
                     </button>
-                    <button
-                        className={style.buttonSecondFiltre}
-                        onClick={() => {
-                            const now = new Date()
-                            const lastWeek = new Date(
-                                now.getTime() - 1000 * 60 * 60 * 24 * 365
-                            )
-                            setDateDebut(
-                                `${
-                                    lastWeek.toISOString().split('T')[0]
-                                }T00:00:00.000Z`
-                            )
-                            setDateFin(
-                                `${
-                                    now.toISOString().split('T')[0]
-                                }T23:59:59.999Z`
-                            )
-                        }}
-                    >
-                        Afficher Y-1
-                    </button>
 
-                    {/* <div className={style.calendar}>
+                    <div
+                        className={style.calendar}
+                        style={{ position: 'relative' }}
+                    >
                         <Suspense fallback={<Loader />}>
                             <Button
                                 text="Calendrier"
@@ -175,6 +163,10 @@ const Managment = () => {
                             style={{
                                 display: clicked ? 'block' : 'none',
                                 width: 'max-content',
+                                position: 'absolute',
+                                top: '30px',
+                                left: '-175px',
+                                margin: 'auto',
                             }}
                         >
                             <Space direction="horizontal">
@@ -210,7 +202,7 @@ const Managment = () => {
                                 />
                             </Space>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
             <div id="pdf">

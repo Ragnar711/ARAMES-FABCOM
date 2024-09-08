@@ -114,7 +114,7 @@ export default function Header() {
                                         Bonjour,{' '}
                                         {`${
                                             localStorage.getItem('nom') ??
-                                            'user'
+                                            'admin'
                                         } `}
                                         👋
                                     </p>
