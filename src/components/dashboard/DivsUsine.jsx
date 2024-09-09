@@ -19,8 +19,8 @@ const MesDivs = ({ machineData }) => {
     const uap = machineData.section
     const state = false
     const [data, setData] = useState([])
-    const machines = ['tbs', 'sovema1']
-    const ports = [3001, 3002]
+    const machines = ['tbs']
+    const ports = [3001]
 
     const fetchData = async (machine, port) => {
         try {
