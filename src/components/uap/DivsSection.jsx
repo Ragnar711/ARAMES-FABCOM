@@ -17,6 +17,7 @@ const Of = lazy(() => import('./Of'))
 const MesDivs = ({ machineData, sequenceNumber, style }) => {
     const [data, setData] = useState({})
     const navigate = useNavigate()
+    const state = true
 
     const fetchData = async () => {
         try {
@@ -43,12 +44,11 @@ const MesDivs = ({ machineData, sequenceNumber, style }) => {
             machineData.machine.split('-').length - 1
         ]
 
-    const state = false
-
     return (
         <div className={style.machine}>
             <button
                 className={style.state_btn}
+                style={{ cursor: 'pointer' }}
                 onClick={() => navigate(`/machine/${machineData.machine}`)}
             >
                 <span>Marche</span>
