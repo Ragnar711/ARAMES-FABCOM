@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { lazy, Suspense, useState, useEffect } from 'react'
 import { machineData } from '../config/config'
 import { DatePicker, Space, ConfigProvider, Table, Input } from 'antd'
+import * as XLSX from 'xlsx'
 
 const Button = lazy(() => import('../components/historique/Button'))
 
@@ -359,7 +360,19 @@ const Historique = () => {
                             </p>
                             <div className={style.recherche}>
                                 <img src={table} alt="excel" />
-                                <button>Exporter</button>
+                                <button
+                                    onClick={() =>
+                                        exportToExcel(
+                                            filteredData ?? data,
+                                            `Historique-${machine}-${dateDebut.slice(
+                                                0,
+                                                10
+                                            )}_${dateFin.slice(0, 10)}`
+                                        )
+                                    }
+                                >
+                                    Exporter
+                                </button>
                             </div>
                         </div>
                         <Table
@@ -375,3 +388,10 @@ const Historique = () => {
 }
 
 export default Historique
+
+const exportToExcel = (data, title) => {
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Historique')
+    XLSX.writeFile(workbook, `${title}.xlsx`)
+}
