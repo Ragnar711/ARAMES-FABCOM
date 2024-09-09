@@ -11,16 +11,18 @@ import { calculateAverageKPI } from '../../utils/utils'
 import { useState, useEffect, lazy, Suspense } from 'react'
 import Loader from '../Loader'
 import { Parameters } from '../../config/params'
+import { useNavigate } from 'react-router-dom'
 
 const Param = lazy(() => import('./Param'))
 const Container = lazy(() => import('./Container'))
 
 const MesDivs = ({ machineData }) => {
     const uap = machineData.section
-    const state = false
+    const state = true
     const [data, setData] = useState([])
     const machines = ['tbs']
     const ports = [3001]
+    const navigate = useNavigate()
 
     const fetchData = async (machine, port) => {
         try {
@@ -95,7 +97,15 @@ const MesDivs = ({ machineData }) => {
     return (
         <div className={style.section}>
             <div className={style.bloc1}>
-                <h2 className={style.title}>{`UAP - ${uap.split('-')[1]}`}</h2>
+                <button
+                    style={{
+                        border: 'none',
+                        backgroundColor: 'transparent',
+                        cursor: 'pointer',
+                    }}
+                    className={style.title}
+                    onClick={() => navigate(`/uap/${uap}`)}
+                >{`UAP - ${uap.split('-')[1]}`}</button>
                 <div className={style.machineImage}>
                     <img
                         className={style.imageMachine}
@@ -126,7 +136,7 @@ const MesDivs = ({ machineData }) => {
                     <div className={style.titreImageOf}>
                         <img src={kpi} alt="iconkpi" className={style.iconOf} />
                         <h2 className={style.blocTitle}>
-                            "KPI | Performance de l'UAP"
+                            KPI | Performance de l'UAP
                         </h2>
                     </div>
                     <div className={style.kpis}>
