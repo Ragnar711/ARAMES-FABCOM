@@ -60,6 +60,7 @@ option {
     background-color: white;
     cursor: pointer;
     height: 1rem;
+    width: 150px;
 }
 
 .filtre {

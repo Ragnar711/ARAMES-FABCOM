@@ -1,11 +1,12 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import style from '../../styles/Managment.module.css'
+import { formatDuration } from '../../utils/dates'
 
 const Pareto = lazy(() => import('./Pareto'))
 const PieDataChart = lazy(() => import('./Pie'))
 
 const ManagmentData = ({ data = {}, title, yAxisLabel, IDPareto, IDPie }) => {
-    // const [tableVisible, setTableVisible] = useState(true)
+    const [tableVisible, setTableVisible] = useState(true)
 
     const calculateTotalDuration = (data) => {
         let totalDuration = 0
@@ -19,47 +20,46 @@ const ManagmentData = ({ data = {}, title, yAxisLabel, IDPareto, IDPie }) => {
         return totalDuration
     }
 
-    // const toggleTableVisibility = () => {
-    //     setTableVisible(!tableVisible)
-    // }
+    const toggleTableVisibility = () => {
+        setTableVisible(!tableVisible)
+    }
 
-    // const renderTable = (data) => {
-    //     return (
-    //         <table
-    //             border="1"
-    //             cellPadding="5"
-    //             cellSpacing="0"
-    //             style={{
-    //                 width: '100%',
-    //             }}
-    //         >
-    //             <thead>
-    //                 <tr>
-    //                     {Object.keys(data.length ? data[0] : {}).map(
-    //                         (heading, index) => (
-    //                             <th key={index} style={{ fontSize: '0.4rem' }}>
-    //                                 {Capitalize(heading)}
-    //                             </th>
-    //                         )
-    //                     )}
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //                 {Object.values(data).map((dataItem, index) => (
-    //                     <tr key={index}>
-    //                         {Object.values(dataItem).map((value, idx) => (
-    //                             <td key={idx}>
-    //                                 {typeof value === 'number'
-    //                                     ? value.toFixed(0)
-    //                                     : value}
-    //                             </td>
-    //                         ))}
-    //                     </tr>
-    //                 ))}
-    //             </tbody>
-    //         </table>
-    //     )
-    // }
+    const renderTable = (data) => {
+        return (
+            <table
+                border="1"
+                cellPadding="5"
+                cellSpacing="0"
+                style={{
+                    width: '100%',
+                }}
+            >
+                <thead>
+                    <tr>
+                        <th style={{ fontSize: '0.4rem' }}>Cause</th>
+                        <th style={{ fontSize: '0.4rem' }}>
+                            {title === 'arrêts' ? 'Durée' : 'Quantité'}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.values(data).map((dataItem, index) => (
+                        <tr key={index}>
+                            {Object.values(dataItem).map((value, idx) => (
+                                <td key={idx}>
+                                    {typeof value === 'number'
+                                        ? title === 'arrêts'
+                                            ? formatDuration(value)
+                                            : value.toFixed(0)
+                                        : value}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )
+    }
 
     const totalDuration = calculateTotalDuration(data?.chart ?? [])
     // const tableData = data?.table?.slice(0, 10) ?? []
@@ -91,7 +91,7 @@ const ManagmentData = ({ data = {}, title, yAxisLabel, IDPareto, IDPie }) => {
                         />
                     </Suspense>
                 </div>
-                {/* <div className={style.tableData}>
+                <div className={style.tableData}>
                     <h3 className={style.tableHeader2}>
                         Tableau {title}
                         <span
@@ -101,8 +101,8 @@ const ManagmentData = ({ data = {}, title, yAxisLabel, IDPareto, IDPie }) => {
                             {tableVisible ? '-' : '+'}
                         </span>
                     </h3>
-                    {tableVisible && renderTable(tableData)}
-                </div> */}
+                    {tableVisible && renderTable(data?.chart ?? [])}
+                </div>
             </div>
         </div>
     )

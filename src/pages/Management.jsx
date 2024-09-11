@@ -4,13 +4,11 @@ import Loader from '../components/Loader'
 import style from '../styles/Management.module.css'
 import { machineData } from '../config/config'
 import { useEffect } from 'react'
-import { Space, DatePicker } from 'antd'
 
 const ManagmentData = lazy(() =>
     import('../components/managment/ManagmentData')
 )
 const ManagmentKPI = lazy(() => import('../components/managment/ManagmentKPI'))
-const Button = lazy(() => import('../components/historique/Button'))
 
 const Managment = () => {
     const [data, setData] = useState({})
@@ -147,8 +145,29 @@ const Managment = () => {
                     >
                         Afficher M-1
                     </button>
+                    <button
+                        className={style.buttonSecondFiltre}
+                        onClick={() => {
+                            const now = new Date()
+                            const lastWeek = new Date(
+                                now.getTime() - 1000 * 60 * 60 * 24 * 365
+                            )
+                            setDateDebut(
+                                `${
+                                    lastWeek.toISOString().split('T')[0]
+                                }T00:00:00.000Z`
+                            )
+                            setDateFin(
+                                `${
+                                    now.toISOString().split('T')[0]
+                                }T23:59:59.999Z`
+                            )
+                        }}
+                    >
+                        Afficher Y-1
+                    </button>
 
-                    <div
+                    {/* <div
                         className={style.calendar}
                         style={{ position: 'relative' }}
                     >
@@ -202,7 +221,7 @@ const Managment = () => {
                                 />
                             </Space>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div id="pdf">
